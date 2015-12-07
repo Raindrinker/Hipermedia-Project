@@ -79,6 +79,7 @@ body .container-fluid .playercontent{
     height: 100px;
     margin-bottom: 0px;
     margin-top: 20px;
+    box-shadow: 0 -8px 17px 0 rgba(0,0,0,.2),0 -6px 20px 0 rgba(0,0,0,.19);
 }
 
 .list-group .list-group-item{
@@ -88,11 +89,16 @@ body .container-fluid .playercontent{
     white-space: nowrap;
 }
 
+#content{
+    position: relative;
+}
+
+#page-content-wrapper{
+    position: relative;
+}
+
 #smalltitle{
     text-align: center;
     visibility: hidden;
-    margin-top: 0;
-    position: fixed;
-    height: 70px;
     z-index: 4;
 }

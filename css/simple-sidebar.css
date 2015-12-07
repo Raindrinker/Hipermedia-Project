@@ -14,6 +14,10 @@
     transition: all 0.5s ease;
 }
 
+#smalltitle{
+    transition: padding-right 0.5s;
+}
+
 #wrapper.toggled {
     padding-left: 250px;
 }
@@ -121,5 +125,13 @@
     #wrapper.toggled #page-content-wrapper {
         position: relative;
         margin-right: 0;
+    }
+
+    #wrapper.toggled #smalltitle{
+        padding-right: 0px;
+    }
+
+    #smalltitle{
+        padding-right: 250px;
     }
 }
