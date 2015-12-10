@@ -7,9 +7,11 @@ $(document).ready(function() {
     var smallTitleControl = function() {
         if (content.scrollTop > (bigtitle.clientHeight - smalltitle.clientHeight)) {
             smalltitle.style.visibility = "visible";
+            bigtitle.style.visibility = "hidden";
             smalltitle.childNodes[1].style.opacity = (content.scrollTop - (bigtitle.clientHeight - smalltitle.clientHeight)) / 100;
         } else {
             smalltitle.style.visibility = "hidden";
+            bigtitle.style.visibility = "visible";
         }
     }
 

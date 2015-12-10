@@ -1,15 +1,51 @@
-.song{
+.album{
   padding: 0px;
   transition: box-shadow 0.2s;
 }
 
+.song{
+    padding: 10px;
+}
+
 .song:hover{
+    background-color: lightgray;
+
+}
+
+.album:hover{
     box-shadow: 0 2px 12px 0 rgba(0,0,0,.4),0 2px 12px 0 rgba(0,0,0,.4);
 }
 
-.songs{
-    margin: 20px;
+.albums{
     margin-bottom: 150px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 40px;
+}
+
+.songlist{
+    margin-bottom: 150px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 40px;
+}
+
+@media (min-width: 1200px) {
+    .songlist{
+        margin-bottom: 150px;
+        margin-left: 150px;
+        margin-right: 150px;
+        margin-top: 40px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .songlist{
+        margin-bottom: 150px;
+        margin-left: 250px;
+        margin-right: 250px;
+        margin-top: 40px;
+    }
 }
 
 .well{
@@ -35,11 +71,21 @@ body .container-fluid .well{
 
 img{
     width: 100%;
+    padding: 0px;
+}
+
+.album-image{
+    padding: 0px;
 }
 
 .jumbotron{
     text-align: center;
     height: 200px;
+    border-radius: 0px;
+}
+
+body .container-fluid #bigtitle, body .container-fluid #smalltitle{
+    border-radius: 0px;
 }
 
 body{
