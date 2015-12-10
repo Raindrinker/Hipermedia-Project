@@ -1,26 +1,21 @@
-.album{
+.song{
   padding: 0px;
   transition: box-shadow 0.2s;
 }
 
-.song{
-    padding: 10px;
-}
-
 .song:hover{
-    background-color: lightgray;
-
-}
-
-.album:hover{
     box-shadow: 0 2px 12px 0 rgba(0,0,0,.4),0 2px 12px 0 rgba(0,0,0,.4);
 }
 
-.albums{
+.songs{
     margin-bottom: 150px;
     margin-left: 50px;
     margin-right: 50px;
     margin-top: 40px;
+}
+
+.songname{
+    font-size: 130%;
 }
 
 .songlist{
@@ -133,6 +128,11 @@ body .container-fluid .playercontent{
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    transition: background-color 0.2s;
+}
+
+.list-group:hover .list-group-item:hover{
+    background-color: lightgray;
 }
 
 #content{

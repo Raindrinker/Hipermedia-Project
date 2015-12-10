@@ -138,15 +138,16 @@
 
 <!-- TEMPLATE ALBUMS -->
 
-<script id="album-template" type="text/x-handlebars-template">
-    <div class="row albums">
+<script id="song-template" type="text/x-handlebars-template">
+    <div class="row songs">
 
-    {{#each album}}
+    {{#each song}}
 
     <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-        <div class="panel album">
+        <div class="panel song">
             <img src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
             <div class="list-group">
+                <a href="javascript:;" class="list-group-item"><div class="glyphicon glyphicon-music"></div> <b class="songname">{{songName}}</b></a>
                 <a href="javascript:;" class="list-group-item"><div class="glyphicon glyphicon-cd"></div> {{albumName}}</a>
                 <a href="javascript:;" class="list-group-item"><div class="glyphicon glyphicon-user"></div> {{groupName}}</a>
             </div>
@@ -156,11 +157,11 @@
     {{/each}}
     </div>
 </script>
-<script src="js/album_builder.js"></script>
+<script src="js/songs_builder.js"></script>
 
 <!-- TEMPLATE SONGS -->
 
-<script id="song-template" type="text/x-handlebars-template">
+<script id="album-template" type="text/x-handlebars-template">
     <div class="row songlist">
         <div class="col-xs-12 well container-fluid">
             <img class="col-xs-6 col-sm-4 col-xl-2 album-image" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>

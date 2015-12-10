@@ -1,50 +1,35 @@
 $(function() {
 
-    console.log("albums start");
+    console.log("songs start");
     // Grab the template script
-    var albumScript = $("#album-template").html();
+    var songlistScript = $("#song-template").html();
 
     // Compile the template
-    var album = Handlebars.compile(albumScript);
+    var songlist = Handlebars.compile(songlistScript);
 
     // Define our data object
     var context = {
-        album: [
-            { imgRoute: 'assets/portada_test.jpg',
-            groupName: 'Vetusta Morla',
-            albumName: 'La Deriva'},
-            { imgRoute: 'assets/portada_test.jpg',
-            groupName: 'Vetusta Morla',
-            albumName: 'La Deriva'},
-            { imgRoute: 'assets/portada_test.jpg',
-            groupName: 'Vetusta Morla',
-            albumName: 'La Deriva'},
-            { imgRoute: 'assets/portada_test.jpg',
-            groupName: 'Vetusta Morla',
-            albumName: 'La Deriva'},
-            { imgRoute: 'assets/portada_test.jpg',
-            groupName: 'Vetusta Morla',
-            albumName: 'La Deriva'},
-            { imgRoute: 'assets/portada_test.jpg',
-            groupName: 'Vetusta Morla',
-            albumName: 'La Deriva'},
-            { imgRoute: 'assets/portada_test.jpg',
-            groupName: 'Vetusta Morla',
-            albumName: 'La Deriva'},
-            { imgRoute: 'assets/portada_test.jpg',
-            groupName: 'Vetusta Morla',
-            albumName: 'La Deriva'},
-            { imgRoute: 'assets/portada_test.jpg',
-            groupName: 'Vetusta Morla',
-            albumName: 'La Deriva'}
+        imgRoute: 'assets/portada_test.jpg',
+        groupName: 'Vetusta Morla',
+        albumName: 'La Deriva',
+        songlist: [
+            { songNumber: '1',
+            songName: 'Cuarteles de Invierno',
+            artistName: 'Vetusta Morla'},
+            { songNumber: '1',
+            songName: 'Cuarteles de Invierno',
+            artistName: 'Vetusta Morla'},
+            { songNumber: '1',
+            songName: 'Cuarteles de Invierno',
+            artistName: 'Vetusta Morla'}
         ]
     };
 
     // Pass our data to the template
-    var fullAlbum = album(context);
+    var fullSonglist = songlist(context);
 
-    console.log(fullAlbum);
+    console.log(fullSonglist);
 
     // Add the compiled html to the page
-    $('.base').html(fullAlbum);
+    $('.base').html(fullSonglist);
 });
