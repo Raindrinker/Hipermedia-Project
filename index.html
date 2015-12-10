@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,6 +10,14 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-material-design.min.css" rel="stylesheet">
+    <link href="css/ripples.min.css" rel="stylesheet">
+    <link href="css/BootstrapXL.css" rel="stylesheet">
+
+    <!-- Sidebar -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <link href="css/style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -16,9 +25,88 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Start Bootstrap
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Shortcuts</a>
+                </li>
+                <li>
+                    <a href="#">Overview</a>
+                </li>
+                <li>
+                    <a href="#">Events</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid" id="content">
+                <div id="floating-toggle">
+                    <a href="#menu-toggle" class="btn btn-raised" id="menu-toggle">
+                        <span class="glyphicon glyphicon-menu-hamburger"></span>
+                    </a>
+                </div>
+
+                <!-- REPRODUCTOR DE MUSICA -->
+                <div class="player">
+                    <button data-toggle="collapse" data-target="#player">Collapsible</button>
+                    <div id="player" class="collapse">
+                        <div class="well playercontent">
+                            Lorem ipsum dolor text....
+                        </div>
+                    </div>
+                </div>
+
+                <div class="well affix affix-top col-xs-12" id="smalltitle">
+                    <h1> NAME </h1>
+                </div>
+
+                <div class="jumbotron" id='bigtitle'>
+                    <h1> NAME </h1>
+                </div>
+
+
+                <div class="container-fluid base">
+
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <!-- /#page-content-wrapper -->
+
+
+    </div>
+    <!-- /#wrapper -->
 
     <video src="http://www.youtubeinmp3.com/download/get/?i=H9vTgOeibHKETdHtjE80N8Ef6Mi5FjGiS5kFwaPzY6GKrd3ee0NINhPCXLujTWUJ26L0Iu942VvR%2Br5UCfzWqw%3D%3D&t=Dream%20Theater%20-%20%22Pull%20Me%20Under%22.mp3" controls></video>
 
@@ -31,5 +119,76 @@
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-  </body>
+    <script src="js/material.min.js"></script>
+    <script src="js/ripples.min.js"></script>
+    <script src="js/sticky_top.js"></script>
+    <script src="js/handlebars-v4.0.5.js"></script>
+
+    <script type="text/javascript">
+        $.material.init()
+    </script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+
+</body>
+
 </html>
+
+
+<!-- TEMPLATES -->
+
+<!-- TEMPLATE ALBUMS -->
+
+<script id="album-template" type="text/x-handlebars-template">
+    <div class="row albums">
+
+    {{#each album}}
+
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+        <div class="panel album">
+            <img src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
+            <div class="list-group">
+                <a href="javascript:;" class="list-group-item"><div class="glyphicon glyphicon-cd"></div> {{albumName}}</a>
+                <a href="javascript:;" class="list-group-item"><div class="glyphicon glyphicon-user"></div> {{groupName}}</a>
+            </div>
+        </div>
+    </div>
+
+    {{/each}}
+    </div>
+</script>
+<script src="js/album_builder.js"></script>
+
+<!-- TEMPLATE SONGS -->
+
+<script id="song-template" type="text/x-handlebars-template">
+    <div class="row songlist">
+        <div class="col-xs-12 well container-fluid">
+            <img class="col-xs-6 col-sm-4 col-xl-2 album-image" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
+            <div class="list-group col-xs-6 col-sm-8 col-xl-10">
+                <a href="javascript:;" class="list-group-item"><div class="glyphicon glyphicon-cd"></div> {{albumName}}</a>
+                <a href="javascript:;" class="list-group-item"><div class="glyphicon glyphicon-user"></div> {{groupName}}</a>
+            </div>
+
+            {{#each songlist}}
+            <a href="javascript:;">
+                <div class="col-xs-12 song">
+
+                    {{songNumber}} {{songName}} {{artistName}}
+
+                </div>
+            </a>
+
+            {{/each}}
+
+        </div>
+    </div>
+</script>
+
+<!-- <script src="js/songs_builder.js"></script> -->

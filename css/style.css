@@ -1,0 +1,150 @@
+.album{
+  padding: 0px;
+  transition: box-shadow 0.2s;
+}
+
+.song{
+    padding: 10px;
+}
+
+.song:hover{
+    background-color: lightgray;
+
+}
+
+.album:hover{
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.4),0 2px 12px 0 rgba(0,0,0,.4);
+}
+
+.albums{
+    margin-bottom: 150px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 40px;
+}
+
+.songlist{
+    margin-bottom: 150px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 40px;
+}
+
+@media (min-width: 1200px) {
+    .songlist{
+        margin-bottom: 150px;
+        margin-left: 150px;
+        margin-right: 150px;
+        margin-top: 40px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .songlist{
+        margin-bottom: 150px;
+        margin-left: 250px;
+        margin-right: 250px;
+        margin-top: 40px;
+    }
+}
+
+.well{
+  padding: 0;
+}
+
+body .container-fluid .well{
+    padding: 0;
+}
+
+
+.container-fluid{
+  padding: 0px;
+  margin: 0px;
+}
+
+.sidebar{
+  background-color: blue;
+  max-height: 100%;
+  height: 100%;
+  position: relative;
+}
+
+img{
+    width: 100%;
+    padding: 0px;
+}
+
+.album-image{
+    padding: 0px;
+}
+
+.jumbotron{
+    text-align: center;
+    height: 200px;
+    border-radius: 0px;
+}
+
+body .container-fluid #bigtitle, body .container-fluid #smalltitle{
+    border-radius: 0px;
+}
+
+body{
+    background-color: gray;
+}
+
+#page-content-wrapper{
+    padding: 0px;
+}
+
+#floating-toggle{
+    margin-left: 20px;
+    margin-top: 10px;
+    position: fixed;
+    z-index: 5;
+
+}
+
+#menu-toggle{
+    padding: 10px 15px 10px 15px;
+    background-color: black;
+    color: white;
+}
+
+.btn, .input-group-btn .btn{
+    margin: 0px;
+}
+
+.player{
+    width: 100%;
+    z-index: 5;
+    position: fixed;
+    bottom: 0;
+}
+
+body .container-fluid .playercontent{
+    height: 100px;
+    margin-bottom: 0px;
+    margin-top: 20px;
+    box-shadow: 0 -8px 17px 0 rgba(0,0,0,.2),0 -6px 20px 0 rgba(0,0,0,.19);
+}
+
+.list-group .list-group-item{
+    padding: 8px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#content{
+    position: relative;
+}
+
+#page-content-wrapper{
+    position: relative;
+}
+
+#smalltitle{
+    text-align: center;
+    visibility: hidden;
+    z-index: 4;
+}
