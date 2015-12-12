@@ -1,47 +1,81 @@
-.song{
+.album, .artist{
   padding: 0px;
   transition: box-shadow 0.2s;
 }
 
-.song:hover{
+.album:hover, .artist:hover{
     box-shadow: 0 2px 12px 0 rgba(0,0,0,.4),0 2px 12px 0 rgba(0,0,0,.4);
 }
 
-.songs{
-    margin-bottom: 150px;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 40px;
+.albums, .artists, .songs{
+    margin: 10px;
 }
 
-.songname{
+.panel{
+    margin-bottom: 5px;
+}
+
+.albumname, .artistname, .songname{
     font-size: 130%;
 }
 
-.songlist{
-    margin-bottom: 150px;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 40px;
+.artistcolumn, .albumcolumn, .songcolumn{
+    padding: 10px;
+
+}
+
+.album-snippet{
+    height: 100%;
+    width: auto;
+    float: left;
+    margin-right: 20px
+}
+
+.song-artist-name, .song-album-name{
+    float: left;
+    padding: 5px;
+    margin: 0px;
+}
+
+.song{
+    height: 80px;
+    padding: 0px;
+}
+
+.songname{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.icon{
+    margin-right: 5px;
+}
+
+.iconsearch{
+    margin-top: 15px;
+}
+
+.btn.btn-fab{
+    background-color: lightgray;
+    margin-top: 5px;
+}
+
+@media (min-width: 480px) {
+    .albums, .artists, .songs{
+        margin: 50px;
+        margin-left: 50px;
+        margin-right: 50px;
+    }
 }
 
 @media (min-width: 1200px) {
-    .songlist{
-        margin-bottom: 150px;
-        margin-left: 150px;
-        margin-right: 150px;
-        margin-top: 40px;
+    .albums, .artists, .songs{
+        margin: 50px;
+        margin-left: 100px;
+        margin-right: 100px;
     }
 }
 
-@media (min-width: 1600px) {
-    .songlist{
-        margin-bottom: 150px;
-        margin-left: 250px;
-        margin-right: 250px;
-        margin-top: 40px;
-    }
-}
 
 .well{
   padding: 0;
@@ -105,15 +139,21 @@ body{
     color: white;
 }
 
-.btn, .input-group-btn .btn{
-    margin: 0px;
+.btn:focus{
+        outline: none;
 }
+
+
 
 .player{
     width: 100%;
     z-index: 5;
     position: fixed;
     bottom: 0;
+}
+
+.logo{
+    height: 200px;
 }
 
 body .container-fluid .playercontent{
@@ -135,6 +175,10 @@ body .container-fluid .playercontent{
     background-color: lightgray;
 }
 
+.menu-item{
+    padding: 10px;
+}
+
 #content{
     position: relative;
 }
@@ -146,5 +190,30 @@ body .container-fluid .playercontent{
 #smalltitle{
     text-align: center;
     visibility: hidden;
+    z-index: 3;
+    height: 70px;
+}
+
+.form-group{
+    margin: 0px;
+}
+
+#searchdiv{
+    top: 0px;
+    margin: 0px;
+    position: fixed;
+    top: 130px;
     z-index: 4;
+}
+
+#search{
+
+    width: 30%;
+    margin-left: 32%;
+    float: left;
+}
+
+#searcharea{
+    font-size: 30px;
+    height: inherit;
 }

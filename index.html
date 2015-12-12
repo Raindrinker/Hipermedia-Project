@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>BetaTune</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -34,32 +34,21 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        Start Bootstrap
+                <li>
+                    <a href="#"  class="logo">
+                        <img class="img-responsive" src="assets/logo.jpg">
                     </a>
                 </li>
                 <li>
-                    <a href="#">Dashboard</a>
+                    <a class="menu-item" href="#"><div class="icon glyphicon glyphicon-thumbs-up"></div>Recommendations</a>
                 </li>
                 <li>
-                    <a href="#">Shortcuts</a>
+                    <a class="menu-item" href="#"><div class="icon glyphicon glyphicon-star-empty"></div>Favourites</a>
                 </li>
                 <li>
-                    <a href="#">Overview</a>
+                    <a class="menu-item" href="#"><div class="icon glyphicon glyphicon-list-alt"></div>Playlists</a>
                 </li>
-                <li>
-                    <a href="#">Events</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
+
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -83,9 +72,22 @@
                     </div>
                 </div>
 
-                <div class="well affix affix-top col-xs-12" id="smalltitle">
-                    <h1> NAME </h1>
+                <div class="well affix affix-top col-xs-12 smalltitle" id="smalltitle">
                 </div>
+
+                <div class="affix affix-top col-xs-12 smalltitle" id="searchdiv">
+                    <div class="form-group has-success is-empty" id="search">
+                        <input type="text" class="form-control" id="searcharea">
+                        <span class="material-input"></span>
+                    </div>
+                    <a href="javascript:;" class="btn btn-fab searchbutton">
+                        <span class="iconsearch glyphicon glyphicon-search"></span>
+                    </a>
+                </div>
+
+
+
+
 
                 <div class="jumbotron" id='bigtitle'>
                     <h1> NAME </h1>
@@ -144,53 +146,80 @@
 
 <!-- TEMPLATES -->
 
-<!-- TEMPLATE ALBUMS -->
+<!-- TEMPLATE ARTISTS -->
 
-<script id="song-template" type="text/x-handlebars-template">
-    <div class="row songs">
+<script id="artists-template" type="text/x-handlebars-template">
+    <div class="row artists">
 
-    {{#each song}}
+        {{#each artist}}
 
-    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-        <div class="panel song">
-            <img src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
-            <div class="list-group">
-                <a href="javascript:;" class="list-group-item"><div class="glyphicon glyphicon-music"></div> <b class="songname">{{songName}}</b></a>
-                <a href="javascript:;" class="list-group-item"><div class="glyphicon glyphicon-cd"></div> {{albumName}}</a>
-                <a href="javascript:;" class="list-group-item"><div class="glyphicon glyphicon-user"></div> {{groupName}}</a>
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 artistcolumn">
+            <div class="panel artist">
+                <a href="javascript:;" data-groupmid="{{groupId}}">
+                    <img class="img-thumbnail img-responsive artist-image" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
+                </a>
+                <div class="list-group">
+                    <a href="javascript:;" class="list-group-item" data-groupid="{{groupId}}">
+                        <div class="icon glyphicon glyphicon-user"></div> <b class="artistname">{{artistName}}</b></a>
+                </div>
             </div>
         </div>
-    </div>
 
-    {{/each}}
+        {{/each}}
     </div>
 </script>
-<script src="js/songs_builder.js"></script>
+
+<!-- TEMPLATE ALBUMS -->
+
+<script id="albums-template" type="text/x-handlebars-template">
+    <div class="row albums">
+
+        {{#each album}}
+
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 albumcolumn">
+            <div class="panel album">
+                <a href="javascript:;" data-albumid="{{albumId}}">
+                    <img class="img-responsive" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
+                </a>
+                <div class="list-group">
+                    <a href="javascript:;" class="list-group-item" data-albumid="{{albumId}}">
+                        <div class="icon glyphicon glyphicon-cd"></div> <b class="albumname">{{albumName}}</b></a>
+                    <a href="javascript:;" class="list-group-item" data-groupid="{{groupId}}">
+                        <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</a>
+                </div>
+            </div>
+        </div>
+
+        {{/each}}
+    </div>
+</script>
 
 <!-- TEMPLATE SONGS -->
 
-<script id="album-template" type="text/x-handlebars-template">
-    <div class="row songlist">
-        <div class="col-xs-12 well container-fluid">
-            <img class="col-xs-6 col-sm-4 col-xl-2 album-image" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
-            <div class="list-group col-xs-6 col-sm-8 col-xl-10">
-                <a href="javascript:;" class="list-group-item"><div class="glyphicon glyphicon-cd"></div> {{albumName}}</a>
-                <a href="javascript:;" class="list-group-item"><div class="glyphicon glyphicon-user"></div> {{groupName}}</a>
+<script id="songs-template" type="text/x-handlebars-template">
+    <div class="row songs">
+
+        <div class="col-xs-12 songcolumn">
+            <div class="well">
+
+                <div class="list-group">
+                    {{#each song}}
+
+                    <a href="javascript:;" class="list-group-item song" data-songid="{{songId}}">
+                        <img class="album-snippet" src="{{imgRoute}}"></img>
+                        <p class="songname"><b>{{songName}}</b></p>
+                        <div class="song-artist-name" data-groupId={{groupId}}><div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
+                        <div class="song-album-name" data-albumId={{albumId}}><div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
+                    </a>
+
+                    {{/each}}
+                </div>
+
             </div>
 
-            {{#each songlist}}
-            <a href="javascript:;">
-                <div class="col-xs-12 song">
-
-                    {{songNumber}} {{songName}} {{artistName}}
-
-                </div>
-            </a>
-
-            {{/each}}
 
         </div>
-    </div>
 </script>
 
-<!-- <script src="js/songs_builder.js"></script> -->
+
+<script src="js/builders.js"></script>
