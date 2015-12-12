@@ -14,7 +14,7 @@
     transition: all 0.5s ease;
 }
 
-#smalltitle{
+.smalltitle{
     transition: padding-right 0.5s;
 }
 
@@ -127,11 +127,11 @@
         margin-right: 0;
     }
 
-    #wrapper.toggled #smalltitle{
+    #wrapper.toggled .smalltitle{
         padding-right: 0px;
     }
 
-    #smalltitle{
+    .smalltitle{
         padding-right: 250px;
     }
 }
