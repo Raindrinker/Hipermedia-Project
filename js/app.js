@@ -82,20 +82,13 @@ function BetaPlayerApp(spotifyClient, renderer){
 				var items = data.tracks.items;
 				var tracksFormatted = items.map(function(track){
 					return {
-						song: {
-							song_name: track.name,
-							duration: track.duration_ms,
-							song_id: track.id,
-						},
-						artist: {
-							artist_name: track.artists[0].name,
-							artist_id: track.artists[0].id,
-						},
-						album: {
-							album_name: track.album.name,
-							album_id: track.album.id,
-							album_cover: track.album.images[0].url
-						}
+						imgRoute: track.album.images[0].url,
+						songName: track.name,
+						songId: track.id,
+						albumName: track.album.name,
+						albumId: track.album.id,
+						artistName: track.artists[0].name,
+						groupId: track.artists[0].id
 					}
 				});
 
