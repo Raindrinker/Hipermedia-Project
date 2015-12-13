@@ -8,6 +8,8 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>BetaTune</title>
 
+    <link rel="import" href="templates.html">
+
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-material-design.min.css" rel="stylesheet">
@@ -96,7 +98,6 @@
                     <h1> BetaTune </h1>
                 </div>
 
-
                 <div class="container-fluid base">
 
 
@@ -147,15 +148,19 @@
 
 </body>
 
-</html>
-
-
 <!-- TEMPLATES -->
 
 <!-- TEMPLATE ARTISTS -->
 
 <script id="artists-template" type="text/x-handlebars-template">
+    <div class="arrow-zone">
+        <div class="arrow">
+            <div class="arrow-text">
+                <div class="icon glyphicon glyphicon-user"></div> ARTISTS</div>
+        </div>
+    </div>
     <div class="row artists">
+
 
         {{#each artist}}
 
@@ -185,6 +190,12 @@
 <!-- TEMPLATE ALBUMS -->
 
 <script id="albums-template" type="text/x-handlebars-template">
+    <div class="arrow-zone">
+        <div class="arrow">
+            <div class="arrow-text">
+                <div class="icon glyphicon glyphicon-cd"></div> ALBUMS</div>
+        </div>
+    </div>
     <div class="row albums">
 
         {{#each album}}
@@ -215,6 +226,12 @@
 <!-- TEMPLATE SONGS -->
 
 <script id="songs-template" type="text/x-handlebars-template">
+    <div class="arrow-zone">
+        <div class="arrow">
+            <div class="arrow-text">
+                <div class="icon glyphicon glyphicon-music"></div> SONGS</div>
+        </div>
+    </div>
     <div class="row songs">
 
         <div class="col-xs-12 songcolumn">
@@ -240,8 +257,9 @@
 
 
         </div>
-</script>
-
+    </script>
 
 <!--<script src="js/builders.js"></script>-->
 <script src="js/main.js"></script>
+
+</html>
