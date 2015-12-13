@@ -35,18 +35,21 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li>
-                    <a href="#"  class="logo">
+                    <a href="#" class="logo">
                         <img class="img-responsive" src="assets/logo.jpg">
                     </a>
                 </li>
                 <li>
-                    <a class="menu-item" href="#"><div class="icon glyphicon glyphicon-thumbs-up"></div>Recommendations</a>
+                    <a class="menu-item" href="#">
+                        <div class="icon glyphicon glyphicon-thumbs-up"></div>Recommendations</a>
                 </li>
                 <li>
-                    <a class="menu-item" href="#"><div class="icon glyphicon glyphicon-star-empty"></div>Favourites</a>
+                    <a class="menu-item" href="#">
+                        <div class="icon glyphicon glyphicon-star-empty"></div>Favourites</a>
                 </li>
                 <li>
-                    <a class="menu-item" href="#"><div class="icon glyphicon glyphicon-list-alt"></div>Playlists</a>
+                    <a class="menu-item" href="#">
+                        <div class="icon glyphicon glyphicon-list-alt"></div>Playlists</a>
                 </li>
 
             </ul>
@@ -158,9 +161,16 @@
 
         <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 artistcolumn">
             <div class="panel artist">
-                <a href="javascript:;" data-groupmid="{{groupId}}">
-                    <img class="img-thumbnail img-responsive artist-image" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
+                <a href="javascript:;" data-groupmid="{{groupId}}" class="square">
+                    <div class='square-box'>
+                        <div class='square-content'>
+                            <img class="img-thumbnail img-responsive artist-image" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
+                        </div>
+                    </div>
+
+
                 </a>
+
                 <div class="list-group">
                     <a href="javascript:;" class="list-group-item" data-groupid="{{groupId}}">
                         <div class="icon glyphicon glyphicon-user"></div> <b class="artistname">{{artistName}}</b></a>
@@ -182,7 +192,12 @@
         <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 albumcolumn">
             <div class="panel album">
                 <a href="javascript:;" data-albumid="{{albumId}}">
-                    <img class="img-responsive" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
+                    <div class='square-box'>
+                        <div class='square-content'>
+                            <img class="img-responsive" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
+                        </div>
+                    </div>
+
                 </a>
                 <div class="list-group">
                     <a href="javascript:;" class="list-group-item" data-albumid="{{albumId}}">
@@ -210,9 +225,12 @@
 
                     <a href="javascript:;" class="list-group-item song" data-songid="{{songId}}">
                         <img class="album-snippet" src="{{imgRoute}}"></img>
+
                         <p class="songname"><b>{{songName}}</b></p>
-                        <div class="song-artist-name" data-groupId={{groupId}}><div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
-                        <div class="song-album-name" data-albumId={{albumId}}><div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
+                        <div class="song-artist-name" data-groupId={{groupId}}>
+                            <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
+                        <div class="song-album-name" data-albumId={{albumId}}>
+                            <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
                     </a>
 
                     {{/each}}

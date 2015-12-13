@@ -100,14 +100,23 @@ function BetaPlayerApp(spotifyClient, renderer){
 			this.spotifyClient.searchArtists(name, {limit: numResults}, function(err, data){
 				if(err) console.log(err);
 				var artists = data.artists.items;
-				var artistsFormatted = artists.map(function(artist){
-					return {
-						imgRoute: artist.images[0].url,
-						artistName: artist.name,
-						groupId: artist.id
-					}
-				});
-				callback(artistsFormatted);
+				if(artists.length > 0){
+					console.log(artists);
+					var artistsFormatted = artists.map(function(artist){
+						var imageurl = "http://lorempixel.com/400/400/abstract/";
+						if(artist.images.length > 0){
+							imageurl = artist.images[0].url;
+						}
+						return {
+							imgRoute: imageurl,
+							artistName: artist.name,
+							groupId: artist.id
+						}
+					});
+					callback(artistsFormatted);
+				} else {
+					callback([]);
+				}
 			});
 		}
 
@@ -128,8 +137,12 @@ function BetaPlayerApp(spotifyClient, renderer){
 						var realAlbums = albumsFull.albums;
 						var albumsFormatted = realAlbums.map(function(album){
 							// TODO: Intentar estructurar en objectes?
-					    return {
-								imgRoute: album.images[0].url,
+							var imageurl = "http://lorempixel.com/400/400/abstract/";
+							if(album.images.length > 0){
+								imageurl = album.images[0].url;
+							}
+					    	return {
+								imgRoute: imageurl,
 								albumName: album.name,
 								albumId: album.id,
 								artistName: album.artists[0].name,

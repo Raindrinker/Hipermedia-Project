@@ -1,3 +1,7 @@
+html {
+    overflow-y: scroll;
+}
+
 .album, .artist{
   padding: 0px;
   transition: box-shadow 0.2s;
@@ -13,6 +17,27 @@
 
 .panel{
     margin-bottom: 5px;
+    background-color: white;
+}
+
+.square-box{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.square-box:before{
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+.square-content{
+    position:  absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
 .albumname, .artistname, .songname{
@@ -28,7 +53,7 @@
     height: 100%;
     width: auto;
     float: left;
-    margin-right: 20px
+    margin-right: 20px;
 }
 
 .song-artist-name, .song-album-name{
@@ -67,6 +92,7 @@
         margin-right: 50px;
     }
 }
+
 
 @media (min-width: 1200px) {
     .albums, .artists, .songs{
@@ -118,7 +144,7 @@ body .container-fluid #bigtitle, body .container-fluid #smalltitle{
 }
 
 body{
-    background-color: gray;
+    background-color: #006064;
 }
 
 #page-content-wrapper{
@@ -135,7 +161,7 @@ body{
 
 #menu-toggle{
     padding: 10px 15px 10px 15px;
-    background-color: black;
+    background-color: #003133;
     color: white;
 }
 
@@ -154,6 +180,7 @@ body{
 
 .logo{
     height: 200px;
+    padding-top: 10px;
 }
 
 body .container-fluid .playercontent{
@@ -192,6 +219,12 @@ body .container-fluid .playercontent{
     visibility: hidden;
     z-index: 3;
     height: 70px;
+    background: #F44336;
+}
+
+#bigtitle{
+    background: #F44336;
+    color: white;
 }
 
 .form-group{
@@ -217,3 +250,5 @@ body .container-fluid .playercontent{
     font-size: 30px;
     height: inherit;
 }
+
+//COLORSITOS

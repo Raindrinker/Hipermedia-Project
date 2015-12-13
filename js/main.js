@@ -4,7 +4,7 @@ var app = new BetaPlayerApp(api, null);
 
 $("#searchbutton").click(function(event){
   var query = $("#searcharea").val();
-  app.getSongsArtistsAlbumsFromName(query, 5, function(songs, artists, albums){
+  app.getSongsArtistsAlbumsFromName(query, 12, function(songs, artists, albums){
 
     // Grab the template script
     var songsScript = $("#songs-template").html();
@@ -29,14 +29,21 @@ $("#searchbutton").click(function(event){
     var songsTemplate = Handlebars.compile(songsScript);
     var albumsTemplate = Handlebars.compile(albumsScript);
 
-    var compiledSongs = songsTemplate(songsElement);
+
     var compiledArtists = artistsTemplate(artistsElement);
     var compiledAlbums = albumsTemplate(albumsElement);
+    var compiledSongs = songsTemplate(songsElement);
 
     $(".base").empty();
-    $(".base").append(compiledArtists);
-    $(".base").append(compiledAlbums);
-    $(".base").append(compiledSongs);
+    if(artists.length > 0){
+        $(".base").append(compiledArtists);
+    }
+    if(albums.length > 0){
+        $(".base").append(compiledAlbums);
+    }
+    if(songs.length > 0){
+        $(".base").append(compiledSongs);
+    }
 
   });
 });
