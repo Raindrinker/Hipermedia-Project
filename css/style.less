@@ -8,6 +8,7 @@
 @top:  #37474F;
 @soft: #B0BEC5;
 @dark: #263238;
+@light: #78909C;
 
 
 html {
@@ -267,6 +268,14 @@ body .container-fluid .playercontent{
     font-size: 30px;
     color: white;
     height: inherit;
+}
+
+/* Override styles for chrome autocomplete on input */
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px @light inset !important;
+    background-color: @light !important;
+    margin-right: 25px !important;
+    border-radius: 5px !important;
 }
 
 /*SHAPE*/
