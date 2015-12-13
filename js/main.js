@@ -2,7 +2,8 @@ var api = new SpotifyWebApi();
 
 var app = new BetaPlayerApp(api, null);
 
-$("#searchbutton").click(function(event){
+$("#search_form").submit(function(event){
+  event.preventDefault();
   var query = $("#searcharea").val();
   app.getSongsArtistsAlbumsFromName(query, 12, function(songs, artists, albums){
 
