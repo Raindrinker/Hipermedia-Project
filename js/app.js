@@ -116,28 +116,31 @@ function BetaPlayerApp(spotifyClient, renderer){
 				if(err) console.log(error);
 				var albums = data.albums.items;
 
-				var albumIds = albums.map(function(album){
-					return album.id
-				});
-
-				this.spotifyClient.getAlbums(albumIds, {}, function(error, albumsFull){
-
-					if(error) console.log(error);
-
-					var realAlbums = albumsFull.albums;
-					var albumsFormatted = realAlbums.map(function(album){
-						// TODO: Intentar estructurar en objectes?
-				    return {
-							imgRoute: album.images[0].url,
-							albumName: album.name,
-							albumId: album.id,
-							artistName: album.artists[0].name,
-							groupId: album.artists[0].id
-						}
+				if(albums.length > 0){
+					var albumIds = albums.map(function(album){
+						return album.id
 					});
-					callback(albumsFormatted);
-				});
 
+					this.spotifyClient.getAlbums(albumIds, {}, function(error, albumsFull){
+
+						if(error) console.log(error);
+
+						var realAlbums = albumsFull.albums;
+						var albumsFormatted = realAlbums.map(function(album){
+							// TODO: Intentar estructurar en objectes?
+					    return {
+								imgRoute: album.images[0].url,
+								albumName: album.name,
+								albumId: album.id,
+								artistName: album.artists[0].name,
+								groupId: album.artists[0].id
+							}
+						});
+						callback(albumsFormatted);
+					});
+				} else {
+					callback([]);
+				}
 			}.bind(this));
 		}
 
