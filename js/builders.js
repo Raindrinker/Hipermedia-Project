@@ -144,6 +144,10 @@ var buildSongs = function () {
     $('.base').append(songList);
 };
 
+var empty = function (){
+    $('.base').empty();
+}
+
 buildArtists();
 buildAlbums();
 buildSongs();

@@ -33,6 +33,7 @@ $("#searchbutton").click(function(event){
     var compiledArtists = artistsTemplate(artistsElement);
     var compiledAlbums = albumsTemplate(albumsElement);
 
+    $(".base").empty();
     $(".base").append(compiledArtists);
     $(".base").append(compiledAlbums);
     $(".base").append(compiledSongs);
