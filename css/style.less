@@ -2,13 +2,17 @@
 @top: #F44336;
 @soft: #006064;
 @dark: #003133;
----------*/
+------------*/
 
-/*---DARK---*/
+/*---DARK---
 @top:  #37474F;
 @soft: #B0BEC5;
 @dark: #263238;
+------------*/
 
+@top: #F44336;
+@soft: #006064;
+@dark: #003133;
 
 html {
     overflow-y: scroll;
@@ -242,6 +246,7 @@ body .container-fluid .playercontent{
 #bigtitle{
     background: @top;
     color: white;
+    z-index: 3;
 }
 
 .form-group{
@@ -267,6 +272,19 @@ body .container-fluid .playercontent{
     font-size: 30px;
     color: white;
     height: inherit;
+    background-image: linear-gradient(@dark, @dark), linear-gradient(@soft, @soft);
+}
+
+#searchbutton{
+    background: @soft;
+}
+
+#searchbutton:focus{
+    background: @soft;
+}
+
+#searchbutton:hover{
+    background: white;
 }
 
 /*SHAPE*/
@@ -301,10 +319,27 @@ body .container-fluid .playercontent{
    position: absolute;
    width: 0;
    height: 0;
-   border-left: 60px solid @top;
+   border-left: 40px solid @top;
    border-top: 30px solid transparent;
    border-bottom: 30px solid transparent;
    margin: 0px 0px 0px 0px;
    margin-left: 120px;
 
+}
+
+/* OVERLAY */
+
+.origin {
+    position: relative;
+}
+
+.content-overlay {
+    position: absolute;
+    top:0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: @soft;
+    opacity: 1;
+    transition: opacity 0.5s;
 }
