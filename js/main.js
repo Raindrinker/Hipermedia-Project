@@ -13,12 +13,31 @@ $("#search_form").submit(function(event){
   event.preventDefault();
   var query = $("#searcharea").val();
 
-  /* TO BE IMPLEMENTED EN FUTURAS ITERACIONES
   youtubeApi.searchVideo(query, function(videoId){
       youtubeMP3Api.getTrackForVideo(videoId, function(link){
-        console.log("LINK: "+link);
+        console.log("LINK_FROM_MAIN: "+link);
+
+        var source = document.createElement("source");
+        source.setAttribute("src", link);
+        source.setAttribute("type", "audio/mpeg")
+
+        var a = document.createElement("a");
+        a.setAttribute("href", link);
+
+        var audio = document.createElement("audio");
+        $(audio).attr("id", "myaudio");
+        $(audio).attr('controls', '');
+        audio.appendChild(source);
+        audio.appendChild(a);
+
+        console.log(audio);
+
+
+        $(".base").append(audio.innerHTML);
+        audio.play();
+
       });
-  });*/
+  });
 
   app.getSongsArtistsAlbumsFromName(query, 12, function(songs, artists, albums){
 
@@ -50,24 +69,24 @@ $("#search_form").submit(function(event){
     var compiledAlbums = albumsTemplate(albumsElement);
     var compiledSongs = songsTemplate(songsElement);
 
-        $(".content-overlay").css("opacity", "0");
-        $(".content-overlay").css("pointer-events", "none");
+    $(".content-overlay").css("opacity", "0");
+    $(".content-overlay").css("pointer-events", "none");
+    setTimeout(function() {
+        $(".base").empty();
+        if (artists.length > 0) {
+            $(".base").append(compiledArtists);
+        }
+        if (albums.length > 0) {
+            $(".base").append(compiledAlbums);
+        }
+        if (songs.length > 0) {
+            $(".base").append(compiledSongs);
+        }
         setTimeout(function() {
-            $(".base").empty();
-            if (artists.length > 0) {
-                $(".base").append(compiledArtists);
-            }
-            if (albums.length > 0) {
-                $(".base").append(compiledAlbums);
-            }
-            if (songs.length > 0) {
-                $(".base").append(compiledSongs);
-            }
-            setTimeout(function() {
-                $(".content-overlay").css("opacity", "1");
-                $(".content-overlay").css("pointer-events", "all");
-            }, 250);
+            $(".content-overlay").css("opacity", "1");
+            $(".content-overlay").css("pointer-events", "all");
         }, 250);
+    }, 250);
 
   });
 });
