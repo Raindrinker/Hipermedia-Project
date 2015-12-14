@@ -1,10 +1,22 @@
+var YOUTUBE_TOKEN = "AIzaSyDdIfOVzbu7Ri68LVtTBzKOrOHOnG-TZOU";
+
+
+
 var api = new SpotifyWebApi();
 
 var app = new BetaPlayerApp(api, null);
 
+var youtubeApi = new YoutubeApi(YOUTUBE_TOKEN);
+var youtubeMP3Api = new YoutubeMP3();
+
 $("#search_form").submit(function(event){
   event.preventDefault();
   var query = $("#searcharea").val();
+  youtubeApi.searchVideo(query, function(videoId){
+      youtubeMP3Api.getTrackForVideo(videoId, function(link){
+        console.log("LINK: "+link);
+      });
+  });
   app.getSongsArtistsAlbumsFromName(query, 12, function(songs, artists, albums){
 
     // Grab the template script
