@@ -1,1 +1,6 @@
 * [Spotify Javascript Library](https://github.com/JMPerez/spotify-web-api-js)
+* [Bootstrap](http://getbootstrap.com/)
+* [Bootstrap Material Design](http://fezvrasta.github.io/bootstrap-material-design/)
+* [Sidebar Template](http://startbootstrap.com/template-overviews/simple-sidebar/)
+* [Handlebars](http://handlebarsjs.com/)
+* [Less](http://lesscss.org/)
