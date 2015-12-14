@@ -12,11 +12,14 @@ var youtubeMP3Api = new YoutubeMP3();
 $("#search_form").submit(function(event){
   event.preventDefault();
   var query = $("#searcharea").val();
+
+  /* TO BE IMPLEMENTED EN FUTURAS ITERACIONES
   youtubeApi.searchVideo(query, function(videoId){
       youtubeMP3Api.getTrackForVideo(videoId, function(link){
         console.log("LINK: "+link);
       });
-  });
+  });*/
+
   app.getSongsArtistsAlbumsFromName(query, 12, function(songs, artists, albums){
 
     // Grab the template script
