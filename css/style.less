@@ -9,6 +9,7 @@
 @soft: #B0BEC5;
 @dark: #263238;
 ------------*/
+@light: #78909C;
 
 @top: #F44336;
 @soft: #006064;
@@ -93,7 +94,7 @@ html {
 }
 
 .iconsearch{
-    margin-top: 15px;
+    margin-top: 2px;
 }
 
 .btn.btn-fab{
@@ -273,6 +274,14 @@ body .container-fluid .playercontent{
     color: white;
     height: inherit;
     background-image: linear-gradient(@dark, @dark), linear-gradient(@soft, @soft);
+}
+
+/* Override styles for chrome autocomplete on input */
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px @light inset !important;
+    background-color: @light !important;
+    margin-right: 25px !important;
+    border-radius: 5px !important;
 }
 
 #searchbutton{

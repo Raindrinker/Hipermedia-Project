@@ -1,38 +1,54 @@
+var YOUTUBE_TOKEN = "AIzaSyDdIfOVzbu7Ri68LVtTBzKOrOHOnG-TZOU";
+
+
+
 var api = new SpotifyWebApi();
 
 var app = new BetaPlayerApp(api, null);
 
-$("#searchbutton").click(function(event) {
-    var query = $("#searcharea").val();
-    app.getSongsArtistsAlbumsFromName(query, 12, function(songs, artists, albums) {
+var youtubeApi = new YoutubeApi(YOUTUBE_TOKEN);
+var youtubeMP3Api = new YoutubeMP3();
 
-        // Grab the template script
-        var songsScript = $("#songs-template").html();
-        var artistsScript = $("#artists-template").html();
-        var albumsScript = $("#albums-template").html();
+$("#search_form").submit(function(event){
+  event.preventDefault();
+  var query = $("#searcharea").val();
 
+  /* TO BE IMPLEMENTED EN FUTURAS ITERACIONES
+  youtubeApi.searchVideo(query, function(videoId){
+      youtubeMP3Api.getTrackForVideo(videoId, function(link){
+        console.log("LINK: "+link);
+      });
+  });*/
 
-        var songsElement = {
-            "song": songs
-        };
+  app.getSongsArtistsAlbumsFromName(query, 12, function(songs, artists, albums){
 
-        var artistsElement = {
-            "artist": artists
-        };
-
-        var albumsElement = {
-            "album": albums
-        };
-
-        // Compile the template
-        var artistsTemplate = Handlebars.compile(artistsScript);
-        var songsTemplate = Handlebars.compile(songsScript);
-        var albumsTemplate = Handlebars.compile(albumsScript);
+    // Grab the template script
+    var songsScript = $("#songs-template").html();
+    var artistsScript = $("#artists-template").html();
+    var albumsScript = $("#albums-template").html();
 
 
-        var compiledArtists = artistsTemplate(artistsElement);
-        var compiledAlbums = albumsTemplate(albumsElement);
-        var compiledSongs = songsTemplate(songsElement);
+    var songsElement = {
+      "song": songs
+    };
+
+    var artistsElement = {
+      "artist": artists
+    };
+
+    var albumsElement = {
+      "album": albums
+    };
+
+    // Compile the template
+    var artistsTemplate = Handlebars.compile(artistsScript);
+    var songsTemplate = Handlebars.compile(songsScript);
+    var albumsTemplate = Handlebars.compile(albumsScript);
+
+
+    var compiledArtists = artistsTemplate(artistsElement);
+    var compiledAlbums = albumsTemplate(albumsElement);
+    var compiledSongs = songsTemplate(songsElement);
 
         $(".content-overlay").css("opacity", "0");
         $(".content-overlay").css("pointer-events", "none");
@@ -53,6 +69,5 @@ $("#searchbutton").click(function(event) {
             }, 250);
         }, 250);
 
-
-    });
+  });
 });
