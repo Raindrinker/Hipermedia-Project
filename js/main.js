@@ -47,16 +47,24 @@ $("#search_form").submit(function(event){
     var compiledAlbums = albumsTemplate(albumsElement);
     var compiledSongs = songsTemplate(songsElement);
 
-    $(".base").empty();
-    if(artists.length > 0){
-        $(".base").append(compiledArtists);
-    }
-    if(albums.length > 0){
-        $(".base").append(compiledAlbums);
-    }
-    if(songs.length > 0){
-        $(".base").append(compiledSongs);
-    }
+        $(".content-overlay").css("opacity", "0");
+        $(".content-overlay").css("pointer-events", "none");
+        setTimeout(function() {
+            $(".base").empty();
+            if (artists.length > 0) {
+                $(".base").append(compiledArtists);
+            }
+            if (albums.length > 0) {
+                $(".base").append(compiledAlbums);
+            }
+            if (songs.length > 0) {
+                $(".base").append(compiledSongs);
+            }
+            setTimeout(function() {
+                $(".content-overlay").css("opacity", "1");
+                $(".content-overlay").css("pointer-events", "all");
+            }, 250);
+        }, 250);
 
   });
 });
