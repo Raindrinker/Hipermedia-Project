@@ -13,31 +13,12 @@ $("#search_form").submit(function(event){
   event.preventDefault();
   var query = $("#searcharea").val();
 
+  /* TO BE IMPLEMENTED EN FUTURAS ITERACIONES
   youtubeApi.searchVideo(query, function(videoId){
       youtubeMP3Api.getTrackForVideo(videoId, function(link){
-        console.log("LINK_FROM_MAIN: "+link);
-
-        var source = document.createElement("source");
-        source.setAttribute("src", link);
-        source.setAttribute("type", "audio/mpeg")
-
-        var a = document.createElement("a");
-        a.setAttribute("href", link);
-
-        var audio = document.createElement("audio");
-        $(audio).attr("id", "myaudio");
-        $(audio).attr('controls', '');
-        audio.appendChild(source);
-        audio.appendChild(a);
-
-        console.log(audio);
-
-
-        $(".base").append(audio.innerHTML);
-        audio.play();
-
+        console.log("LINK: "+link);
       });
-  });
+  });*/
 
   app.getSongsArtistsAlbumsFromName(query, 12, function(songs, artists, albums){
 
@@ -45,7 +26,6 @@ $("#search_form").submit(function(event){
     var songsScript = $("#songs-template").html();
     var artistsScript = $("#artists-template").html();
     var albumsScript = $("#albums-template").html();
-
 
     var songsElement = {
       "song": songs
@@ -64,29 +44,75 @@ $("#search_form").submit(function(event){
     var songsTemplate = Handlebars.compile(songsScript);
     var albumsTemplate = Handlebars.compile(albumsScript);
 
-
     var compiledArtists = artistsTemplate(artistsElement);
     var compiledAlbums = albumsTemplate(albumsElement);
     var compiledSongs = songsTemplate(songsElement);
 
-    $(".content-overlay").css("opacity", "0");
-    $(".content-overlay").css("pointer-events", "none");
-    setTimeout(function() {
-        $(".base").empty();
-        if (artists.length > 0) {
-            $(".base").append(compiledArtists);
-        }
-        if (albums.length > 0) {
-            $(".base").append(compiledAlbums);
-        }
-        if (songs.length > 0) {
-            $(".base").append(compiledSongs);
-        }
+    //Afegim el listener per tots els elements amb class="square":
+
+        $(".content-overlay").css("opacity", "0");
+        $(".content-overlay").css("pointer-events", "none");
         setTimeout(function() {
-            $(".content-overlay").css("opacity", "1");
-            $(".content-overlay").css("pointer-events", "all");
+            $(".base").empty();
+            if (artists.length > 0) {
+                $(".base").append(compiledArtists);
+
+                $(".square").map(function(index, item){
+                  $(item).click(function(event){
+
+                    console.log("CLICKED: " + item.dataset.groupid);
+
+                    $(".base").empty();
+
+                    /*
+                      JSON PER L'ALBERT:
+
+                        {
+                            "groupId": 12345,
+                            "artistName": "Queen",
+                            "imgRoute": "rutaImgQueen",
+                            "biography": "Vida y milagros",
+                            "topSongs":[
+                                      {
+                                        "songId":12345,
+                                        "songName":"NomCanço",
+                                        "albumName":"NomAlbum",
+                                        "imgRoute":"rutaCanço"
+                                      },
+                                      {
+                                        "songId":12345,
+                                        "songName":"NomCanço",
+                                        "albumName":"NomAlbum",
+                                        "imgRoute":"rutaCanço"
+                                      }
+                                    ]
+                        }  
+                    */
+
+                    var artistMainAreaScript = $("#artist-main-template").html();
+                    console.log(artistMainAreaScript);
+                    var artistMainAreaTemplate = Handlebars.compile(artistMainAreaScript);
+                    var artistMainAreaElement = {
+                      "artist": artist
+                    };
+                    var compiledArtistMainArea = artistMainAreaTemplate(artistMainAreaElement);
+
+                    $(".base").append(compiledArtistMainArea);
+
+                  });
+                });
+            }
+            if (albums.length > 0) {
+                $(".base").append(compiledAlbums);
+            }
+            if (songs.length > 0) {
+                $(".base").append(compiledSongs);
+            }
+            setTimeout(function() {
+                $(".content-overlay").css("opacity", "1");
+                $(".content-overlay").css("pointer-events", "all");
+            }, 250);
         }, 250);
-    }, 250);
 
   });
 });

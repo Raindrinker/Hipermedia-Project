@@ -177,7 +177,7 @@
 
         <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 artistcolumn">
             <div class="panel artist">
-                <a href="javascript:;" data-groupmid="{{groupId}}" class="square">
+                <a href="javascript:;" data-groupid="{{groupId}}" class="square">
                     <div class='square-box'>
                         <div class='square-content'>
                             <img class="img-thumbnail img-responsive artist-image" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
@@ -269,6 +269,38 @@
 
         </div>
     </script>
+
+    <!-- TEMPLATE MAIN ARTIST - Chusquero -->
+
+    <script id="artist-main-template" type="text/x-handlebars-template">
+        <div class="arrow-zone">
+            <div class="arrow">
+                <div class="arrow-text">
+                    <div class="icon glyphicon glyphicon-user"></div> {{artist.artistName}}</div>
+            </div>
+        </div>
+        <div class="row artists">
+
+            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 artistcolumn">
+                <div class="panel artist">
+                    <a href="javascript:;" data-groupid="{{artist.groupId}}" class="square">
+                        <div class='square-box'>
+                            <div class='square-content'>
+                                <img class="img-thumbnail img-responsive artist-image" src="{{artist.imgRoute}}" data-toggle="collapse" data-target="#player"></img>
+                            </div>
+                        </div>
+                    </a>
+
+                    <div class="list-group">
+                        <a href="javascript:;" class="list-group-item" data-groupid="{{artist.groupId}}">
+                            <div class="icon glyphicon glyphicon-user"></div> <b class="artistname">{{artist.artistName}}</b></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </script>
+
 
 <!--<script src="js/builders.js"></script>-->
 <script src="js/main.js"></script>
