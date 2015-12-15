@@ -228,15 +228,6 @@ body .container-fluid .playercontent {
   height: inherit;
   background-image: linear-gradient(#003133, #003133), linear-gradient(#006064, #006064);
 }
-#searchbutton {
-  background: #006064;
-}
-#searchbutton:focus {
-  background: #006064;
-}
-#searchbutton:hover {
-  background: white;
-}
 /* Override styles for chrome autocomplete on input */
 input:-webkit-autofill,
 textarea:-webkit-autofill,
@@ -245,6 +236,15 @@ select:-webkit-autofill {
   background-color: #78909c !important;
   margin-right: 25px !important;
   border-radius: 5px !important;
+}
+#searchbutton {
+  background: #006064;
+}
+#searchbutton:focus {
+  background: #006064;
+}
+#searchbutton:hover {
+  background: white;
 }
 /*SHAPE*/
 .arrow-zone {
