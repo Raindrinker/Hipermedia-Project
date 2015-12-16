@@ -232,10 +232,11 @@ body .container-fluid .playercontent {
 input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #78909c inset !important;
-  background-color: #78909c !important;
+  -webkit-box-shadow: 0 0 0px 1000px #f44336 inset !important;
+  background-color: #f44336 !important;
   margin-right: 25px !important;
   border-radius: 5px !important;
+  margin-bottom: 10px !important;
 }
 #searchbutton {
   background: #006064;
@@ -294,4 +295,23 @@ select:-webkit-autofill {
   background: #006064;
   opacity: 0;
   transition: opacity 0.25s;
+}
+/* FAV */
+.btn.btn-fab.artist-fav {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  z-index: 2;
+  font-size: 150%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.btn.btn-fab.artist-fav:hover {
+  background-color: #ffffff;
+}
+.btn.btn-fab.artist-fav:focus {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.favicon {
+  margin-left: 2px;
+  margin-top: 8px;
 }

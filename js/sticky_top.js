@@ -8,6 +8,7 @@ $(document).ready(function() {
     var smallTitleControl = function() {
         if (content.scrollTop > (bigtitle.clientHeight - smalltitle.clientHeight)) {
             smalltitle.style.visibility = "visible";
+            bigtitle.style.visibility = "hidden";
             searchdiv.style.position = "fixed";
             searchdiv.style.top = "0px";
 
