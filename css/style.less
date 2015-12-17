@@ -9,6 +9,7 @@
 @soft: #B0BEC5;
 @dark: #263238;
 ------------*/
+
 @light: #78909C;
 
 @top: #F44336;
@@ -351,4 +352,57 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     background: @soft;
     opacity: 0;
     transition: opacity 0.25s;
+}
+
+/* VIEW ARTIST */
+
+.area-artist-title{
+
+}
+
+.img-artist-area {
+  float: left;
+  width: 20%;
+  height: auto;
+}
+
+.artist-title {
+    float: left;
+    width: 60%;
+    color: @top;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+.expandible-text {
+  float: left;
+  width: 100%;
+  margin-top: 10px;
+  color: white;
+  line-height: 20px;
+}
+
+.panel-biography {
+  background: @top;
+  display: block;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.toggle-biography {
+    padding: 5px;
+    display: block;
+    background-color: @soft;
+}
+
+.area-artist {
+  padding: 8px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: box-shadow 0.2s;
+}
+
+.area-artist:hover {
+  box-shadow: 0 6px 12px 0 rgba(0,0,0,.6);
 }

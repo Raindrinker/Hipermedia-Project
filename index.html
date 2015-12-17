@@ -2,26 +2,26 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>BetaTune</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>BetaTune</title>
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-material-design.min.css" rel="stylesheet">
-    <link href="css/ripples.min.css" rel="stylesheet">
-    <link href="css/BootstrapXL.css" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-material-design.min.css" rel="stylesheet">
+  <link href="css/ripples.min.css" rel="stylesheet">
+  <link href="css/BootstrapXL.css" rel="stylesheet">
 
-    <!-- Sidebar -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
+  <!-- Sidebar -->
+  <link href="css/simple-sidebar.css" rel="stylesheet">
 
-    <link href="css/style.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
@@ -29,101 +29,100 @@
 
 <body>
 
-    <div id="wrapper">
+  <div id="wrapper">
 
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li>
-                    <a href="#" class="logo">
-                        <img class="img-responsive" src="assets/logo.jpg">
-                    </a>
-                </li>
-                <li>
-                    <a class="menu-item" href="#">
-                        <div class="icon glyphicon glyphicon-thumbs-up"></div>Recommendations</a>
-                </li>
-                <li>
-                    <a class="menu-item" href="#">
-                        <div class="icon glyphicon glyphicon-star-empty"></div>Favourites</a>
-                </li>
-                <li>
-                    <a class="menu-item" href="#">
-                        <div class="icon glyphicon glyphicon-list-alt"></div>Playlists</a>
-                </li>
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li>
+          <a href="#" class="logo">
+            <img class="img-responsive" src="assets/logo.jpg">
+          </a>
+        </li>
+        <li>
+          <a class="menu-item" href="#">
+            <div class="icon glyphicon glyphicon-thumbs-up"></div>Recommendations</a>
+        </li>
+        <li>
+          <a class="menu-item" href="#">
+            <div class="icon glyphicon glyphicon-star-empty"></div>Favourites</a>
+        </li>
+        <li>
+          <a class="menu-item" href="#">
+            <div class="icon glyphicon glyphicon-list-alt"></div>Playlists</a>
+        </li>
 
-            </ul>
+      </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <div class="container-fluid" id="content">
+
+
+
+        <div id="floating-toggle">
+          <a href="#menu-toggle" class="btn btn-raised" id="menu-toggle">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </a>
         </div>
-        <!-- /#sidebar-wrapper -->
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid" id="content">
+        <!-- REPRODUCTOR DE MUSICA -->
+        <div class="player">
+          <button data-toggle="collapse" data-target="#player">Collapsible</button>
+          <div id="player" class="collapse">
+            <div class="well playercontent">
+              Lorem ipsum dolor text....
+            </div>
+          </div>
+        </div>
 
+        <div class="well affix affix-top col-xs-12 smalltitle" id="smalltitle">
+        </div>
 
-
-                <div id="floating-toggle">
-                    <a href="#menu-toggle" class="btn btn-raised" id="menu-toggle">
-                        <span class="glyphicon glyphicon-menu-hamburger"></span>
-                    </a>
-                </div>
-
-                <!-- REPRODUCTOR DE MUSICA -->
-                <div class="player">
-                    <button data-toggle="collapse" data-target="#player">Collapsible</button>
-                    <div id="player" class="collapse">
-                        <div class="well playercontent">
-                            Lorem ipsum dolor text....
-                        </div>
-                    </div>
-                </div>
-
-                <div class="well affix affix-top col-xs-12 smalltitle" id="smalltitle">
-                </div>
-
-                <div class="affix affix-top col-xs-12 smalltitle" id="searchdiv">
-                  <form action="/" method="get" id="search_form">
-                    <div class="form-group has-success is-empty" id="search">
-                        <input type="text" class="form-control" id="searcharea">
-                        <span class="material-input"></span>
-                    </div>
-
-                    <button href="javascript:;" class="btn btn-fab searchbutton" id="searchbutton" type="submit">
-                        <span class="iconsearch glyphicon glyphicon-search" border="0"></span>
-                    </button
-                  </form>
-                </div>
-
-
-
-
-
-                <div class="jumbotron affix-top" id='bigtitle'>
-                    <h1> BetaTune </h1>
-                </div>
-
-                <div class="container-fluid origin">
-                    <div class="content-overlay">
-                    <div class="base">
-                    </div>
-
-                    </div>
-
-
-
-                </div>
-
+        <div class="affix affix-top col-xs-12 smalltitle" id="searchdiv">
+          <form action="/" method="get" id="search_form">
+            <div class="form-group has-success is-empty" id="search">
+              <input type="text" class="form-control" id="searcharea">
+              <span class="material-input"></span>
             </div>
 
+            <button href="javascript:;" class="btn btn-fab searchbutton" id="searchbutton" type="submit">
+              <span class="iconsearch glyphicon glyphicon-search" border="0"></span>
+            </button </form>
+        </div>
+
+
+
+
+
+        <div class="jumbotron affix-top" id='bigtitle'>
+          <h1> BetaTune </h1>
+        </div>
+
+        <div class="container-fluid origin">
+          <div class="content-overlay">
+            <div class="base">
+            </div>
+
+          </div>
+
+
 
         </div>
-        <!-- /#page-content-wrapper -->
+
+      </div>
 
 
     </div>
-    <!-- /#wrapper -->
+    <!-- /#page-content-wrapper -->
 
-    <!-- TO IMPLEMENT WITH API
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- TO IMPLEMENT WITH API
     <audio controls>
       <source src="http://www.youtubeinmp3.com/download/get/?i=H9vTgOeibHKETdHtjE80N8Ef6Mi5FjGiS5kFwaPzY6GKrd3ee0NINhPCXLujTWUJ26L0Iu942VvR%2Br5UCfzWqw%3D%3D&t=Dream%20Theater%20-%20%22Pull%20Me%20Under%22.mp3" type="audio/mpeg" />
       <a href="http://www.youtubeinmp3.com/download/get/?i=H9vTgOeibHKETdHtjE80N8Ef6Mi5FjGiS5kFwaPzY6GKrd3ee0NINhPCXLujTWUJ26L0Iu942VvR%2Br5UCfzWqw%3D%3D&t=Dream%20Theater%20-%20%22Pull%20Me%20Under%22.mp3">THING AND STUFF</a>
@@ -131,31 +130,31 @@
 
     -->
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/material.min.js"></script>
-    <script src="js/ripples.min.js"></script>
-    <script src="js/sticky_top.js"></script>
-    <script src="js/handlebars-v4.0.5.js"></script>
-    <script src="js/apis/spotify.js"></script>
-    <script src="js/apis/youtube.js"></script>
-    <script src="js/apis/youtubemp3.js"></script>
-    <script src="js/app.js"></script>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/material.min.js"></script>
+  <script src="js/ripples.min.js"></script>
+  <script src="js/sticky_top.js"></script>
+  <script src="js/handlebars-v4.0.5.js"></script>
+  <script src="js/apis/spotify.js"></script>
+  <script src="js/apis/youtube.js"></script>
+  <script src="js/apis/youtubemp3.js"></script>
+  <script src="js/app.js"></script>
 
 
-    <script type="text/javascript">
-        $.material.init()
-    </script>
+  <script type="text/javascript">
+    $.material.init()
+  </script>
 
-    <!-- Menu Toggle Script -->
-    <script>
-        $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-    </script>
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
 
 </body>
 
@@ -164,143 +163,141 @@
 <!-- TEMPLATE ARTISTS -->
 
 <script id="artists-template" type="text/x-handlebars-template">
-    <div class="arrow-zone">
-        <div class="arrow">
-            <div class="arrow-text">
-                <div class="icon glyphicon glyphicon-user"></div> ARTISTS</div>
-        </div>
+  <div class="arrow-zone">
+    <div class="arrow">
+      <div class="arrow-text">
+        <div class="icon glyphicon glyphicon-user"></div> ARTISTS</div>
     </div>
-    <div class="row artists">
+  </div>
+  <div class="row artists">
 
 
-        {{#each artist}}
+    {{#each artist}}
 
-        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 artistcolumn">
-            <div class="panel artist">
-                <a href="javascript:;" data-groupid="{{groupId}}" class="square">
-                    <div class='square-box'>
-                        <div class='square-content'>
-                            <img class="img-thumbnail img-responsive artist-image" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
-                        </div>
-                    </div>
-
-
-                </a>
-
-                <div class="list-group">
-                    <a href="javascript:;" class="list-group-item" data-groupid="{{groupId}}">
-                        <div class="icon glyphicon glyphicon-user"></div> <b class="artistname">{{artistName}}</b></a>
-                </div>
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 artistcolumn">
+      <div class="panel artist">
+        <a href="javascript:;" data-groupid="{{groupId}}" class="square">
+          <div class='square-box'>
+            <div class='square-content'>
+              <img class="img-thumbnail img-responsive artist-image" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
             </div>
-        </div>
+          </div>
 
-        {{/each}}
+
+        </a>
+
+        <div class="list-group">
+          <a href="javascript:;" class="list-group-item" data-groupid="{{groupId}}">
+            <div class="icon glyphicon glyphicon-user"></div> <b class="artistname">{{artistName}}</b></a>
+        </div>
+      </div>
     </div>
+
+    {{/each}}
+  </div>
 </script>
 
 <!-- TEMPLATE ALBUMS -->
 
 <script id="albums-template" type="text/x-handlebars-template">
-    <div class="arrow-zone">
-        <div class="arrow">
-            <div class="arrow-text">
-                <div class="icon glyphicon glyphicon-cd"></div> ALBUMS</div>
-        </div>
+  <div class="arrow-zone">
+    <div class="arrow">
+      <div class="arrow-text">
+        <div class="icon glyphicon glyphicon-cd"></div> ALBUMS</div>
     </div>
-    <div class="row albums">
+  </div>
+  <div class="row albums">
 
-        {{#each album}}
+    {{#each album}}
 
-        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 albumcolumn">
-            <div class="panel album">
-                <a href="javascript:;" data-albumid="{{albumId}}">
-                    <div class='square-box'>
-                        <div class='square-content'>
-                            <img class="img-responsive" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
-                        </div>
-                    </div>
-
-                </a>
-                <div class="list-group">
-                    <a href="javascript:;" class="list-group-item" data-albumid="{{albumId}}">
-                        <div class="icon glyphicon glyphicon-cd"></div> <b class="albumname">{{albumName}}</b></a>
-                    <a href="javascript:;" class="list-group-item" data-groupid="{{groupId}}">
-                        <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</a>
-                </div>
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 albumcolumn">
+      <div class="panel album">
+        <a href="javascript:;" data-albumid="{{albumId}}">
+          <div class='square-box'>
+            <div class='square-content'>
+              <img class="img-responsive" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
             </div>
-        </div>
+          </div>
 
-        {{/each}}
+        </a>
+        <div class="list-group">
+          <a href="javascript:;" class="list-group-item" data-albumid="{{albumId}}">
+            <div class="icon glyphicon glyphicon-cd"></div> <b class="albumname">{{albumName}}</b></a>
+          <a href="javascript:;" class="list-group-item" data-groupid="{{groupId}}">
+            <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</a>
+        </div>
+      </div>
     </div>
+
+    {{/each}}
+  </div>
 </script>
 
 <!-- TEMPLATE SONGS -->
 
 <script id="songs-template" type="text/x-handlebars-template">
-    <div class="arrow-zone">
-        <div class="arrow">
-            <div class="arrow-text">
-                <div class="icon glyphicon glyphicon-music"></div> SONGS</div>
-        </div>
+  <div class="arrow-zone">
+    <div class="arrow">
+      <div class="arrow-text">
+        <div class="icon glyphicon glyphicon-music"></div> SONGS</div>
     </div>
-    <div class="row songs">
+  </div>
+  <div class="row songs">
 
-        <div class="col-xs-12 songcolumn">
-            <div class="well">
+    <div class="col-xs-12 songcolumn">
+      <div class="well">
 
-                <div class="list-group">
-                    {{#each song}}
+        <div class="list-group">
+          {{#each song}}
 
-                    <a href="javascript:;" class="list-group-item song" data-songid="{{songId}}">
-                        <img class="album-snippet" src="{{imgRoute}}"></img>
+          <a href="javascript:;" class="list-group-item song" data-songid="{{songId}}">
+            <img class="album-snippet" src="{{imgRoute}}"></img>
 
-                        <p class="songname"><b>{{songName}}</b></p>
-                        <div class="song-artist-name" data-groupId={{groupId}}>
-                            <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
-                        <div class="song-album-name" data-albumId={{albumId}}>
-                            <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
-                    </a>
+            <p class="songname"><b>{{songName}}</b></p>
+            <div class="song-artist-name" data-groupId={{groupId}}>
+              <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
+            <div class="song-album-name" data-albumId={{albumId}}>
+              <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
+          </a>
 
-                    {{/each}}
-                </div>
-
-            </div>
-
-
+          {{/each}}
         </div>
-    </script>
 
-    <!-- TEMPLATE MAIN ARTIST - Chusquero -->
+      </div>
 
-    <script id="artist-main-template" type="text/x-handlebars-template">
-        <div class="arrow-zone">
-            <div class="arrow">
-                <div class="arrow-text">
-                    <div class="icon glyphicon glyphicon-user"></div> {{artist.artistName}}</div>
+
+    </div>
+</script>
+
+<!-- TEMPLATE MAIN ARTIST - Test -->
+
+<script id="artist-main-template" type="text/x-handlebars-template">
+  <div class="row artists">
+    <div class="col-xs-12 songcolumn">
+      <div class="well">
+        <div class="area-artist">
+          <div class="area-artist-title">
+            <div class="square-box img-artist-area">
+              <div class='square-content'>
+                <img class="img" src="assets/artista_test.jpg" data-toggle="collapse" data-target="#player"></img>
+              </div>
             </div>
-        </div>
-        <div class="row artists">
+            <h1 class="artist-title">{{artistName}}</h1>
+          </div>
 
-            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 artistcolumn">
-                <div class="panel artist">
-                    <a href="javascript:;" data-groupid="{{artist.groupId}}" class="square">
-                        <div class='square-box'>
-                            <div class='square-content'>
-                                <img class="img-thumbnail img-responsive artist-image" src="{{artist.imgRoute}}" data-toggle="collapse" data-target="#player"></img>
-                            </div>
-                        </div>
-                    </a>
-
-                    <div class="list-group">
-                        <a href="javascript:;" class="list-group-item" data-groupid="{{artist.groupId}}">
-                            <div class="icon glyphicon glyphicon-user"></div> <b class="artistname">{{artist.artistName}}</b></a>
-                    </div>
-                </div>
+          <div class="expandible-text">
+            <div class="panel-biography" box_h: "376" style="height:100px">
+              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer nibh magna, tempus at, pretium tristique, sollicitudin a, quam. Aenean euismod commodo pede. Nullam eros. Vestibulum augue sapien, gravida vitae, suscipit et, aliquam ac, sem. Donec euismod
+              imperdiet nisl. Cras faucibus, nibh condimentum pharetra aliquam, turpis felis blandit ante, vitae lacinia lacus lacus sit amet pede. Ut nec massa ut sapien rutrum porttitor. Aliquam sagittis. Vestibulum ante ipsum primis in faucibus orci
+              luctus et ultrices posuere cubilia Curae. Cras accumsan, tortor ut mattis faucibus, est tellus varius augue, id malesuada lorem nisi ac odio. Integer ut massa eu justo convallis gravida. Fusce vehicula fringilla leo. Fusce commodo urna sit
+              amet velit. Suspendisse potenti. In hac habitasse platea dictumst. Nulla feugiat.<p>
             </div>
-
+            <div class="toggle-biography"><a href="#">click</a></div>
+          </div>
         </div>
-    </script>
-
+      </div>
+    </div>
+</script>
 
 <!--<script src="js/builders.js"></script>-->
 <script src="js/main.js"></script>
