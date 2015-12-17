@@ -1,10 +1,10 @@
 var YOUTUBE_TOKEN = "AIzaSyDdIfOVzbu7Ri68LVtTBzKOrOHOnG-TZOU";
-
+var dbm = new DatabaseManager();
 
 
 var api = new SpotifyWebApi();
 
-var app = new BetaPlayerApp(api, null);
+var app = new BetaPlayerApp(api, null, dbm);
 
 var youtubeApi = new YoutubeApi(YOUTUBE_TOKEN);
 var youtubeMP3Api = new YoutubeMP3();
@@ -50,7 +50,8 @@ $("#search_form").submit(function(event) {
   });
 
   app.getSongsArtistsAlbumsFromName(query, 12, function(songs, artists, albums) {
-
+      console.log("artists");
+      console.log(artists);
     // Grab the template script
     var songsScript = $("#songs-template").html();
     var artistsScript = $("#artists-template").html();

@@ -142,6 +142,7 @@
   <script src="js/apis/youtube.js"></script>
   <script src="js/apis/youtubemp3.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/database.js"></script>
 
 
   <script type="text/javascript">
@@ -171,13 +172,16 @@
   </div>
   <div class="row artists">
 
-
     {{#each artist}}
 
     <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 artistcolumn">
       <div class="panel artist">
         <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
-          <div class="favicon glyphicon glyphicon-star-empty"></div>
+            {{#if fav}}
+            <div class="favicon glyphicon glyphicon-star"></div>
+            {{else}}
+            <div class="favicon glyphicon glyphicon-star-empty"></div>
+            {{/if}}
         </a>
         <a href="javascript:;" data-groupmid="{{groupId}}" class="square">
           <div class='square-box'>
