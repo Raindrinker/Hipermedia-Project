@@ -1,5 +1,3 @@
-$.material.init();
-
 var form = $("#group_name_form");
 var input_group_name = $("#input_group_name");
 var resultP = $("#group_id_p");
@@ -18,10 +16,11 @@ form.submit(function(event) {
 
 });*/
 
-function BetaPlayerApp(spotifyClient, renderer){
+function BetaPlayerApp(spotifyClient, renderer, dbm){
 
 		this.spotifyClient = spotifyClient;
 		this.renderer = renderer;
+		this.dbm = dbm;
 
 		this.requestGroupAlbums = function(groupName, callback){
 
@@ -110,10 +109,11 @@ function BetaPlayerApp(spotifyClient, renderer){
 						return {
 							imgRoute: imageurl,
 							artistName: artist.name,
-							groupId: artist.id
+							groupId: artist.id,
+							fav: false
 						}
 					});
-					callback(artistsFormatted);
+					this.dbm.markFavArtists(artistsFormatted, callback);
 				} else {
 					callback([]);
 				}
