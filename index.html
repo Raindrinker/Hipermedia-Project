@@ -81,12 +81,12 @@
         <div class="well affix affix-top col-xs-12 smalltitle" id="smalltitle">
         </div>
 
-                <div class="affix affix-top col-xs-12 smalltitle" id="searchdiv">
-                  <form action="/" method="get" id="search_form">
-                    <div class="form-group has-success is-empty" id="search">
-                        <input type="text" class="form-control" id="searcharea" autocomplete="off">
-                        <span class="material-input"></span>
-                    </div>
+        <div class="affix affix-top col-xs-12 smalltitle" id="searchdiv">
+          <form action="/" method="get" id="search_form">
+            <div class="form-group has-success is-empty" id="search">
+              <input type="text" class="form-control" id="searcharea" autocomplete="off">
+              <span class="material-input"></span>
+            </div>
 
             <button href="javascript:;" class="btn btn-fab searchbutton" id="searchbutton" type="submit">
               <span class="iconsearch glyphicon glyphicon-search" border="0"></span>
@@ -174,17 +174,17 @@
 
     {{#each artist}}
 
-        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 artistcolumn">
-            <div class="panel artist">
-                <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
-                    <div class="favicon glyphicon glyphicon-star-empty"></div>
-                </a>
-                <a href="javascript:;" data-groupmid="{{groupId}}" class="square">
-                    <div class='square-box'>
-                        <div class='square-content'>
-                            <img class="img-thumbnail img-responsive artist-image" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
-                        </div>
-                    </div>
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 artistcolumn">
+      <div class="panel artist">
+        <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
+          <div class="favicon glyphicon glyphicon-star-empty"></div>
+        </a>
+        <a href="javascript:;" data-groupmid="{{groupId}}" class="square">
+          <div class='square-box'>
+            <div class='square-content'>
+              <img class="img-thumbnail img-responsive artist-image" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
+            </div>
+          </div>
 
 
         </a>
@@ -213,17 +213,17 @@
 
     {{#each album}}
 
-        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 albumcolumn">
-            <div class="panel album">
-                <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
-                    <div class="favicon glyphicon glyphicon-star-empty"></div>
-                </a>
-                <a href="javascript:;" data-albumid="{{albumId}}">
-                    <div class='square-box'>
-                        <div class='square-content'>
-                            <img class="img-responsive" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
-                        </div>
-                    </div>
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 albumcolumn">
+      <div class="panel album">
+        <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
+          <div class="favicon glyphicon glyphicon-star-empty"></div>
+        </a>
+        <a href="javascript:;" data-albumid="{{albumId}}">
+          <div class='square-box'>
+            <div class='square-content'>
+              <img class="img-responsive" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
+            </div>
+          </div>
 
         </a>
         <div class="list-group">
@@ -256,18 +256,19 @@
         <div class="list-group">
           {{#each song}}
 
-                    <div class="list-group-item song" data-songid="{{songId}}">
-                        <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
-                            <div class="favicon glyphicon glyphicon-star-empty"></div>
-                        </a>
-                        <img class="album-snippet" src="{{imgRoute}}"></img>
+          <div class="list-group-item song" data-songid="{{songId}}">
+            <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
+              <div class="favicon glyphicon glyphicon-star-empty"></div>
+            </a>
+            <img class="album-snippet" src="{{imgRoute}}"></img>
 
             <p class="songname"><b>{{songName}}</b></p>
             <div class="song-artist-name" data-groupId={{groupId}}>
               <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
             <div class="song-album-name" data-albumId={{albumId}}>
               <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
-          </a>
+            </a>
+          </div>
 
           {{/each}}
         </div>
@@ -296,10 +297,11 @@
 
           <div class="expandible-text">
             <div class="panel-biography" box_h: "376" style="height:100px">
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer nibh magna, tempus at, pretium tristique, sollicitudin a, quam. Aenean euismod commodo pede. Nullam eros. Vestibulum augue sapien, gravida vitae, suscipit et, aliquam ac, sem. Donec euismod
-              imperdiet nisl. Cras faucibus, nibh condimentum pharetra aliquam, turpis felis blandit ante, vitae lacinia lacus lacus sit amet pede. Ut nec massa ut sapien rutrum porttitor. Aliquam sagittis. Vestibulum ante ipsum primis in faucibus orci
-              luctus et ultrices posuere cubilia Curae. Cras accumsan, tortor ut mattis faucibus, est tellus varius augue, id malesuada lorem nisi ac odio. Integer ut massa eu justo convallis gravida. Fusce vehicula fringilla leo. Fusce commodo urna sit
-              amet velit. Suspendisse potenti. In hac habitasse platea dictumst. Nulla feugiat.<p>
+              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer nibh magna, tempus at, pretium tristique, sollicitudin a, quam. Aenean euismod commodo pede. Nullam eros. Vestibulum augue sapien, gravida vitae, suscipit et, aliquam ac,
+                sem. Donec euismod imperdiet nisl. Cras faucibus, nibh condimentum pharetra aliquam, turpis felis blandit ante, vitae lacinia lacus lacus sit amet pede. Ut nec massa ut sapien rutrum porttitor. Aliquam sagittis. Vestibulum ante ipsum primis
+                in faucibus orci luctus et ultrices posuere cubilia Curae. Cras accumsan, tortor ut mattis faucibus, est tellus varius augue, id malesuada lorem nisi ac odio. Integer ut massa eu justo convallis gravida. Fusce vehicula fringilla leo. Fusce
+                commodo urna sit amet velit. Suspendisse potenti. In hac habitasse platea dictumst. Nulla feugiat.
+                <p>
             </div>
             <div class="toggle-biography"><a href="#">click</a></div>
           </div>
