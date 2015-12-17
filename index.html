@@ -84,7 +84,7 @@
                 <div class="affix affix-top col-xs-12 smalltitle" id="searchdiv">
                   <form action="/" method="get" id="search_form">
                     <div class="form-group has-success is-empty" id="search">
-                        <input type="text" class="form-control" id="searcharea">
+                        <input type="text" class="form-control" id="searcharea" autocomplete="off">
                         <span class="material-input"></span>
                     </div>
 
@@ -177,6 +177,9 @@
 
         <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 artistcolumn">
             <div class="panel artist">
+                <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
+                    <div class="favicon glyphicon glyphicon-star-empty"></div>
+                </a>
                 <a href="javascript:;" data-groupmid="{{groupId}}" class="square">
                     <div class='square-box'>
                         <div class='square-content'>
@@ -213,6 +216,9 @@
 
         <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 albumcolumn">
             <div class="panel album">
+                <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
+                    <div class="favicon glyphicon glyphicon-star-empty"></div>
+                </a>
                 <a href="javascript:;" data-albumid="{{albumId}}">
                     <div class='square-box'>
                         <div class='square-content'>
@@ -251,7 +257,10 @@
                 <div class="list-group">
                     {{#each song}}
 
-                    <a href="javascript:;" class="list-group-item song" data-songid="{{songId}}">
+                    <div class="list-group-item song" data-songid="{{songId}}">
+                        <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
+                            <div class="favicon glyphicon glyphicon-star-empty"></div>
+                        </a>
                         <img class="album-snippet" src="{{imgRoute}}"></img>
 
                         <p class="songname"><b>{{songName}}</b></p>
@@ -259,7 +268,7 @@
                             <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
                         <div class="song-album-name" data-albumId={{albumId}}>
                             <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
-                    </a>
+                    </div>
 
                     {{/each}}
                 </div>
