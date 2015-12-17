@@ -19,7 +19,7 @@ $("#search_form").submit(function(event) {
 
         var source = document.createElement("source");
         source.setAttribute("src", link);
-        source.setAttribute("type", "audio/mpeg")
+        source.setAttribute("type", "audio/mpeg");
 
         var a = document.createElement("a");
         a.setAttribute("href", link);
@@ -94,43 +94,6 @@ $("#search_form").submit(function(event) {
             console.log("CLICKED: " + item.dataset.groupid);
 
             $(".base").empty();
-
-            /*
-              JSON PER L'ALBERT:
-
-                {
-                    "groupId": 12345,
-                    "artistName": "Queen",
-                    "imgRoute": "rutaImgQueen",
-                    "biography": "Vida y milagros",
-                    "topSongs":[
-                              {
-                                "songId":12345,
-                                "songName":"NomCanço",
-                                "albumName":"NomAlbum",
-                                "imgRoute":"rutaCanço"
-                              },
-                              {
-                                "songId":12345,
-                                "songName":"NomCanço",
-                                "albumName":"NomAlbum",
-                                "imgRoute":"rutaCanço"
-                              }
-                            ]
-                            "albums":[
-                                      {
-                                        "albumId":12345,
-                                        "albumName":"NomAlbum",
-                                        "imgRoute":"rutaAlbum"
-                                      },
-                                      {
-                                        "albumId":12345,
-                                        "albumName":"NomAlbum",
-                                        "imgRoute":"rutaAlbum"
-                                      }
-                                    ]
-                }
-            */
 
             var artistMainAreaScript = $("#artist-main-template").html();
             /*var artistMainAreaTemplate = Handlebars.compile(artistMainAreaScript;);
