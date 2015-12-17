@@ -30,8 +30,11 @@ function DatabaseManager(){
 
     var tableContains = function(tablename, id, callback){
         db.transaction(function (tx) {
-            tx.executeSql('SELECT * FROM ? WHERE id=?', [tablename, id], function (tx, results) {
+            tx.executeSql('SELECT * FROM '+tablename+' WHERE id=?', [id], function (tx, results) {
+
                 var len = results.rows.length;
+              console.log("CONTAINS "+ (len == 1));
+
                 callback(len == 1);
             });
         });
@@ -50,15 +53,15 @@ function DatabaseManager(){
     }
 
     var tableContainsList = function(tablename, list, callback){
-        tableContainsListIm(tablename, list, 0, callback, this);
+        tableContainsListIm(tablename, list, 0, callback);
     }
 
-    var tableContainsListIm = function(tablename, list, i, callback, self){
+    var tableContainsListIm = function(tablename, list, i, callback){
         console.log("tablecontainslistim i=" + i + " list.len=" + list.length);
         if(i < list.length){
             tableContains(tablename, list[i].id, function(isFavourite){
                 list[i].fav = isFavourite;
-                self.tableContainsListIm(tablename, list, i+1, callback, self);
+                tableContainsListIm(tablename, list, i+1, callback, self);
             });
         }else{
             callback(list);
@@ -79,7 +82,7 @@ function DatabaseManager(){
 
     var getContent = function(tablename, callback){
         db.transaction(function (tx) {
-            tx.executeSql('SELECT * FROM ?', [tablename], function (tx, results) {
+            tx.executeSql('SELECT * FROM '+tablename, [], function (tx, results) {
                 var rows = [];
                 var len = results.rows.length, i;
                 for (i = 0; i < len; i++) {
