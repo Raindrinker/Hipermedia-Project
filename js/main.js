@@ -1,7 +1,5 @@
 var YOUTUBE_TOKEN = "AIzaSyDdIfOVzbu7Ri68LVtTBzKOrOHOnG-TZOU";
 
-
-
 var api = new SpotifyWebApi();
 
 var app = new BetaPlayerApp(api, null);
@@ -14,8 +12,8 @@ $("#search_form").submit(function(event){
   var query = $("#searcharea").val();
 
   youtubeApi.searchVideo(query, function(videoId){
-      youtubeMP3Api.getTrackForVideo(videoId, function(link){
-        console.log("LINK_FROM_MAIN: "+link);
+
+      function createAudioFromLink(link){
 
         var source = document.createElement("source");
         source.setAttribute("src", link);
@@ -30,13 +28,23 @@ $("#search_form").submit(function(event){
         audio.appendChild(source);
         audio.appendChild(a);
 
-        console.log(audio);
-
-
-        $(".base").append(audio.innerHTML);
+        $(".origin").append(audio);
+        audio.onloadeddata = function(e){
+          if(e.target.duration == 20.038821){
+            audio.pause();
+            $(audio).remove();
+            console.log("NOS PILLO LA MAFIA");
+            createAudioFromLink(link);
+          }
+        }
         audio.play();
+      }
 
-      });
+      var link = youtubeMP3Api.getTrackForStream(videoId);
+      console.log("LINK_FROM_MAIN: "+link);
+
+      createAudioFromLink(link);
+
   });
 
   app.getSongsArtistsAlbumsFromName(query, 12, function(songs, artists, albums){
