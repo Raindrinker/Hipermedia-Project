@@ -176,14 +176,14 @@
 
     <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 artistcolumn">
       <div class="panel artist">
-        <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
+        <a href="javascript:void(0)" data-type="artist" data-favid="{{id}}" class="btn btn-default btn-fab btn-fab-mini fav">
             {{#if fav}}
             <div class="favicon glyphicon glyphicon-star"></div>
             {{else}}
             <div class="favicon glyphicon glyphicon-star-empty"></div>
             {{/if}}
         </a>
-        <a href="javascript:;" data-groupmid="{{groupId}}" class="square">
+        <a href="javascript:;" data-groupid="{{id}}" class="square">
           <div class='square-box'>
             <div class='square-content'>
               <img class="img-thumbnail img-responsive artist-image" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
@@ -194,7 +194,7 @@
         </a>
 
         <div class="list-group">
-          <a href="javascript:;" class="list-group-item" data-groupid="{{groupId}}">
+          <a href="javascript:;" class="list-group-item" data-groupid="{{id}}">
             <div class="icon glyphicon glyphicon-user"></div> <b class="artistname">{{artistName}}</b></a>
         </div>
       </div>
@@ -219,10 +219,10 @@
 
     <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 albumcolumn">
       <div class="panel album">
-        <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
+        <a href="javascript:void(0)" data-type="album" data-favid="{{id}}" class="btn btn-default btn-fab btn-fab-mini fav">
           <div class="favicon glyphicon glyphicon-star-empty"></div>
         </a>
-        <a href="javascript:;" data-albumid="{{albumId}}">
+        <a href="javascript:;" data-albumid="{{id}}">
           <div class='square-box'>
             <div class='square-content'>
               <img class="img-responsive" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
@@ -231,7 +231,7 @@
 
         </a>
         <div class="list-group">
-          <a href="javascript:;" class="list-group-item" data-albumid="{{albumId}}">
+          <a href="javascript:;" class="list-group-item" data-albumid="{{id}}">
             <div class="icon glyphicon glyphicon-cd"></div> <b class="albumname">{{albumName}}</b></a>
           <a href="javascript:;" class="list-group-item" data-groupid="{{groupId}}">
             <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</a>
@@ -260,8 +260,8 @@
         <div class="list-group">
           {{#each song}}
 
-          <div class="list-group-item song" data-songid="{{songId}}">
-            <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
+          <div class="list-group-item song" data-songid="{{id}}">
+            <a href="javascript:void(0)" data-type="song" data-favid="{{id}}" class="btn btn-default btn-fab btn-fab-mini fav">
               <div class="favicon glyphicon glyphicon-star-empty"></div>
             </a>
             <img class="album-snippet" src="{{imgRoute}}"></img>

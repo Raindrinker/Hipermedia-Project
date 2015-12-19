@@ -140,6 +140,22 @@ $("#search_form").submit(function(event) {
       setTimeout(function() {
         $(".content-overlay").css("opacity", "1");
         $(".content-overlay").css("pointer-events", "all");
+
+
+        $('.fav').click(function(){
+            var icon = this.childNodes[1];
+            if($(icon).hasClass("glyphicon-star")){
+                $(icon).removeClass("glyphicon-star");
+                $(icon).addClass("glyphicon-star-empty");
+                dbm.deleteFav(this.dataset.type, this.dataset.favid);
+            }else{
+                $(icon).removeClass("glyphicon-star-empty");
+                $(icon).addClass("glyphicon-star");
+                dbm.addFav(this.dataset.type, this.dataset.favid);
+            }
+        });
+
+
       }, 250);
     }, 250);
 
