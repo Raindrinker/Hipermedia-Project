@@ -142,13 +142,15 @@ $("#search_form").submit(function(event) {
         $(".content-overlay").css("pointer-events", "all");
 
 
-        $('.fav').click(function(){
+        $(".fav").off('click').on('click', function() {
             var icon = this.childNodes[1];
             if($(icon).hasClass("glyphicon-star")){
+                console.log("delete");
                 $(icon).removeClass("glyphicon-star");
                 $(icon).addClass("glyphicon-star-empty");
                 dbm.deleteFav(this.dataset.type, this.dataset.favid);
             }else{
+                console.log("add");
                 $(icon).removeClass("glyphicon-star-empty");
                 $(icon).addClass("glyphicon-star");
                 dbm.addFav(this.dataset.type, this.dataset.favid);

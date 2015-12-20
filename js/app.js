@@ -97,10 +97,11 @@ function BetaPlayerApp(spotifyClient, renderer, dbm) {
                     albumName: track.album.name,
                     albumId: track.album.id,
                     artistName: track.artists[0].name,
-                    groupId: track.artists[0].id
+                    groupId: track.artists[0].id,
+                    fav: false
                 }
             });
-
+            this.dbm.markFavSongs(tracksFormatted, callback);
             callback(tracksFormatted);
         });
     }
@@ -160,9 +161,11 @@ function BetaPlayerApp(spotifyClient, renderer, dbm) {
                             albumName: album.name,
                             id: album.id,
                             artistName: album.artists[0].name,
-                            groupId: album.artists[0].id
+                            groupId: album.artists[0].id,
+                            fav: false
                         }
                     });
+                    this.dbm.markFavAlbums(albumsFormatted, callback);
                     callback(albumsFormatted);
                 });
             } else {
