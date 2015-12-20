@@ -1,3 +1,13 @@
+/**
+ * This function defines the BetaPlayerApp object, that will be the main object
+ * of our application.
+ * This object will need
+ *
+ * To be instantiated, it needs 3 components
+ * - spotifyClient: Reference to a SpotifyWebApi instance
+ * - renderer: Reference to a Renderer instance
+ * - dbm: Reference to a DatabaseManager instance
+ */
 function BetaPlayerApp(spotifyClient, renderer, dbm) {
 
   // Save the received parameters

@@ -1,3 +1,7 @@
+/**
+ * This function defines an object that will be responsible for all the UI
+ * rendering actions, such as paint the albums, artists and songs.
+ */
 function Renderer() {
 
   // Grab the template script
