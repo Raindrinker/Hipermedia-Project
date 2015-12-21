@@ -3,28 +3,28 @@ function DatabaseManager() {
     var db;
     db = openDatabase('favourites', '1.0', 'user favourite music', 2 * 1024 * 1024);
     db.transaction(function(tx) {
-        tx.executeSql('CREATE TABLE fav_artists (id unique)');
-        tx.executeSql('CREATE TABLE fav_albums (id unique)');
-        tx.executeSql('CREATE TABLE fav_songs (id unique)');
+        tx.executeSql('CREATE TABLE fav_artists (id unique, image, name)');
+        tx.executeSql('CREATE TABLE fav_albums (id unique, image, name, groupid, groupname)');
+        tx.executeSql('CREATE TABLE fav_songs (id unique, image, name, groupid, groupname, albumid, albumname)');
     });
 
     console.log("database created");
 
-    var addFavArtist = function(groupid) {
+    this.addFavArtist = function(groupid, image, name) {
         db.transaction(function(tx) {
-            tx.executeSql('INSERT INTO fav_artists (id) VALUES (?)', [groupid]);
+            tx.executeSql('INSERT INTO fav_artists (id, image, name) VALUES (?, ?, ?)', [groupid, image, name]);
         });
     };
 
-    var addFavAlbum = function(albumid) {
+    this.addFavAlbum = function(albumid, image, name, groupid, groupname) {
         db.transaction(function(tx) {
-            tx.executeSql('INSERT INTO fav_albums (id) VALUES (?)', [albumid]);
+            tx.executeSql('INSERT INTO fav_albums (id, image, name, groupid, groupname) VALUES (?, ?, ?, ?, ?)', [albumid, image, name, groupid, groupname]);
         });
     };
 
-    var addFavSong = function(songid) {
+    this.addFavSong = function(songid, image, name, groupid, groupname, albumid, albumname) {
         db.transaction(function(tx) {
-            tx.executeSql('INSERT INTO fav_songs (id) VALUES (?)', [songid]);
+            tx.executeSql('INSERT INTO fav_songs (id, image, name, groupid, groupname, albumid, albumname) VALUES (?, ?, ?, ?, ?, ?, ?)', [songid, image, name, groupid, groupname, albumid, albumname]);
         });
     };
 
@@ -46,22 +46,12 @@ function DatabaseManager() {
         });
     };
 
-    this.addFav = function(type, id){
-        if(type == "artist"){
-            addFavArtist(id);
-        }else if(type == "album"){
-            addFavAlbum(id);
-        }else if(type == "song"){
-            addFavSong(id);
-        }
-    }
-
-    this.deleteFav = function(type, id){
-        if(type == "artist"){
+    this.deleteFav = function(type, id) {
+        if (type == "artist") {
             deleteFavArtist(id);
-        }else if(type == "album"){
+        } else if (type == "album") {
             deleteFavAlbum(id);
-        }else if(type == "song"){
+        } else if (type == "song") {
             deleteFavSong(id);
         }
     }
@@ -125,8 +115,7 @@ function DatabaseManager() {
         db.transaction(function(tx) {
             tx.executeSql('SELECT * FROM ' + tablename, [], function(tx, results) {
                 var rows = [];
-                var len = results.rows.length,
-                    i;
+                var len = results.rows.length;
                 for (i = 0; i < len; i++) {
                     rows.push(results.rows.item(i).id);
                 }

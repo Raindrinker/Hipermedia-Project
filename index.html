@@ -176,7 +176,12 @@
 
         <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 artistcolumn">
             <div class="panel artist">
-                <a href="javascript:void(0)" data-type="artist" data-favid="{{id}}" class="btn btn-default btn-fab btn-fab-mini fav">
+                <a href="javascript:void(0)"
+                data-type="artist"
+                data-favid="{{id}}"
+                data-image="{{imgRoute}}"
+                data-name="{{artistName}}"
+                class="btn btn-default btn-fab btn-fab-mini fav">
                     {{#if fav}}
                     <div class="favicon glyphicon glyphicon-star"></div>
                     {{else}}
@@ -219,7 +224,14 @@
 
         <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 albumcolumn">
             <div class="panel album">
-                <a href="javascript:void(0)" data-type="album" data-favid="{{id}}" class="btn btn-default btn-fab btn-fab-mini fav">
+                <a href="javascript:void(0)"
+                data-type="album"
+                data-favid="{{id}}"
+                data-image="{{imgRoute}}"
+                data-name="{{albumName}}"
+                data-groupid="{{groupId}}"
+                data-groupname="{{artistName}}"
+                class="btn btn-default btn-fab btn-fab-mini fav">
                     {{#if fav}}
                     <div class="favicon glyphicon glyphicon-star"></div>
                     {{else}}
@@ -265,7 +277,16 @@
                     {{#each song}}
 
                     <div class="list-group-item song" data-songid="{{id}}">
-                        <a href="javascript:void(0)" data-type="song" data-favid="{{id}}" class="btn btn-default btn-fab btn-fab-mini fav">
+                        <a href="javascript:void(0)"
+                        data-type="song"
+                        data-favid="{{id}}"
+                        data-image="{{imgRoute}}"
+                        data-name="{{songName}}"
+                        data-groupid="{{groupId}}"
+                        data-groupname="{{artistName}}"
+                        data-albumid="{{albumId}}"
+                        data-albumname="{{albumName}}"
+                        class="btn btn-default btn-fab btn-fab-mini fav">
                             {{#if fav}}
                             <div class="favicon glyphicon glyphicon-star"></div>
                             {{else}}

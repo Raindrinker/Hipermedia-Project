@@ -166,7 +166,6 @@ function BetaPlayerApp(spotifyClient, renderer, dbm) {
                         }
                     });
                     this.dbm.markFavAlbums(albumsFormatted, callback);
-                    callback(albumsFormatted);
                 });
             } else {
                 callback([]);

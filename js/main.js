@@ -141,7 +141,6 @@ $("#search_form").submit(function(event) {
         $(".content-overlay").css("opacity", "1");
         $(".content-overlay").css("pointer-events", "all");
 
-
         $(".fav").off('click').on('click', function() {
             var icon = this.childNodes[1];
             if($(icon).hasClass("glyphicon-star")){
@@ -153,7 +152,14 @@ $("#search_form").submit(function(event) {
                 console.log("add");
                 $(icon).removeClass("glyphicon-star-empty");
                 $(icon).addClass("glyphicon-star");
-                dbm.addFav(this.dataset.type, this.dataset.favid);
+                var type = this.dataset.type;
+                if(type == "artist"){
+                    dbm.addFavArtist(this.dataset.favid, this.dataset.image, this.dataset.name);
+                } else if (type == "album"){
+                    dbm.addFavAlbum(this.dataset.favid, this.dataset.image, this.dataset.name, this.dataset.groupid, this.dataset.groupname);
+                } else if (type == "song"){
+                    dbm.addFavSong(this.dataset.favid, this.dataset.image, this.dataset.name, this.dataset.groupid, this.dataset.groupname, this.dataset.albumid, this.dataset.albumname);
+                }
             }
         });
 
