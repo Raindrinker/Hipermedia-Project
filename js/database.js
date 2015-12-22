@@ -117,7 +117,7 @@ function DatabaseManager() {
                 var rows = [];
                 var len = results.rows.length;
                 for (i = 0; i < len; i++) {
-                    rows.push(results.rows.item(i).id);
+                    rows.push(results.rows.item(i));
                 }
                 callback(rows);
             });
