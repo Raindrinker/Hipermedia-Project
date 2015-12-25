@@ -281,4 +281,11 @@ function BetaPlayerApp(spotifyClient, renderer, dbm) {
   this.addFav = function(object) {
     this.dbm.addFav(object);
   }
+
+  this.showFavourites = function(){
+
+    this.dbm.getAllFavs(function(artists, albums, songs){
+      this.renderer.renderAll(artists, albums, songs);
+    });
+  }
 }

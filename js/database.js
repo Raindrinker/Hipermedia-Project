@@ -53,7 +53,6 @@ function DatabaseManager() {
       } else if(type == "album"){
         addFavAlbum(fav.content);
       }
-
     }
 
     var deleteFavArtist = function(groupid) {
@@ -147,16 +146,61 @@ function DatabaseManager() {
         });
     };
 
-    this.getFavArtists = function(callback) {
+    var getFavArtists = function(callback) {
         getContent("fav_artists", callback);
     }
 
-    this.getFavAlbums = function(callback) {
+    var getFavAlbums = function(callback) {
         getContent("fav_albums", callback);
     }
 
-    this.getFavSongs = function(callback) {
+    var getFavSongs = function(callback) {
         getContent("fav_songs", callback);
+    }
+
+    this.getAllFavs = function(callback){
+      getFavArtists(function(artists){
+
+        var artistsFormatted = artists.map(function(artist){
+          return {
+            artistName: artist.name,
+            imgRoute: artist.image,
+            id: artist.id,
+            fav: true
+          }
+        });
+
+        getFavAlbums(function(albums){
+
+          var albumsFormatted = albums.map(function(album){
+            return {
+              id: album.id,
+              imgRoute: album.image,
+              albumName: album.name,
+              groupId: album.groupid,
+              artistName: album.groupname,
+              fav: true
+            }
+          });
+
+          getFavSongs(function(songs){
+
+            var songsFormatted = songs.map(function(song){
+              return {
+                id: song.id,
+                imgRoute: song.image,
+                songName: song.name,
+                groupId: song.groupid,
+                artistName: song.groupname,
+                albumId: song.albumid,
+                albumName: song.albumname,
+                fav: true
+              }
+            });
+            callback(artistsFormatted, albumsFormatted, songsFormatted);
+          }.bind(this));
+        }.bind(this));
+      }.bind(this));
     }
 
     this.clean = function() {

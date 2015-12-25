@@ -54,6 +54,10 @@ $("#search_form").submit(function(event) {
 
 });
 
+$("#nav-favourites").click(function(){
+  app.showFavourites();
+});
+
 function openSlider(){
     var open_height = $(".panel-biography").attr("box_h") + "px";
     $(".panel-biography").animate({"height": open_height}, {duration: "slow" });
