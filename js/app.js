@@ -173,6 +173,86 @@ function BetaPlayerApp(spotifyClient, renderer, dbm) {
       this.getArtistsFromName(query, numResults, function(artists) {
         this.getAlbumsFromName(query, numResults, function(albums) {
           this.renderer.renderAll(artists, albums, songs);
+
+
+          $(".square").map(function(index, item) {
+                    $(item).click(function(event) {
+
+                      console.log("CLICKED: " + item.dataset.groupid);
+
+                      $(".base").empty();
+
+                      /*
+                        JSON PER L'ALBERT:
+                          {
+                              "groupId": 12345,
+                              "artistName": "Queen",
+                              "imgRoute": "rutaImgQueen",
+                              "biography": "Vida y milagros",
+                              "topSongs":[
+                                        {
+                                          "songId":12345,
+                                          "songName":"NomCanço",
+                                          "albumName":"NomAlbum",
+                                          "imgRoute":"rutaCanço"
+                                        },
+                                        {
+                                          "songId":12345,
+                                          "songName":"NomCanço",
+                                          "albumName":"NomAlbum",
+                                          "imgRoute":"rutaCanço"
+                                        }
+                                      ]
+                                      "albums":[
+                                                {
+                                                  "albumId":12345,
+                                                  "albumName":"NomAlbum",
+                                                  "imgRoute":"rutaAlbum"
+                                                },
+                                                {
+                                                  "albumId":12345,
+                                                  "albumName":"NomAlbum",
+                                                  "imgRoute":"rutaAlbum"
+                                                }
+                                              ]
+                          }
+                      */
+
+                      var artistMainAreaScript = $("#artist-main-template").html();
+                      /*var artistMainAreaTemplate = Handlebars.compile(artistMainAreaScript;);
+                      var artistMainAreaElement = {
+                        "artist": artist
+                      };
+                      var compiledArtistMainArea = artistMainAreaTemplate(artistMainAreaElement);
+                      $(".base").append(compiledArtistMainArea);*/
+                      $(".base").append(artistMainAreaScript);
+
+                      var sliderHeight = "100px";
+                      $('.panel-biography').each(function() {
+                          var current = $(this);
+                          current.attr("box_h", current.height());
+                        }
+
+                      );
+
+                      $(".panel-biography").css("height", sliderHeight);
+                      $(".toggle-biography").html('<a href="#">click</a>');
+                      $(".toggle-biography a").click(function() {
+                        openSlider()
+                      })
+
+                      /*if (artist.topSongs.length > 0) {
+                          $(".base").append(compiledSongs);
+                      }*/
+
+                      /*if (artist.albums.length > 0) {
+                          $(".base").append(compiledAlbums);
+                      }*/
+
+                    });
+                  });
+
+
         }.bind(this));
       }.bind(this));
     }.bind(this));
@@ -197,9 +277,8 @@ function BetaPlayerApp(spotifyClient, renderer, dbm) {
    * This function is needed for the renderer to be able to trigger the actions.
    * It needs 2 parameters:
    *  - type: Type of the element to be added (album, song, artist)
-   *  - id: Id of the element to be added
    */
-  this.addFav = function(type, id) {
-    this.dbm.addFav(type, id);
+  this.addFav = function(object) {
+    this.dbm.addFav(object);
   }
 }

@@ -10,23 +10,51 @@ function DatabaseManager() {
 
     console.log("database created");
 
-    this.addFavArtist = function(groupid, image, name) {
+    var addFavArtist = function(fav) {
+        var groupid = fav.favid,
+            image = fav.image,
+            name = fav.name;
         db.transaction(function(tx) {
             tx.executeSql('INSERT INTO fav_artists (id, image, name) VALUES (?, ?, ?)', [groupid, image, name]);
         });
     };
 
-    this.addFavAlbum = function(albumid, image, name, groupid, groupname) {
+    var addFavAlbum = function(fav) {
+        var albumid = fav.favid,
+            image = fav.image,
+            name = fav.name,
+            groupid = fav.groupid,
+            groupname = fav.groupname;
         db.transaction(function(tx) {
             tx.executeSql('INSERT INTO fav_albums (id, image, name, groupid, groupname) VALUES (?, ?, ?, ?, ?)', [albumid, image, name, groupid, groupname]);
         });
     };
 
-    this.addFavSong = function(songid, image, name, groupid, groupname, albumid, albumname) {
+    var addFavSong = function(fav) {
+        var songid = fav.favid,
+            image = fav.image,
+            name = fav.name,
+            groupid = fav.groupid,
+            groupname = fav.groupname,
+            albumid = fav.albumid,
+            albumname = fav.albumname;
         db.transaction(function(tx) {
             tx.executeSql('INSERT INTO fav_songs (id, image, name, groupid, groupname, albumid, albumname) VALUES (?, ?, ?, ?, ?, ?, ?)', [songid, image, name, groupid, groupname, albumid, albumname]);
         });
     };
+
+    this.addFav = function(fav){
+      var type = fav.type;
+
+      if(type == "artist"){
+        addFavArtist(fav.content);
+      } else if(type == "song"){
+        addFavSong(fav.content);
+      } else if(type == "album"){
+        addFavAlbum(fav.content);
+      }
+
+    }
 
     var deleteFavArtist = function(groupid) {
         db.transaction(function(tx) {

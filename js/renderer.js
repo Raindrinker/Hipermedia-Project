@@ -98,7 +98,31 @@ function Renderer() {
       } else {
         $(icon).removeClass("glyphicon-star-empty");
         $(icon).addClass("glyphicon-star");
-        this.appReference.addFav(element.dataset.type, element.dataset.favid);
+
+        var type = element.dataset.type;
+        var object = {
+          type: type
+        };
+
+        var content  = {};
+        content.favid = element.dataset.favid;
+        content.image = element.dataset.image;
+        content.name = element.dataset.name;
+
+        if (type == "album"){
+          content.groupid = element.dataset.groupid;
+          content.groupname = element.dataset.groupname;
+          object.content = content;
+        } else if (type == "song"){
+          content.groupid = element.dataset.groupid;
+          content.groupname = element.dataset.groupname;
+          content.albumid = element.dataset.albumid;
+          content.albumname = element.dataset.albumname;
+          object.content = content;
+        }
+
+        object.content = content;
+        this.appReference.addFav(object);
       }
     }.bind(this));
   }

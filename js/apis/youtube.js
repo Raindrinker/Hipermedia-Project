@@ -1,7 +1,7 @@
 function YoutubeApi(token){
   this.token = token;
   var BASE_URL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=relevance&q=";
-  var END_URL = "&type=video+&videoDefinition=high&key="+token;
+  var END_URL = "&type=video&key="+token;
 
   this.searchVideo = function(query, callback){
 
