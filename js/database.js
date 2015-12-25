@@ -62,10 +62,6 @@ function DatabaseManager() {
             tx.executeSql(query, [], function(tx, results) {
 
                 var len = results.rows.length;
-                console.log(query);
-                console.log(results);
-                console.log("CONTAINS " + (len == 1));
-
                 callback(len == 1);
             });
         });
@@ -88,7 +84,6 @@ function DatabaseManager() {
     }
 
     var tableContainsListIm = function(tablename, list, i, callback) {
-        console.log("tablecontainslistim i=" + i + " list.len=" + list.length);
         if (i < list.length) {
             tableContains(tablename, list[i].id, function(isFavourite) {
                 list[i].fav = isFavourite;

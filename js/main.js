@@ -1,10 +1,10 @@
 var YOUTUBE_TOKEN = "AIzaSyDdIfOVzbu7Ri68LVtTBzKOrOHOnG-TZOU";
 var dbm = new DatabaseManager();
 
-
+var renderer = new Renderer();
 var api = new SpotifyWebApi();
 
-var app = new BetaPlayerApp(api, null, dbm);
+var app = new BetaPlayerApp(api, renderer, dbm);
 
 var youtubeApi = new YoutubeApi(YOUTUBE_TOKEN);
 var youtubeMP3Api = new YoutubeMP3();
