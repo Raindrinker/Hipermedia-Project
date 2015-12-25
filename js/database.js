@@ -133,9 +133,9 @@ function DatabaseManager() {
         tableContainsList("fav_songs", songlist, callback);
     }
 
-    var getContent = function(tablename, callback) {
+    var getContent = function(tablename, orderindex, callback) {
         db.transaction(function(tx) {
-            tx.executeSql('SELECT * FROM ' + tablename, [], function(tx, results) {
+            tx.executeSql('SELECT * FROM ' + tablename + ' ORDER BY ' + orderindex, [], function(tx, results) {
                 var rows = [];
                 var len = results.rows.length;
                 for (i = 0; i < len; i++) {
@@ -147,15 +147,15 @@ function DatabaseManager() {
     };
 
     var getFavArtists = function(callback) {
-        getContent("fav_artists", callback);
+        getContent("fav_artists", 3, callback);
     }
 
     var getFavAlbums = function(callback) {
-        getContent("fav_albums", callback);
+        getContent("fav_albums", 5, callback);
     }
 
     var getFavSongs = function(callback) {
-        getContent("fav_songs", callback);
+        getContent("fav_songs", 5, callback);
     }
 
     this.getAllFavs = function(callback){
