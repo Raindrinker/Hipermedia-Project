@@ -8,12 +8,14 @@
  * - renderer: Reference to a Renderer instance
  * - dbm: Reference to a DatabaseManager instance
  */
-function BetaPlayerApp(spotifyClient, renderer, dbm) {
+function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
 
   // Save the received parameters
   this.spotifyClient = spotifyClient;
   this.renderer = renderer;
   this.dbm = dbm;
+  this.echonestclient = echonestclient;
+  this.echonestclient.init();
 
   // Create the relation Renderer -> App, necessary for the favorite button
   this.renderer.appReference = this;
@@ -268,6 +270,12 @@ function BetaPlayerApp(spotifyClient, renderer, dbm) {
    */
   this.deleteFav = function(type, id) {
     this.dbm.deleteFav(type, id);
+
+    if(type == "song"){
+      this.echonestclient.updateFavoritedSong(id, false, function(){
+        console.log("DELETED FAV "+id);
+      })
+    }
   }
 
 
@@ -280,10 +288,16 @@ function BetaPlayerApp(spotifyClient, renderer, dbm) {
    */
   this.addFav = function(object) {
     this.dbm.addFav(object);
+    if(object.type == "song"){
+      var id = object.content.favid;
+      this.echonestclient.updateFavoritedSong(id, true, function(){
+        console.log("UPDATED FAV "+id);
+      })
+    }
+
   }
 
   this.showFavourites = function(){
-
     this.dbm.getAllFavs(function(artists, albums, songs){
       this.renderer.renderAll(artists, albums, songs);
     });

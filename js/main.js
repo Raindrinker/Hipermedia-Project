@@ -1,10 +1,16 @@
+$.material.init()
+enableCORS();
+
 var YOUTUBE_TOKEN = "AIzaSyDdIfOVzbu7Ri68LVtTBzKOrOHOnG-TZOU";
+var ECHONEST_TOKEN = "NWZX9JCXADVAIYPJD";
+
 var dbm = new DatabaseManager();
 
 var renderer = new Renderer();
 var api = new SpotifyWebApi();
+var echonestClient = new EchoNestClient(ECHONEST_TOKEN);
 
-var app = new BetaPlayerApp(api, renderer, dbm);
+var app = new BetaPlayerApp(api, renderer, dbm, echonestClient);
 
 var youtubeApi = new YoutubeApi(YOUTUBE_TOKEN);
 var youtubeMP3Api = new YoutubeMP3();
