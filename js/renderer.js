@@ -49,14 +49,6 @@ function Renderer() {
    */
   var renderArtists = function(artists, appReference) {
     renderGeneric("artist", artists, artistsTemplate);
-
-    $(".square").map(function(index, item){
-      $(item).click(function(event){
-        var id = item.dataset.groupid;
-        console.log("CLICKED: "+id);
-        appReference.paintArtist(id);
-      });
-    });
   }
 
 
