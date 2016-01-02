@@ -327,6 +327,23 @@
   <!-- END - LAYOUT ARTIST -->
 </script>
 
+<!-- TEMPLATE MAIN ALBUM -->
+<script id="album-main-template" type="text/x-handlebars-template">
+  <!-- LAYOUT ALBUM: -->
+  <div class="row songs">
+    <div class="col-xs-12 songcolumn area-artist">
+        <img class="center-block img-artist-area" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
+        <div class="jumbotron well-artist">
+          <h1 class="album-title">{{albumName}}</h1>
+          <a class="artist-subtitle link-artist" data-groupid="{{groupId}}" href="javascript:;">
+            <h3 style=" cursor: pointer;">{{artistName}}</h3>
+          </a>
+        </div>
+      </div>
+    </div>
+  <!-- END - LAYOUT ALBUM -->
+</script>
+
 <script src="js/main.js"></script>
 
 </html>

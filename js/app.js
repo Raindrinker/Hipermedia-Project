@@ -180,12 +180,52 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
     }.bind(this));
   }
 
+  this.paintAlbum = function(albumId){
+    this.spotifyClient.getAlbum(albumId, {}, function(err, album){
+      if(err) console.log(err);
+      var albumName = album.name;
+      var albumImage = "http://lorempixel.com/400/400/abstract/";
+      var artistName = album.artists[0].name;
+      var artistId = album.artists[0].id;
+      if (album.images.length > 0) {
+        albumImage = album.images[0].url;
+      }
+
+      this.spotifyClient.getAlbumTracks(albumId, {}, function(error, tracks){
+
+        if(error)console.log(error);
+        console.log("TRACKS");
+        console.log(tracks);
+        var songs = tracks.items.map(function(song){
+          return {
+            id: song.id,
+            songId: song.id,
+            songName: song.name,
+            imgRoute: albumImage,
+            artistName: song.artists[0].name,
+            albumName: albumName,
+            groupId: artistId,
+            albumId: albumId
+          }
+        });
+
+        var album = {
+          albumName: albumName,
+          artistName: artistName,
+          imgRoute: albumImage,
+          groupId: artistId,
+          song: songs
+        };
+
+        this.renderer.renderMainAlbum(album);
+      }.bind(this));
+    }.bind(this));
+  }
+
   this.paintArtist = function(artistId){
       this.spotifyClient.getArtist(artistId, {}, function(err, artistInfo){
 
       if(err) console.log(err);
-      console.log("ARTIST INFO");
-      console.log(artistInfo);
 
       var artistName = artistInfo.name;
       var artistImage = "";

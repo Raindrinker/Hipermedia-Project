@@ -9,12 +9,14 @@ function Renderer() {
   var artistsScript = $("#artists-template").html();
   var albumsScript = $("#albums-template").html();
   var artistMainScript = $("#artist-main-template").html();
+  var albumMainScript = $("#album-main-template").html();
 
   // Precompile Handlebars templates
   var artistsTemplate = Handlebars.compile(artistsScript);
   var songsTemplate = Handlebars.compile(songsScript);
   var albumsTemplate = Handlebars.compile(albumsScript);
   var artistMainTemplate = Handlebars.compile(artistMainScript);
+  var albumMainTemplate = Handlebars.compile(albumMainScript);
 
   this.appReference = null;
 
@@ -88,9 +90,23 @@ function Renderer() {
 
   }
 
+  var realRenderMainAlbum = function(album){
+    var headObject = {
+      imgRoute: album.imgRoute,
+      artistName: album.artistName,
+      albumName: album.albumName,
+      groupId: album.groupId
+    }
+
+    var compiledHead = albumMainTemplate(headObject);
+    $(".base").append(compiledHead);
+    renderSongs(album.song);
+  }
+
   this.enableLinkable = function(){
     var appReference = this.appReference;
     $(".link-artist").map(function(index, item){
+      console.log(item);
       $(item).click(function(event){
         var id = item.dataset.groupid;
         console.log("CLICKED: "+id);
@@ -192,6 +208,16 @@ function Renderer() {
     this.hide(function(){
       this.clearAll();
       realRenderMainArtist(artist);
+      this.enableFavoritable();
+      this.enableLinkable();
+      this.reveal();
+    }.bind(this));
+  }
+
+  this.renderMainAlbum = function(album){
+    this.hide(function(){
+      this.clearAll();
+      realRenderMainAlbum(album);
       this.enableFavoritable();
       this.enableLinkable();
       this.reveal();

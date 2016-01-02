@@ -346,3 +346,17 @@ select:-webkit-autofill {
   width: 100%;
   padding: 0px;
 }
+.album-title {
+  margin-top: 45px;
+  margin-left: 200px;
+  color: #003133 !important;
+  text-align: center;
+  white-space: nowrap;
+}
+.artist-subtitle {
+  color: #006064 !important;
+  margin-left: 200px;
+  font-size: 40px;
+  text-align: center;
+  white-space: nowrap;
+}
