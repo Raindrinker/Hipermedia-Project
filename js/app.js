@@ -175,89 +175,81 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
       this.getArtistsFromName(query, numResults, function(artists) {
         this.getAlbumsFromName(query, numResults, function(albums) {
           this.renderer.renderAll(artists, albums, songs);
-
-
-          $(".square").map(function(index, item) {
-                    $(item).click(function(event) {
-
-                      console.log("CLICKED: " + item.dataset.groupid);
-
-                      $(".base").empty();
-
-                      /*
-                        JSON PER L'ALBERT:
-                          {
-                              "groupId": 12345,
-                              "artistName": "Queen",
-                              "imgRoute": "rutaImgQueen",
-                              "biography": "Vida y milagros",
-                              "topSongs":[
-                                        {
-                                          "songId":12345,
-                                          "songName":"NomCanço",
-                                          "albumName":"NomAlbum",
-                                          "imgRoute":"rutaCanço"
-                                        },
-                                        {
-                                          "songId":12345,
-                                          "songName":"NomCanço",
-                                          "albumName":"NomAlbum",
-                                          "imgRoute":"rutaCanço"
-                                        }
-                                      ]
-                                      "albums":[
-                                                {
-                                                  "albumId":12345,
-                                                  "albumName":"NomAlbum",
-                                                  "imgRoute":"rutaAlbum"
-                                                },
-                                                {
-                                                  "albumId":12345,
-                                                  "albumName":"NomAlbum",
-                                                  "imgRoute":"rutaAlbum"
-                                                }
-                                              ]
-                          }
-                      */
-
-                      var artistMainAreaScript = $("#artist-main-template").html();
-                      /*var artistMainAreaTemplate = Handlebars.compile(artistMainAreaScript;);
-                      var artistMainAreaElement = {
-                        "artist": artist
-                      };
-                      var compiledArtistMainArea = artistMainAreaTemplate(artistMainAreaElement);
-                      $(".base").append(compiledArtistMainArea);*/
-                      $(".base").append(artistMainAreaScript);
-
-                      var sliderHeight = "100px";
-                      $('.panel-biography').each(function() {
-                          var current = $(this);
-                          current.attr("box_h", current.height());
-                        }
-
-                      );
-
-                      $(".panel-biography").css("height", sliderHeight);
-                      $(".toggle-biography").html('<a href="#">click</a>');
-                      $(".toggle-biography a").click(function() {
-                        openSlider()
-                      })
-
-                      /*if (artist.topSongs.length > 0) {
-                          $(".base").append(compiledSongs);
-                      }*/
-
-                      /*if (artist.albums.length > 0) {
-                          $(".base").append(compiledAlbums);
-                      }*/
-
-                    });
-                  });
-
-
         }.bind(this));
       }.bind(this));
     }.bind(this));
+  }
+
+  this.paintArtist = function(artistId){
+      this.spotifyClient.getArtist(artistId, {}, function(err, artistInfo){
+
+      if(err) console.log(err);
+      console.log("ARTIST INFO");
+      console.log(artistInfo);
+
+      var artistName = artistInfo.name;
+      var artistImage = "";
+
+      if (artistInfo.images.length > 0) {
+        artistImage = artistInfo.images[0].url;
+      }
+
+      this.getArtistTopTracksFromId(artistId, 10, function(tracks){
+        this.spotifyClient.getArtistAlbums(artistId, {limit: 10}, function(error, data){
+          if(error) console.log(error);
+
+          var albums = data.items.map(function(album){
+
+            var imageurl = "http://lorempixel.com/400/400/abstract/";
+            if (album.images.length > 0) {
+              imageurl = album.images[0].url;
+            }
+
+            return {
+              id: album.id,
+              imgRoute: imageurl,
+              albumId: album.id,
+              groupId: artistId,
+              artistName: artistName,
+              albumName: album.name
+            }
+          });
+
+          var songs = tracks.map(function(song){
+
+            var imageurl = "http://lorempixel.com/400/400/abstract/";
+            if (song.album.images.length > 0) {
+              imageurl = song.album.images[0].url;
+            }
+
+            return {
+              id: song.id,
+              songId: song.id,
+              songName: song.name,
+              imgRoute: imageurl,
+              artistName: song.artists[0].name,
+              albumName: song.album.name,
+              groupId: artistId,
+              albumId: song.album.id
+            }
+          });
+
+          this.dbm.markFavSongs(songs, function(marked){
+            this.dbm.markFavAlbums(albums, function(albumsMarked){
+              var artist = {
+                imgRoute: artistImage,
+                artistName: artistName,
+                song: marked,
+                album: albumsMarked
+              }
+              this.renderer.renderMainArtist(artist);
+            });
+          });
+        });
+      }.bind(this));
+    }.bind(this));
+
+
   }
 
   /**

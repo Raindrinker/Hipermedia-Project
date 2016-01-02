@@ -76,6 +76,8 @@ function EchoNestClient(token){
     });
   }
 
+  
+
   this.init = function(){
     var profId = getProfileId();
     if(profId == null || profId == undefined || profId.length == 0){
@@ -86,25 +88,5 @@ function EchoNestClient(token){
       }.bind(this));
     }
   }
-
-  this.getIdForName = function(name, callback){
-    var url = BASE_URL + "/artist/search?api_key="+this.token+"&name="+name;
-
-    $.ajax({
-      url: url,
-      dataType: "jsonp",
-      success: function(data){
-        var artists = data.response.artists;
-        if(artists.length > 0){
-          callback(artists[0].id)
-        } else {
-          callback("");
-        }
-      }
-    });
-  }
-
-
-
 
 }

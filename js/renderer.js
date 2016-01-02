@@ -8,11 +8,13 @@ function Renderer() {
   var songsScript = $("#songs-template").html();
   var artistsScript = $("#artists-template").html();
   var albumsScript = $("#albums-template").html();
+  var artistMainScript = $("#artist-main-template").html();
 
   // Precompile Handlebars templates
   var artistsTemplate = Handlebars.compile(artistsScript);
   var songsTemplate = Handlebars.compile(songsScript);
   var albumsTemplate = Handlebars.compile(albumsScript);
+  var artistMainTemplate = Handlebars.compile(artistMainScript);
 
   this.appReference = null;
 
@@ -41,11 +43,20 @@ function Renderer() {
 
   /**
    * Function that renderers a list of artists.
-   * It needs 1 parameter:
+   * It needs 2 parameters:
    *  - artists: Array of artists to be rendered
+   *  - appReference: Due to scope problems, it needs a reference to the app
    */
-  var renderArtists = function(artists) {
+  var renderArtists = function(artists, appReference) {
     renderGeneric("artist", artists, artistsTemplate);
+
+    $(".square").map(function(index, item){
+      $(item).click(function(event){
+        var id = item.dataset.groupid;
+        console.log("CLICKED: "+id);
+        appReference.paintArtist(id);
+      });
+    });
   }
 
 
@@ -66,6 +77,42 @@ function Renderer() {
    */
   var renderSongs = function(songs) {
     renderGeneric("song", songs, songsTemplate);
+  }
+
+  var realRenderMainArtist = function(artist){
+
+    var headObject = {
+      imgRoute: artist.imgRoute,
+      artistName: artist.artistName
+    }
+
+    console.log("SONGS");
+    console.log(artist.song);
+
+    var compiledHead = artistMainTemplate(headObject);
+    $(".base").append(compiledHead);
+    renderSongs(artist.song);
+    renderAlbums(artist.album);
+
+  }
+
+  this.enableLinkable = function(){
+    var appReference = this.appReference;
+    $(".link-artist").map(function(index, item){
+      $(item).click(function(event){
+        var id = item.dataset.groupid;
+        console.log("CLICKED: "+id);
+        appReference.paintArtist(id);
+      });
+    });
+
+    $(".link-album").map(function(index, item){
+      $(item).click(function(event){
+        var id = item.dataset.albumid;
+        console.log("CLICKED: "+id);
+        appReference.paintAlbum(id);
+      });
+    });
   }
 
   /**
@@ -139,11 +186,24 @@ function Renderer() {
     setTimeout(function() {
       $(".content-overlay").css("opacity", "1");
       $(".content-overlay").css("pointer-events", "all");
+      $("body").animate({
+        scrollTop: 0
+      }, 350);
     }, 250);
   }
 
   this.clearAll = function() {
     $(".base").empty();
+  }
+
+  this.renderMainArtist = function(artist){
+    this.hide(function(){
+      this.clearAll();
+      realRenderMainArtist(artist);
+      this.enableFavoritable();
+      this.enableLinkable();
+      this.reveal();
+    }.bind(this));
   }
 
 
@@ -163,7 +223,7 @@ function Renderer() {
       this.clearAll();
 
       // Render each list
-      renderArtists(artists);
+      renderArtists(artists, this.appReference);
       renderAlbums(albums);
       renderSongs(songs);
 
@@ -172,6 +232,7 @@ function Renderer() {
 
       // Enable the favorite buttons
       this.enableFavoritable();
+      this.enableLinkable();
     }.bind(this));
   }
 }
