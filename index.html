@@ -246,9 +246,9 @@
 
                 </a>
                 <div class="list-group">
-                    <a href="javascript:;" class="list-group-item" data-albumid="{{id}}">
+                    <a href="javascript:;" class="list-group-item link-album" data-albumid="{{id}}">
                         <div class="icon glyphicon glyphicon-cd"></div> <b class="albumname">{{albumName}}</b></a>
-                    <a href="javascript:;" class="list-group-item" data-groupid="{{groupId}}">
+                    <a href="javascript:;" class="list-group-item link-artist" data-groupid="{{groupId}}">
                         <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</a>
                 </div>
             </div>
@@ -295,9 +295,9 @@
                         <img class="album-snippet" src="{{imgRoute}}"></img>
 
                         <p class="songname"><b>{{songName}}</b></p>
-                        <div class="song-artist-name" data-groupId={{groupId}}>
+                        <div class="song-artist-name link-artist" data-groupId={{groupId}}>
                             <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
-                        <div class="song-album-name" data-albumId={{albumId}}>
+                        <div class="song-album-name link-album" data-albumId={{albumId}}>
                             <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
                         </a>
                     </div>
@@ -317,65 +317,15 @@
   <!-- LAYOUT ARTIST: -->
   <div class="row songs">
     <div class="col-xs-12 songcolumn area-artist">
-        <img class="center-block img-circle img-artist-area" src="assets/artista_test.jpg" data-toggle="collapse" data-target="#player"></img>
+        <img class="center-block img-circle img-artist-area" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
         <div class="jumbotron well-artist">
           <h1 class="artist-title">{{artistName}}</h1>
         </div>
       </div>
     </div>
-
-  <div class="row songs">
-    <div class="col-xs-12 songcolumn">
-      <div class="well top-songs">
-        <div class="list-group">
-          {{#each song}}
-          <div class="list-group-item song" data-songid="{{songId}}">
-            <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
-              <div class="favicon glyphicon glyphicon-star-empty"></div>
-            </a>
-            <img class="album-snippet" src="assets/artista_test.jpg"></img>
-            <p class="songname"><b>{{songName}}</b></p>
-            <div class="song-artist-name" data-groupId={{groupId}}>
-              <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
-            <div class="song-album-name" data-albumId={{albumId}}>
-              <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
-            </a>
-          </div>
-          {{/each}}
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <div class="row albums">
-    {{#each album}}
-    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 albumcolumn">
-      <div class="panel album">
-        <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
-          <div class="favicon glyphicon glyphicon-star-empty"></div>
-        </a>
-        <a href="javascript:;" data-albumid="{{albumId}}">
-          <div class='square-box'>
-            <div class='square-content'>
-              <img class="img-responsive" src="assets/artista_test.jpg" data-toggle="collapse" data-target="#player"></img>
-            </div>
-          </div>
-        </a>
-        <div class="list-group">
-          <a href="javascript:;" class="list-group-item" data-albumid="{{albumId}}">
-            <div class="icon glyphicon glyphicon-cd"></div> <b class="albumname">{{albumName}}</b></a>
-          <a href="javascript:;" class="list-group-item" data-groupid="{{groupId}}">
-            <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</a>
-        </div>
-      </div>
-    </div>
-    {{/each}}
-  </div>
   <!-- END - LAYOUT ARTIST -->
 </script>
 
-<!--<script src="js/builders.js"></script>-->
 <script src="js/main.js"></script>
 
 </html>
