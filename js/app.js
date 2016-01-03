@@ -103,6 +103,13 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
     });
   }
 
+  /**
+   * Function that, given a name, searches some artists in Spotify with that name
+   * It needs 3 parameters:
+   *  - name: Name of the artist
+   *  - numResults: Maximum number of results
+   *  - callback: Callback that will receive an array of artists
+   */
   this.getArtistsFromName = function(name, numResults, callback) {
     this.spotifyClient.searchArtists(name, {
       limit: numResults
@@ -130,25 +137,39 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
     });
   }
 
+  /**
+   * Function that, given a name, searches some albums in Spotify with that name
+   * It needs 3 parameters:
+   *  - name: Name of the album
+   *  - numResults: Maximum number of results
+   *  - callback: Callback that will receive an array of albums
+   */
   this.getAlbumsFromName = function(name, numResults, callback) {
+
+    // Search the albums with that name in Spotify
     this.spotifyClient.searchAlbums(name, {
       limit: numResults
     }, function(err, data) {
       if (err) console.log(error);
       var albums = data.albums.items;
 
+      // Check if there is any album with that name (or similar)
       if (albums.length > 0) {
+
+        // We only want the album ids, so map the album list to get an array with only the album ids
         var albumIds = albums.map(function(album) {
           return album.id
         });
 
+        // Get the full information for all those albums
         this.spotifyClient.getAlbums(albumIds, {}, function(error, albumsFull) {
 
           if (error) console.log(error);
 
           var realAlbums = albumsFull.albums;
+
+          // Iterate over the albums and format them in the correct way
           var albumsFormatted = realAlbums.map(function(album) {
-            // TODO: Intentar estructurar en objectes?
             var imageurl = "http://lorempixel.com/400/400/abstract/";
             if (album.images.length > 0) {
               imageurl = album.images[0].url;
@@ -162,6 +183,11 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
               fav: false
             }
           });
+
+          // Delegate the callback on the markFavAlbums function of the DatabaseManager,
+          // which will automatically return the songs with the favorite status marked.
+          // It also could be done by creating yet another callback, which would receive
+          // an array of albums, and just pass it to the original callback
           this.dbm.markFavAlbums(albumsFormatted, callback);
         });
       } else {
@@ -170,6 +196,13 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
     }.bind(this));
   }
 
+  /**
+   * Function that, given a search term, returns all the songs, albums and artists
+   * that might fit with that query.
+   * It needs 2 parameters:
+   *  - query: String to be searched
+   *  - numResults: Number of results for each group
+   */
   this.getSongsArtistsAlbumsFromName = function(query, numResults) {
     this.getSongsFromName(query, numResults, function(songs) {
       this.getArtistsFromName(query, numResults, function(artists) {
@@ -180,9 +213,21 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
     }.bind(this));
   }
 
+
+  /**
+   * Function that, given an albumId, renders the album main page, showing its image,
+   * the title, the artist name, and all the songs that the album contains, ready to
+   * be favorited and/or played.
+   * It needs 1 parameter:
+   *  - albumId: Spotify id for the album
+   */
   this.paintAlbum = function(albumId){
+
+    // Get the album information from spotify
     this.spotifyClient.getAlbum(albumId, {}, function(err, album){
       if(err) console.log(err);
+
+      // Get the album attributes
       var albumName = album.name;
       var albumImage = "http://lorempixel.com/400/400/abstract/";
       var artistName = album.artists[0].name;
@@ -191,11 +236,12 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
         albumImage = album.images[0].url;
       }
 
+      // Get the album tracks from Spotify
       this.spotifyClient.getAlbumTracks(albumId, {}, function(error, tracks){
 
         if(error)console.log(error);
-        console.log("TRACKS");
-        console.log(tracks);
+
+        // Format the songs
         var songs = tracks.items.map(function(song){
           return {
             id: song.id,
@@ -209,6 +255,7 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
           }
         });
 
+        // Create the album object
         var album = {
           albumName: albumName,
           artistName: artistName,
@@ -217,16 +264,25 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
           song: songs
         };
 
+        // Render it
         this.renderer.renderMainAlbum(album);
       }.bind(this));
     }.bind(this));
   }
 
+  /**
+   * Function that, given an artistId, shows its main page, showing the group image,
+   * the group's most famous songs, and their top 10 albums, all ready to be browsed,
+   * favorited and/or played.
+   */
   this.paintArtist = function(artistId){
-      this.spotifyClient.getArtist(artistId, {}, function(err, artistInfo){
+
+    // Get the artist information from Spotify
+    this.spotifyClient.getArtist(artistId, {}, function(err, artistInfo){
 
       if(err) console.log(err);
 
+      // Get artist data
       var artistName = artistInfo.name;
       var artistImage = "";
 
@@ -234,10 +290,14 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
         artistImage = artistInfo.images[0].url;
       }
 
+      // Get the 10 most famous songs for that artist
       this.getArtistTopTracksFromId(artistId, 10, function(tracks){
+
+        // Get the 10 most popular albums for that artist
         this.spotifyClient.getArtistAlbums(artistId, {limit: 10}, function(error, data){
           if(error) console.log(error);
 
+          // Prepare the albums object in the correct format
           var albums = data.items.map(function(album){
 
             var imageurl = "http://lorempixel.com/400/400/abstract/";
@@ -255,6 +315,7 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
             }
           });
 
+          // Prepare the songs object in the correct format
           var songs = tracks.map(function(song){
 
             var imageurl = "http://lorempixel.com/400/400/abstract/";
@@ -274,14 +335,21 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
             }
           });
 
+          // Send the songs to the DatabaseManager to calculate their fav status
           this.dbm.markFavSongs(songs, function(marked){
+
+            // Send the albums to the DatabaseManager to calculate their fav status
             this.dbm.markFavAlbums(albums, function(albumsMarked){
+
+              // Create the artist object
               var artist = {
                 imgRoute: artistImage,
                 artistName: artistName,
                 song: marked,
                 album: albumsMarked
               }
+
+              // Render the artist
               this.renderer.renderMainArtist(artist);
             });
           });
@@ -301,6 +369,7 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
   this.deleteFav = function(type, id) {
     this.dbm.deleteFav(type, id);
 
+    // If it's a song, update the Echonest taste profile
     if(type == "song"){
       this.echonestclient.updateFavoritedSong(id, false, function(){
         console.log("DELETED FAV "+id);
@@ -313,8 +382,8 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
    * Function that adds an element to the database.
    * Actually it only calls the methods from the DBM.
    * This function is needed for the renderer to be able to trigger the actions.
-   * It needs 2 parameters:
-   *  - type: Type of the element to be added (album, song, artist)
+   * It needs 1 parameter:
+   *  - object: element to be favorited. One of its attributes must be "type" € {song, artist, album}
    */
   this.addFav = function(object) {
     this.dbm.addFav(object);
@@ -324,17 +393,35 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
         console.log("UPDATED FAV "+id);
       })
     }
-
   }
 
+
+  /**
+   * Function that shows the user's favorite elements (artists, albums and songs).
+   * It does not need any parameter
+   */
   this.showFavourites = function(){
+
+    // Request all the favorite elements from the DatabaseManager
     this.dbm.getAllFavs(function(artists, albums, songs){
+
+      // Render the elements
       this.renderer.renderAll(artists, albums, songs);
     });
   }
 
+
+  /**
+   * Function that shows songs that the user might like based on his previous
+   * actions and favorited elements.
+   * IT does not need any paramter
+   */
   this.showRecommendations = function(){
+
+    // Get the related songs from the EchoNestClient
     this.echonestclient.getRelatedSongs(10, function(songs){
+
+        // Render the songs
         this.renderer.renderRecommendedSongs(songs);
     }.bind(this));
   }
