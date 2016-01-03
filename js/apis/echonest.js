@@ -1,5 +1,6 @@
-function EchoNestClient(token){
+function EchoNestClient(token, spotifyClient){
   this.token = token;
+  this.spotifyClient = spotifyClient;
 
   var CORS = "http://cors.io/?u=";
   var BASE_URL = "http://developer.echonest.com/api/v4";
@@ -76,7 +77,97 @@ function EchoNestClient(token){
     });
   }
 
-  
+  var prepareSongs = function(songs, numResults, callback){
+    prepareSongsIm(songs, [], numResults, 0, callback)
+  }
+
+  var prepareSongsIm = function(songs, formatted, numResults, index, callback){
+    if(index < songs.length && formatted.length < numResults){
+      var song = songs[index];
+      console.log("SONG");
+      console.log(song);
+      var artistId = song.artist_foreign_ids[0].foreign_id.split(":")[2];
+      var artistName = song.artist_name;
+      var title = song.title;
+      var query = artistName +" - "+title;
+      spotifyClient.searchTracks(query, {limit: 10}, function(error, tracks){
+        if(error)console.log(error);
+        var items = tracks.tracks.items;
+        var correct = null;
+        var i;
+        for(i = 0; i < items.length; i++){
+          var item = items[i];
+          if(item.artists[0].id == artistId){
+            correct = item;
+            break;
+          }
+        }
+
+        if(correct != null){
+          var imageUrl = "http://lorempixel.com/400/400/abstract/";
+          if (correct.album.images.length > 0) {
+            imageUrl = correct.album.images[0].url;
+          }
+
+          var element = {
+            id: correct.id,
+            songId: correct.id,
+            songName: correct.name,
+            artistName: correct.artists[0].name,
+            albumName: correct.album.name,
+            groupId: artistId,
+            albumId: correct.album.id,
+            imgRoute: imageUrl
+          };
+
+          formatted.push(element);
+        }
+        prepareSongsIm(songs, formatted, numResults, index+1, callback);
+      });
+    } else {
+      callback(formatted);
+    }
+  }
+
+  this.getRelatedSongs = function(numResults, callback){
+    var url = BASE_URL+"/playlist/static";
+    var catalogId = getProfileId();
+
+    // Add 10 more results, so we can expect some Spotify search failures
+    var body = {
+      api_key: this.token,
+      results: numResults + 10,
+      type: "catalog-radio",
+      seed_catalog: catalogId,
+      adventurousness: 1.0,
+      bucket: "id:spotify"
+    };
+
+    // Set cache to false, as we want different results each time
+    jQuery.ajax({
+      url: url,
+      type: "GET",
+      data: body,
+      cache: false
+    }).done(function(data, textStatus, jqXHR) {
+        console.log(data);
+
+        var responseCode = data.response.status.code;
+
+        if(responseCode == 0){
+          var songs = data.response.songs;
+          prepareSongs(songs, numResults, callback);
+        } else {
+          console.log("RELATED SONGS RESPONSE NOT OK. CODE: "+responseCode);
+          callback([]);
+        }
+
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("HTTP Request Failed. NO RELATED SONGS");
+        callback([]);
+    });
+
+  }
 
   this.init = function(){
     var profId = getProfileId();

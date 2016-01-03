@@ -253,4 +253,8 @@ function Renderer() {
       this.enableLinkable();
     }.bind(this));
   }
+
+  this.renderRecommendedSongs = function(songs){
+    this.renderAll([], [], songs);
+  }
 }

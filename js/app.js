@@ -288,8 +288,6 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
         });
       }.bind(this));
     }.bind(this));
-
-
   }
 
   /**
@@ -333,5 +331,11 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
     this.dbm.getAllFavs(function(artists, albums, songs){
       this.renderer.renderAll(artists, albums, songs);
     });
+  }
+
+  this.showRecommendations = function(){
+    this.echonestclient.getRelatedSongs(10, function(songs){
+        this.renderer.renderRecommendedSongs(songs);
+    }.bind(this));
   }
 }

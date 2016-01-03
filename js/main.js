@@ -8,7 +8,7 @@ var dbm = new DatabaseManager();
 
 var renderer = new Renderer();
 var api = new SpotifyWebApi();
-var echonestClient = new EchoNestClient(ECHONEST_TOKEN);
+var echonestClient = new EchoNestClient(ECHONEST_TOKEN, api);
 
 var app = new BetaPlayerApp(api, renderer, dbm, echonestClient);
 
@@ -62,6 +62,10 @@ $("#search_form").submit(function(event) {
 
 $("#nav-favourites").click(function(){
   app.showFavourites();
+});
+
+$("#nav-recommendations").click(function(){
+  app.showRecommendations();
 });
 
 function openSlider(){
