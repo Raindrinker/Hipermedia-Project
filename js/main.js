@@ -36,7 +36,7 @@ $("#search_form").submit(function(event) {
         audio.appendChild(source);
         audio.appendChild(a);
 
-        $(".origin").append(audio);
+        //$(".origin").append(audio);
         audio.onloadeddata = function(e){
           if(e.target.duration == 20.038821){
             audio.pause();
@@ -45,7 +45,7 @@ $("#search_form").submit(function(event) {
             createAudioFromLink(link);
           }
         }
-        audio.play();
+        //audio.play();
       }
 
       var link = youtubeMP3Api.getTrackForStream(videoId);

@@ -175,20 +175,14 @@
 
         <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 artistcolumn">
             <div class="panel artist">
-                <a href="javascript:void(0)"
-                data-type="artist"
-                data-favid="{{id}}"
-                data-groupid="{{id}}"
-                data-image="{{imgRoute}}"
-                data-name="{{artistName}}"
-                class="btn btn-default btn-fab btn-fab-mini fav link-artist">
+                <a href="javascript:void(0)" data-type="artist" data-favid="{{id}}" data-groupid="{{id}}" data-image="{{imgRoute}}" data-name="{{artistName}}" class="btn btn-default btn-fab btn-fab-mini fav">
                     {{#if fav}}
                     <div class="favicon glyphicon glyphicon-star"></div>
                     {{else}}
                     <div class="favicon glyphicon glyphicon-star-empty"></div>
                     {{/if}}
                 </a>
-                <a href="javascript:;" data-groupid="{{id}}" class="square">
+                <a href="javascript:;" data-groupid="{{id}}" class="square link-artist">
                     <div class='square-box'>
                         <div class='square-content'>
                             <img class="img-thumbnail img-responsive artist-image" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
@@ -199,7 +193,7 @@
                 </a>
 
                 <div class="list-group">
-                    <a href="javascript:;" class="list-group-item" data-groupid="{{id}}">
+                    <a href="javascript:;" class="list-group-item link-artist" data-groupid="{{id}}">
                         <div class="icon glyphicon glyphicon-user"></div> <b class="artistname">{{artistName}}</b></a>
                 </div>
             </div>
@@ -224,21 +218,14 @@
 
         <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 albumcolumn">
             <div class="panel album">
-                <a href="javascript:void(0)"
-                data-type="album"
-                data-favid="{{id}}"
-                data-image="{{imgRoute}}"
-                data-name="{{albumName}}"
-                data-groupid="{{groupId}}"
-                data-groupname="{{artistName}}"
-                class="btn btn-default btn-fab btn-fab-mini fav">
+                <a href="javascript:void(0)" data-type="album" data-favid="{{id}}" data-image="{{imgRoute}}" data-name="{{albumName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" class="btn btn-default btn-fab btn-fab-mini fav">
                     {{#if fav}}
                     <div class="favicon glyphicon glyphicon-star"></div>
                     {{else}}
                     <div class="favicon glyphicon glyphicon-star-empty"></div>
                     {{/if}}
                 </a>
-                <a href="javascript:;" data-albumid="{{id}}">
+                <a href="javascript:;" data-albumid="{{id}}" class="link-album">
                     <div class='square-box'>
                         <div class='square-content'>
                             <img class="img-responsive" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
@@ -277,16 +264,7 @@
                     {{#each song}}
 
                     <div class="list-group-item song" data-songid="{{id}}">
-                        <a href="javascript:void(0)"
-                        data-type="song"
-                        data-favid="{{id}}"
-                        data-image="{{imgRoute}}"
-                        data-name="{{songName}}"
-                        data-groupid="{{groupId}}"
-                        data-groupname="{{artistName}}"
-                        data-albumid="{{albumId}}"
-                        data-albumname="{{albumName}}"
-                        class="btn btn-default btn-fab btn-fab-mini fav">
+                        <a href="javascript:void(0)" data-type="song" data-favid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}" data-albumname="{{albumName}}" class="btn btn-default btn-fab btn-fab-mini fav">
                             {{#if fav}}
                             <div class="favicon glyphicon glyphicon-star"></div>
                             {{else}}
@@ -315,33 +293,31 @@
 <!-- TEMPLATE MAIN ARTIST -->
 
 <script id="artist-main-template" type="text/x-handlebars-template">
-  <!-- LAYOUT ARTIST: -->
-  <div class="row songs">
-    <div class="col-xs-12 songcolumn area-artist">
-        <img class="center-block img-circle img-artist-area" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
-        <div class="jumbotron well-artist">
-          <h1 class="artist-title">{{artistName}}</h1>
+    <!-- LAYOUT ARTIST: -->
+    <div class="row songs">
+        <div class="container-fluid well main-artist-column">
+                <img class="col-xs-12 col-sm-6 col-md-4 main-artist-image" src="{{imgRoute}}"></img>
+            <div class="col-xs-12 col-sm-6 col-md-8">
+                <h2 class="artist-title">{{artistName}}</h2>
+            </div>
         </div>
-      </div>
     </div>
-  <!-- END - LAYOUT ARTIST -->
+    <!-- END - LAYOUT ARTIST -->
 </script>
 
 <!-- TEMPLATE MAIN ALBUM -->
 <script id="album-main-template" type="text/x-handlebars-template">
-  <!-- LAYOUT ALBUM: -->
-  <div class="row songs">
-    <div class="col-xs-12 songcolumn area-artist">
-        <img class="center-block img-artist-area" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
-        <div class="jumbotron well-artist">
-          <h1 class="album-title">{{albumName}}</h1>
-          <a class="artist-subtitle link-artist" data-groupid="{{groupId}}" href="javascript:;">
-            <h3 style=" cursor: pointer;">{{artistName}}</h3>
-          </a>
+    <!-- LAYOUT ALBUM: -->
+    <div class="row songs">
+        <div class="container-fluid well main-album-column">
+                <img class="col-xs-12 col-sm-6 col-md-4 main-album-image" src="{{imgRoute}}"></img>
+            <div class="col-xs-12 col-sm-6 col-md-8">
+                <h2 class="album-title">{{albumName}}</h2>
+                <h3 data-groupid="{{groupId}}" class="album-artist-name link-artist">{{artistName}}</h3>
+            </div>
         </div>
-      </div>
     </div>
-  <!-- END - LAYOUT ALBUM -->
+    <!-- END - LAYOUT ALBUM -->
 </script>
 
 <script src="js/main.js"></script>
