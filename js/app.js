@@ -432,7 +432,11 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
     var query = songObject.artistName + " - " +songObject.songName;
     this.youtubeApi.searchVideo(query, function(videoId){
       songObject.videoId = videoId;
-      this.musicManager.playSongs([songObject]);
+      if(videoId == undefined || videoId.length == 0){
+        console.log("Video not found");
+      } else {
+        this.musicManager.playSongs([songObject]);
+      }
     }.bind(this));
   }
 
