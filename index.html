@@ -145,6 +145,7 @@
     <script src="js/apis/youtube.js"></script>
     <script src="js/apis/youtubemp3.js"></script>
     <script src="js/apis/echonest.js"></script>
+    <script src="js/musicmanager.js"></script>
     <script src="js/app.js"></script>
     <script src="js/database.js"></script>
 
@@ -263,7 +264,7 @@
                 <div class="list-group">
                     {{#each song}}
 
-                    <div class="list-group-item song" data-songid="{{id}}">
+                    <div class="list-group-item song" data-songid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}" data-albumname="{{albumName}}">
                         <a href="javascript:void(0)" data-type="song" data-favid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}" data-albumname="{{albumName}}" class="btn btn-default btn-fab btn-fab-mini fav">
                             {{#if fav}}
                             <div class="favicon glyphicon glyphicon-star"></div>

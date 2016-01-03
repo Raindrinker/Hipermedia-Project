@@ -122,6 +122,27 @@ function Renderer() {
     });
   }
 
+  this.enablePlayable = function(){
+    $(".list-group-item.song").map(function(index, item){
+      $(item).click(function(event){
+        var dataset = item.dataset;
+        var artist = item.dataset.groupname;
+        var song = item.dataset.name;
+
+        var obj = {
+          id: dataset.songid,
+          imgRoute: dataset.image,
+          songName: dataset.name,
+          groupId: dataset.groupid,
+          artistName: dataset.groupname,
+          albumId: dataset.albumid,
+          albumName: dataset.albumname
+        }
+        this.appReference.playSong(obj);
+      }.bind(this));
+    }.bind(this));
+  }
+
   /**
    * Function that enables the favorite buttons and assigns the action
    * It does not need any parameter
@@ -209,6 +230,7 @@ function Renderer() {
       realRenderMainArtist(artist);
       this.enableFavoritable();
       this.enableLinkable();
+      this.enablePlayable();
       this.reveal();
     }.bind(this));
   }
@@ -219,6 +241,7 @@ function Renderer() {
       realRenderMainAlbum(album);
       this.enableFavoritable();
       this.enableLinkable();
+      this.enablePlayable();
       this.reveal();
     }.bind(this));
   }
@@ -250,6 +273,7 @@ function Renderer() {
       // Enable the favorite buttons
       this.enableFavoritable();
       this.enableLinkable();
+      this.enablePlayable();
     }.bind(this));
   }
 

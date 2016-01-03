@@ -8,14 +8,18 @@
  * - renderer: Reference to a Renderer instance
  * - dbm: Reference to a DatabaseManager instance
  */
-function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
+function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi, musicManager) {
 
   // Save the received parameters
   this.spotifyClient = spotifyClient;
   this.renderer = renderer;
   this.dbm = dbm;
   this.echonestclient = echonestclient;
+  this.youtubeApi = youtubeApi;
+  this.musicManager = musicManager;
+
   this.echonestclient.init();
+
 
   // Create the relation Renderer -> App, necessary for the favorite button
   this.renderer.appReference = this;
@@ -371,7 +375,7 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
 
     if(type == "song"){
       this.echonestclient.updateFavoritedSong(id, true);
-    } 
+    }
   }
 
 
@@ -423,4 +427,13 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
       }.bind(this));
     }.bind(this));
   }
+
+  this.playSong = function(songObject){
+    var query = songObject.artistName + " - " +songObject.songName;
+    this.youtubeApi.searchVideo(query, function(videoId){
+      songObject.videoId = videoId;
+      this.musicManager.playSongs([songObject]);
+    }.bind(this));
+  }
+
 }
