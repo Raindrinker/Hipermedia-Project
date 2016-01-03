@@ -106,7 +106,6 @@ function Renderer() {
   this.enableLinkable = function(){
     var appReference = this.appReference;
     $(".link-artist").map(function(index, item){
-      console.log(item);
       $(item).click(function(event){
         var id = item.dataset.groupid;
         console.log("CLICKED: "+id);

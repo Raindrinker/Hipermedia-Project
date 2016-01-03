@@ -369,12 +369,9 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
   this.deleteFav = function(type, id) {
     this.dbm.deleteFav(type, id);
 
-    // If it's a song, update the Echonest taste profile
     if(type == "song"){
-      this.echonestclient.updateFavoritedSong(id, false, function(){
-        console.log("DELETED FAV "+id);
-      })
-    }
+      this.echonestclient.updateFavoritedSong(id, true);
+    } 
   }
 
 
@@ -387,11 +384,10 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
    */
   this.addFav = function(object) {
     this.dbm.addFav(object);
-    if(object.type == "song"){
-      var id = object.content.favid;
-      this.echonestclient.updateFavoritedSong(id, true, function(){
-        console.log("UPDATED FAV "+id);
-      })
+    var id = object.content.favid;
+    var type = object.type;
+    if(type == "song"){
+      this.echonestclient.updateFavoritedSong(id, true);
     }
   }
 
@@ -420,9 +416,11 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient) {
 
     // Get the related songs from the EchoNestClient
     this.echonestclient.getRelatedSongs(10, function(songs){
-
+      // Mark the fav status for the songs
+      this.dbm.markFavSongs(songs, function(markedSongs){
         // Render the songs
-        this.renderer.renderRecommendedSongs(songs);
+        this.renderer.renderRecommendedSongs(markedSongs);
+      }.bind(this));
     }.bind(this));
   }
 }

@@ -19,20 +19,31 @@ function EchoNestClient(token, spotifyClient){
   }
 
   var generateTasteProfile = function(token, callback){
-    console.log("TOKEN: "+token);
+    var number = Math.floor((Math.random() * 100000) + 1000);
+    var randomString = md5(""+number);
+
+    var profileName = "hipermedia_"+randomString;
+
     $.ajax({
         url: BASE_URL +"/catalog/create",
         type: "POST",
         contentType: "application/x-www-form-urlencoded",
         data: {
             "format": "json",
-            "name": "hipermedia_profile",
+            "name": profileName,
             "api_key": token,
             "type": "song",
         },
     })
     .done(function(data, textStatus, jqXHR) {
-        callback(data.response.status.id);
+
+        var code = data.response.status.code;
+
+        if(code == 0){
+          callback(data.response.id);
+        } else {
+          generateTasteProfile(token, callback);
+        }
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed. Profile not generated");
@@ -40,22 +51,34 @@ function EchoNestClient(token, spotifyClient){
     });
   }
 
-  this.updateFavoritedSong = function(songId, favorited, callback){
+
+  this.updateFavoritedSong = function(songId, favorited){
+    var songIdSpotify = "spotify:track:"+songId;
+    var item = {
+      favorite: favorited,
+      track_id: songIdSpotify
+    }
     var url = BASE_URL+"/tasteprofile/update";
     var tasteProfileId = getProfileId();
-    var trackId = "spotify:track:"+songId;
-    var dataObject = [
-      {
-        action: "update",
-        item: {
-          track_id: trackId,
-          favorite: favorited
-        }
-      }
-    ];
+
+    var obj = {
+      action: "update",
+      item: item
+    }
+
+    var dataObject = [];
+    dataObject.push(obj);
 
     var dataString = JSON.stringify(dataObject);
-    var apiToken = this.token;
+    var apiToken = token;
+
+    var data = {
+        "data_type": "json",
+        "id": tasteProfileId,
+        "data": dataString,
+        "api_key": apiToken,
+        "format": "json"
+    };
 
     jQuery.ajax({
         url: url,
@@ -66,14 +89,16 @@ function EchoNestClient(token, spotifyClient){
             "id": tasteProfileId,
             "data": dataString,
             "api_key": apiToken,
-            "format": "json",
+            "format": "json"
         },
     })
     .done(function(data, textStatus, jqXHR) {
-        console.log(data);
+        console.log("Profile updated");
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed. Could not update profile");
+        console.log(textStatus);
+        console.log(jqXHR);
     });
   }
 
@@ -84,8 +109,6 @@ function EchoNestClient(token, spotifyClient){
   var prepareSongsIm = function(songs, formatted, numResults, index, callback){
     if(index < songs.length && formatted.length < numResults){
       var song = songs[index];
-      console.log("SONG");
-      console.log(song);
       var artistId = song.artist_foreign_ids[0].foreign_id.split(":")[2];
       var artistName = song.artist_name;
       var title = song.title;
