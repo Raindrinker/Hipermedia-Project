@@ -1,0 +1,136 @@
+function MusicManager(youtubeMP3Api){
+
+  this.youtubeMP3Api = youtubeMP3Api;
+
+  var appReference = null;
+
+  var currentAudio = null;
+  var currentQueue = null;
+  var currentIndex = 0;
+
+  var currentVolume = 0.5;
+
+  this.setAppReference = function(app){
+    appReference = app;
+  }
+
+  this.stop = function(){
+
+  }
+
+  this.getCurrentAudio = function(){
+    return currentAudio;
+  }
+
+  this.pause = function(){
+    if(currentAudio != null){
+      currentAudio.pause();
+    }
+  }
+
+  this.play = function(){
+    if(currentAudio != null){
+      currentAudio.play();
+    }
+  }
+
+  var createAudioFromLink = function(link){
+
+    var source = document.createElement("source");
+    source.setAttribute("src", link);
+    source.setAttribute("type", "audio/mpeg");
+
+    var a = document.createElement("a");
+    a.setAttribute("href", link);
+
+    var audio = document.createElement("audio");
+    $(audio).attr("id", "myaudio");
+    $(audio).attr('controls', '');
+    audio.appendChild(source);
+    audio.appendChild(a);
+
+    //$(".origin").append(audio);
+    currentAudio = audio;
+    audio.onloadeddata = function(e){
+      if(e.target.duration == 20.038821){
+        audio.pause();
+        currentAudio = null;
+        console.log("NOS PILLO LA MAFIA");
+        createAudioFromLink(link);
+      } else {
+        audio.volume = currentVolume;
+        audio.onended = function(){
+          onSongEnded();
+        }
+        audio.onprogress = function(event){
+          var current = event.path[0].currentTime;
+          var duration = event.path[0].duration;
+          var progress = (current/duration) * 100;
+          console.log("CURRENT: "+current +" | DURATION: "+duration);
+          appReference.updateProgress(progress);
+        }
+      }
+    }
+    console.log(audio);
+    audio.play();
+  }
+
+  var onSongEnded = function(){
+    if(currentIndex == currentQueue.length){
+      appReference.onPlayEnded();
+    } else {
+      playNext();
+    }
+  }
+
+  var playSong = function(song){
+    if(currentAudio != null){
+      currentAudio.pause();
+      currentAudio = null;
+    }
+
+    var videoId = song.videoId;
+
+    var link = youtubeMP3Api.getTrackForStream(videoId);
+    console.log("LINK FOR STREAM: "+link);
+
+    createAudioFromLink(link);
+    appReference.showPlaySong(song);
+  }
+
+  var playNext = function(){
+    if(currentIndex < currentQueue.length){
+      console.log("PLAYING");
+      console.log(currentQueue[currentIndex]);
+      playSong(currentQueue[currentIndex]);
+      currentIndex++;
+    } else {
+      console.log("LENGTH: "+(currentQueue.length));
+      console.log("INDEX: "+currentIndex);
+    }
+  }
+
+  this.playSongs = function(songs){
+    console.log("SONGS");
+    console.log(songs);
+    currentQueue = songs;
+    currentIndex = 0;
+
+    playNext();
+  }
+
+  this.setSongProgress = function(progress){
+    if(currentAudio != null){
+      var newProgress = currentAudio.duration * progress / 100;
+      currentAudio.currentTime = newProgress;
+    }
+  }
+
+  this.setVolume = function(volume){
+    if(currentAudio != null){
+      var newVolume = volume/100;
+      currentAudio.volume = newVolume;
+      currentVolume = newVolume;
+    }
+  }
+}

@@ -11,7 +11,8 @@
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
-.smalltitle {
+.smalltitle,
+#player {
   transition: padding-right 0.5s;
 }
 #wrapper.toggled {
@@ -104,10 +105,12 @@
     position: relative;
     margin-right: 0;
   }
-  #wrapper.toggled .smalltitle {
+  #wrapper.toggled .smalltitle,
+  #wrapper.toggled #player {
     padding-right: 0px;
   }
-  .smalltitle {
+  .smalltitle,
+  #player {
     padding-right: 250px;
   }
 }
