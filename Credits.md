@@ -4,3 +4,4 @@
 * [Sidebar Template](http://startbootstrap.com/template-overviews/simple-sidebar/)
 * [Handlebars](http://handlebarsjs.com/)
 * [Less](http://lesscss.org/)
+* [noUiSlider](http://refreshless.com/nouislider/)

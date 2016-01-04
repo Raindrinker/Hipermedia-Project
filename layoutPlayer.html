@@ -8,6 +8,8 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>BetaTune</title>
 
+  <!-- noUIslider ->
+  <link href="css/nouislider.min.css" rel="stylesheet"-->
   <!-- Bootstrap -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/bootstrap-material-design.min.css" rel="stylesheet">
@@ -67,11 +69,48 @@
         </div>
 
         <!-- REPRODUCTOR DE MUSICA -->
-        <div class="player">
-          <button data-toggle="collapse" data-target="#player">Collapsible</button>
-          <div id="player" class="collapse">
+        <div id="player" class="player">
+          <button data-toggle="collapse" data-target="#player-collapse">Collapsible</button>
+          <div id="player-collapse" class="collapse">
             <div class="well playercontent">
-              Lorem ipsum dolor text....
+              <!-- LAYOUT PLAYER: -->
+              <div id="slider" class="slider shor slider-custom slider-material-orange noUi-target noUi-ltr noUi-horizontal noUi-connect"></div>
+              <div class="row music-controller">
+                <div class="col-xs-12 col-md-4 col-img">
+                  <div class="img-group-wrapper">
+                    <img class="img-player" src="assets\artista_test.jpg"></img>
+                    <div class="info-player">
+                      <p class="songname"><b>{{songName}}</b></p>
+                      <div class="song-artist-name" data-groupId={{groupId}}>
+                        <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
+                      <div class="song-album-name" data-albumId={{albumId}}>
+                        <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-6 col-md-5">
+                  <div class="player-controller center-block">
+                    <a href="#" class="music-button buttton-bwd">
+                      <span class="iconsearch glyphicon glyphicon-fast-backward" border="0"></span>
+                    </a>
+                    <a href="#" class="music-button button-play">
+                      <span class="iconsearch glyphicon glyphicon-play" border="0"></span>
+                    </a>
+                    <a href="#" class="music-button buttton-fwd">
+                      <span class="iconsearch glyphicon glyphicon-fast-forward" border="0"></span>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-xs-6 col-md-3 row volume-controller">
+                  <a href="#" class="volume-button music-button">
+                    <span class="iconsearch glyphicon glyphicon-volume-up" border="0"></span>
+                  </a>
+                  <div id="slidervolume" class="slider shor slider-volume slider-material-orange noUi-target noUi-ltr noUi-horizontal noUi-connect"></div>
+                </div>
+
+              </div>
+              <!-- END - LAYOUT PLAYER -->
             </div>
           </div>
         </div>
@@ -85,7 +124,6 @@
               <input type="text" class="form-control" id="searcharea" autocomplete="off">
               <span class="material-input"></span>
             </div>
-
             <button href="javascript:;" class="btn btn-fab searchbutton" id="searchbutton" type="submit">
               <span class="iconsearch glyphicon glyphicon-search" border="0"></span>
             </button </form>
@@ -99,93 +137,9 @@
           <div class="content-overlay">
             <div class="base">
             </div>
-
           </div>
-          <!-- LAYOUT ALBUM: -->
-          <div class="row songs">
-            <div class="col-xs-12 songcolumn area-artist">
-                <img class="center-block img-artist-area" src="assets/artista_test.jpg" data-toggle="collapse" data-target="#player"></img>
-                <div class="jumbotron well-artist">
-                  <h1 class="album-title">{{albumName}}</h1>
-                  <a class="artist-subtitle" href="google.com">{{artistName}}</a>
-                </div>
-              </div>
-            </div>
 
-          <div class="row songs">
-            <div class="col-xs-12 songcolumn">
-              <div class="well top-songs">
-                <div class="list-group">
-                  <!-- {{#each song}} -->
-                  <div class="list-group-item song" data-songid="{{songId}}">
-                    <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
-                      <div class="favicon glyphicon glyphicon-star-empty"></div>
-                    </a>
-                    <img class="album-snippet" src="assets/artista_test.jpg"></img>
-                    <p class="songname"><b>{{songName}}</b></p>
-                    <div class="song-artist-name" data-groupId={{groupId}}>
-                      <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
-                    <div class="song-album-name" data-albumId={{albumId}}>
-                      <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
-                    </a>
-                  </div>
-                  <!-- {{/each}} -->
-                  <!-- REPE-SONGS -->
-                  <div class="list-group-item song" data-songid="{{songId}}">
-                    <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
-                      <div class="favicon glyphicon glyphicon-star-empty"></div>
-                    </a>
-                    <img class="album-snippet" src="assets/artista_test.jpg"></img>
-                    <p class="songname"><b>{{songName}}</b></p>
-                    <div class="song-artist-name" data-groupId={{groupId}}>
-                      <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
-                    <div class="song-album-name" data-albumId={{albumId}}>
-                      <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
-                    </a>
-                  </div>
-                  <div class="list-group-item song" data-songid="{{songId}}">
-                    <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
-                      <div class="favicon glyphicon glyphicon-star-empty"></div>
-                    </a>
-                    <img class="album-snippet" src="assets/artista_test.jpg"></img>
-                    <p class="songname"><b>{{songName}}</b></p>
-                    <div class="song-artist-name" data-groupId={{groupId}}>
-                      <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
-                    <div class="song-album-name" data-albumId={{albumId}}>
-                      <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
-                    </a>
-                  </div>
-                  <div class="list-group-item song" data-songid="{{songId}}">
-                    <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
-                      <div class="favicon glyphicon glyphicon-star-empty"></div>
-                    </a>
-                    <img class="album-snippet" src="assets/artista_test.jpg"></img>
-                    <p class="songname"><b>{{songName}}</b></p>
-                    <div class="song-artist-name" data-groupId={{groupId}}>
-                      <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
-                    <div class="song-album-name" data-albumId={{albumId}}>
-                      <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
-                    </a>
-                  </div>
-                  <div class="list-group-item song" data-songid="{{songId}}">
-                    <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
-                      <div class="favicon glyphicon glyphicon-star-empty"></div>
-                    </a>
-                    <img class="album-snippet" src="assets/artista_test.jpg"></img>
-                    <p class="songname"><b>{{songName}}</b></p>
-                    <div class="song-artist-name" data-groupId={{groupId}}>
-                      <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
-                    <div class="song-album-name" data-albumId={{albumId}}>
-                      <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
-                    </a>
-                  </div>
-                  <!-- END REPE-SONGS -->
-                </div>
 
-              </div>
-            </div>
-          </div>
-          <!-- END - LAYOUT ALBUM -->
 
         </div>
 
@@ -209,6 +163,7 @@
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/nouislider.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/material.min.js"></script>
   <script src="js/ripples.min.js"></script>
@@ -218,7 +173,6 @@
   <script src="js/apis/youtube.js"></script>
   <script src="js/apis/youtubemp3.js"></script>
   <script src="js/app.js"></script>
-
 
   <script type="text/javascript">
     $.material.init()
@@ -260,7 +214,6 @@
               <img class="img-thumbnail img-responsive artist-image" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
             </div>
           </div>
-
 
         </a>
 
@@ -351,37 +304,6 @@
       </div>
 
 
-    </div>
-</script>
-
-<!-- TEMPLATE MAIN ARTIST - Test -->
-
-<script id="artist-main-template" type="text/x-handlebars-template">
-  <div class="row artists">
-    <div class="col-xs-12 songcolumn">
-      <div class="well">
-        <div class="area-artist">
-          <div class="area-artist-title">
-            <div class="square-box img-artist-area">
-              <div class='square-content'>
-                <img class="img" src="assets/artista_test.jpg" data-toggle="collapse" data-target="#player"></img>
-              </div>
-            </div>
-            <h1 class="artist-title">{{artistName}}</h1>
-          </div>
-
-          <div class="expandible-text">
-            <div class="panel-biography" box_h: "376" style="height:100px">
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer nibh magna, tempus at, pretium tristique, sollicitudin a, quam. Aenean euismod commodo pede. Nullam eros. Vestibulum augue sapien, gravida vitae, suscipit et, aliquam ac,
-                sem. Donec euismod imperdiet nisl. Cras faucibus, nibh condimentum pharetra aliquam, turpis felis blandit ante, vitae lacinia lacus lacus sit amet pede. Ut nec massa ut sapien rutrum porttitor. Aliquam sagittis. Vestibulum ante ipsum primis
-                in faucibus orci luctus et ultrices posuere cubilia Curae. Cras accumsan, tortor ut mattis faucibus, est tellus varius augue, id malesuada lorem nisi ac odio. Integer ut massa eu justo convallis gravida. Fusce vehicula fringilla leo. Fusce
-                commodo urna sit amet velit. Suspendisse potenti. In hac habitasse platea dictumst. Nulla feugiat.
-                <p>
-            </div>
-            <div class="toggle-biography"><a href="#">click</a></div>
-          </div>
-        </div>
-      </div>
     </div>
 </script>
 

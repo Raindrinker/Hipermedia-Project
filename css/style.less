@@ -77,6 +77,10 @@ html {
     float: left;
     padding: 5px;
     margin: 0px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .song{
@@ -87,6 +91,9 @@ html {
 .songname{
     margin-top: 5px;
     margin-bottom: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .icon{
@@ -190,8 +197,6 @@ body{
 .btn:focus{
         outline: none;
 }
-
-
 
 .player{
     width: 100%;
@@ -373,8 +378,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     background-color: rgba(255, 255, 255, 1);
 }
 
-
-
 .favicon{
     margin-left: 2px;
     margin-top: 8px;
@@ -413,21 +416,158 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     margin-bottom: 9%;
 }
 
-.album-title {
-  margin-top: 13%;
-  color: @dark !important;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.artist-subtitle {
-    color: @soft !important;
-    text-align: center;
-    white-space: nowrap;
-    margin-bottom: 9%;
-}
-
 .top-songs{
   width: 100%;
   padding: 0px;
+}
+
+/* VIEW PLAYER */
+.slider {
+  height: 3px;
+}
+.noUi-origin {
+  height: 3px;
+}
+
+.slider.slider-custom.noUi-connect {
+  background-color: @top;
+  width: 100%;
+}
+
+.slider.slider-custom .noUi-connect {
+  background-color: @top;
+  width: 100%;
+}
+
+.slider.slider-custom .noUi-handle {
+  margin-top: 1px;
+  border: 5px solid @top;
+  background-color: @top;
+  cursor: pointer;
+}
+
+.music-button{
+  color: @dark;
+  padding-top: 5px;
+  text-decoration: none;
+}
+
+.music-button:hover{
+  color: @top;
+  padding-top: 5px;
+  text-decoration: none;
+}
+
+.music-button:focus{
+  color: @dark;
+  padding-top: 5px;
+    text-decoration: none;
+}
+
+#slider {
+  margin-bottom: 0px;
+}
+
+.col-img {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.img-group-wrapper{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.music-controller{
+  background-color: white;
+  white-space: nowrap;
+}
+
+.img-player{
+  height: 97px;
+  float: left;
+  width: auto;
+  margin-top: 0px;
+  display: inline-block;
+}
+
+.info-player{
+  display: inline-block;
+  overflow: hidden;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.buttton-bwd{
+  font-size: 20px;
+  margin-right: 10%;
+  text-decoration: none;
+}
+
+.buttton-fwd{
+  font-size: 20px;
+  margin-left: 10%;
+  text-decoration: none;
+}
+
+.button-play{
+  font-size: 30px;
+  padding-top: 0px;
+}
+
+.slider.slider-volume.noUi-connect {
+  background-color: @dark;
+  margin-left:30px;
+  width: 80%;
+}
+
+.slider.slider-volume .noUi-connect {
+  background-color: @dark;
+  margin-left:30px;
+  width: 80%;
+}
+
+.slider.slider-volume .noUi-handle {
+  margin-top: 1px;
+  border: 5px solid @dark;
+  background-color: @dark;
+  cursor: pointer;
+}
+
+@media (min-width: 320px) {
+  .volume-controller{
+    margin-top: 30px;
+  }
+
+  .player-controller{
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 480px) {
+  .volume-controller{
+    margin-top: 30px;
+  }
+
+  .player-controller{
+    margin-left: 60px;
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .volume-controller{
+    margin-top: 30px;
+  }
+
+  .player-controller{
+    margin-left: 110px;
+    margin-top: 20px;
+  }
+}
+
+.volume-button {
+  float: left;
 }

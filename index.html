@@ -291,6 +291,55 @@
       </div>
     </div>
   </div>
+
+  <div class="row songs">
+    <div class="col-xs-12 songcolumn">
+      <div class="well top-songs">
+        <div class="list-group">
+          {{#each song}}
+          <div class="list-group-item song" data-songid="{{songId}}">
+            <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
+              <div class="favicon glyphicon glyphicon-star-empty"></div>
+            </a>
+            <img class="album-snippet" src="assets/artista_test.jpg"></img>
+            <p class="songname"><b>{{songName}}</b></p>
+            <div class="song-artist-name" data-groupId={{groupId}}>
+              <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
+            <div class="song-album-name" data-albumId={{albumId}}>
+              <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
+            </a>
+          </div>
+          {{/each}}
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row albums">
+    {{#each album}}
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 albumcolumn">
+      <div class="panel album">
+        <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
+          <div class="favicon glyphicon glyphicon-star-empty"></div>
+        </a>
+        <a href="javascript:;" data-albumid="{{albumId}}">
+          <div class='square-box'>
+            <div class='square-content'>
+              <img class="img-responsive" src="assets/artista_test.jpg" data-toggle="collapse" data-target="#player"></img>
+            </div>
+          </div>
+        </a>
+        <div class="list-group">
+          <a href="javascript:;" class="list-group-item" data-albumid="{{albumId}}">
+            <div class="icon glyphicon glyphicon-cd"></div> <b class="albumname">{{albumName}}</b></a>
+          <a href="javascript:;" class="list-group-item" data-groupid="{{groupId}}">
+            <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</a>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
   <!-- END - LAYOUT ARTIST -->
 </script>
 
@@ -299,15 +348,82 @@
   <!-- LAYOUT ALBUM: -->
   <div class="row songs">
     <div class="col-xs-12 songcolumn area-artist">
-        <img class="center-block img-artist-area" src="assets/artista_test.jpg" data-toggle="collapse" data-target="#player"></img>
-        <div class="jumbotron well-artist">
-          <h1 class="album-title">{{albumName}}</h1>
-          <h3 class="artist-subtitle">{{artistName}}</h2>
+      <img class="center-block img-artist-area" src="assets/artista_test.jpg" data-toggle="collapse" data-target="#player"></img>
+      <div class="jumbotron well-artist">
+        <h1 class="artist-title">{{artistName}}</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="row songs">
+    <div class="col-xs-12 songcolumn">
+      <div class="well top-songs">
+        <div class="list-group">
+          {{#each song}}
+          <div class="list-group-item song" data-songid="{{songId}}">
+            <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini artist-fav">
+              <div class="favicon glyphicon glyphicon-star-empty"></div>
+            </a>
+            <img class="album-snippet" src="assets/artista_test.jpg"></img>
+            <p class="songname"><b>{{songName}}</b></p>
+            <div class="song-artist-name" data-groupId={{groupId}}>
+              <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
+            <div class="song-album-name" data-albumId={{albumId}}>
+              <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
+            </a>
+          </div>
+          {{/each}}
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- END - LAYOUT ALBUM -->
+</script>
+
+<!-- TEMPLATE PLAYER -->
+<script id="player-template" type="text/x-handlebars-template">
+  <!-- LAYOUT PLAYER: -->
+  <div id="slider" class="slider shor slider-custom slider-material-orange noUi-target noUi-ltr noUi-horizontal noUi-connect"></div>
+  <div class="row music-controller">
+    <div class="col-xs-12 col-md-4 col-img">
+      <div class="img-group-wrapper">
+        <img class="img-player" src="assets\artista_test.jpg"></img>
+        <div class="info-player">
+          <p class="songname"><b>{{songName}}</b></p>
+          <div class="song-artist-name" data-groupId={{groupId}}>
+            <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
+          <div class="song-album-name" data-albumId={{albumId}}>
+            <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
+          </a>
         </div>
       </div>
     </div>
-  <!-- END - LAYOUT ALBUM -->
+    <div class="col-xs-6 col-md-5">
+      <div class="player-controller center-block">
+        <a href="#" class="music-button buttton-bwd">
+          <span class="iconsearch glyphicon glyphicon-fast-backward" border="0"></span>
+        </a>
+        <a href="#" class="music-button button-play">
+          <span class="iconsearch glyphicon glyphicon-play" border="0"></span>
+        </a>
+        <a href="#" class="music-button buttton-fwd">
+          <span class="iconsearch glyphicon glyphicon-fast-forward" border="0"></span>
+        </a>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-3 row volume-controller">
+      <a href="#" class="volume-button music-button">
+        <span class="iconsearch glyphicon glyphicon-volume-up" border="0"></span>
+      </a>
+      <div id="slidervolume" class="slider shor slider-volume slider-material-orange noUi-target noUi-ltr noUi-horizontal noUi-connect"></div>
+    </div>
+
+  </div>
+  <!-- END - LAYOUT PLAYER -->
 </script>
+
 
 <!--<script src="js/builders.js"></script>-->
 <script src="js/main.js"></script>
