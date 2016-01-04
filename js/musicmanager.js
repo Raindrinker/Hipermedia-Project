@@ -2,12 +2,24 @@ function MusicManager(youtubeMP3Api){
 
   this.youtubeMP3Api = youtubeMP3Api;
 
+  var appReference = null;
+
   var currentAudio = null;
   var currentQueue = null;
   var currentIndex = 0;
 
+  var currentVolume = 0.5;
+
+  this.setAppReference = function(app){
+    appReference = app;
+  }
+
   this.stop = function(){
 
+  }
+
+  this.getCurrentAudio = function(){
+    return currentAudio;
   }
 
   this.pause = function(){
@@ -45,10 +57,30 @@ function MusicManager(youtubeMP3Api){
         currentAudio = null;
         console.log("NOS PILLO LA MAFIA");
         createAudioFromLink(link);
+      } else {
+        audio.volume = currentVolume;
+        audio.onended = function(){
+          onSongEnded();
+        }
+        audio.onprogress = function(event){
+          var current = event.path[0].currentTime;
+          var duration = event.path[0].duration;
+          var progress = (current/duration) * 100;
+          console.log("CURRENT: "+current +" | DURATION: "+duration);
+          appReference.updateProgress(progress);
+        }
       }
     }
     console.log(audio);
     audio.play();
+  }
+
+  var onSongEnded = function(){
+    if(currentIndex == currentQueue.length){
+      appReference.onPlayEnded();
+    } else {
+      playNext();
+    }
   }
 
   var playSong = function(song){
@@ -63,6 +95,7 @@ function MusicManager(youtubeMP3Api){
     console.log("LINK FOR STREAM: "+link);
 
     createAudioFromLink(link);
+    appReference.showPlaySong(song);
   }
 
   var playNext = function(){
@@ -84,5 +117,20 @@ function MusicManager(youtubeMP3Api){
     currentIndex = 0;
 
     playNext();
+  }
+
+  this.setSongProgress = function(progress){
+    if(currentAudio != null){
+      var newProgress = currentAudio.duration * progress / 100;
+      currentAudio.currentTime = newProgress;
+    }
+  }
+
+  this.setVolume = function(volume){
+    if(currentAudio != null){
+      var newVolume = volume/100;
+      currentAudio.volume = newVolume;
+      currentVolume = newVolume;
+    }
   }
 }

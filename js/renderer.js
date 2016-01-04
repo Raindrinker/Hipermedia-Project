@@ -10,6 +10,7 @@ function Renderer() {
   var albumsScript = $("#albums-template").html();
   var artistMainScript = $("#artist-main-template").html();
   var albumMainScript = $("#album-main-template").html();
+  var playerMainScript = $("#player-template").html();
 
   // Precompile Handlebars templates
   var artistsTemplate = Handlebars.compile(artistsScript);
@@ -17,6 +18,7 @@ function Renderer() {
   var albumsTemplate = Handlebars.compile(albumsScript);
   var artistMainTemplate = Handlebars.compile(artistMainScript);
   var albumMainTemplate = Handlebars.compile(albumMainScript);
+  var playerTemplate = Handlebars.compile(playerMainScript);
 
   this.appReference = null;
 
@@ -246,6 +248,49 @@ function Renderer() {
     }.bind(this));
   }
 
+  this.renderPlayerProgress = function(progress){
+    var slider = $("#slider")[0];
+    slider.noUiSlider.set(progress);
+  }
+
+  this.renderPlayingSong = function(song){
+
+    var a = $("#player");
+    $(a).empty();
+    var html = playerTemplate(song);
+    $(a).append(html);
+
+    var slider = $("#slider")[0];
+    var sliderVolume = $("#slidervolume")[0];
+
+    noUiSlider.create(slider, {
+        start: 0,
+        range: {
+            'min': 0,
+            'max': 100
+        }
+    });
+
+    noUiSlider.create(sliderVolume, {
+      start: 50,
+      range: {
+          'min': 0,
+          'max': 100
+        }
+    });
+
+    var app = this.appReference;
+
+    slider.noUiSlider.on('change', function(a, b, c){
+      app.setSongProgress(c);
+    });
+
+    sliderVolume.noUiSlider.on('change', function(a, b, c){
+      app.setVolume(c);
+    });
+
+    a.collapse("show");
+  }
 
   /**
    * Function that renderers a list of artists, albums and songs.
@@ -275,6 +320,11 @@ function Renderer() {
       this.enableLinkable();
       this.enablePlayable();
     }.bind(this));
+  }
+
+  this.hidePlayer = function(){
+    var a = $("#player");
+    a.collapse("hide");
   }
 
   this.renderRecommendedSongs = function(songs){

@@ -70,11 +70,7 @@
 
                 <!-- REPRODUCTOR DE MUSICA -->
                 <div class="player">
-                    <button data-toggle="collapse" data-target="#player">Collapsible</button>
                     <div id="player" class="collapse">
-                        <div class="well playercontent">
-                            Lorem ipsum dolor text....
-                        </div>
                     </div>
                 </div>
 
@@ -104,6 +100,8 @@
                 <div class="container-fluid origin">
                     <div class="content-overlay">
                         <div class="base">
+                        </div>
+                        <div id="filler">
                         </div>
 
                     </div>
@@ -140,6 +138,7 @@
     <script src="js/handlebars-v4.0.5.js"></script>
     <script src="js/md5.js"></script>
     <script src="js/cors.js"></script>
+    <script src="js/nouislider.min.js"></script>
     <script src="js/renderer.js"></script>
     <script src="js/apis/spotify.js"></script>
     <script src="js/apis/youtube.js"></script>
@@ -321,6 +320,47 @@
     <!-- END - LAYOUT ALBUM -->
 </script>
 
+<!-- TEMPLATE PLAYER -->
+<script id="player-template" type="text/x-handlebars-template">
+  <!-- LAYOUT PLAYER: -->
+  <div id="slider" class="slider shor slider-custom slider-material-orange noUi-target noUi-ltr noUi-horizontal noUi-connect"></div>
+  <div class="row music-controller">
+    <div class="col-xs-12 col-md-4 col-img">
+      <div class="img-group-wrapper">
+        <img class="img-player" src="{{imgRoute}}"></img>
+        <div class="info-player">
+          <p class="songname"><b>{{songName}}</b></p>
+          <div class="song-artist-name" data-groupId={{groupId}}>
+            <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
+          <div class="song-album-name" data-albumId={{albumId}}>
+            <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-5">
+      <div class="player-controller center-block">
+        <a href="#" class="music-button buttton-bwd">
+          <span class="iconsearch glyphicon glyphicon-fast-backward" border="0"></span>
+        </a>
+        <a href="#" class="music-button button-play">
+          <span class="iconsearch glyphicon glyphicon-play" border="0"></span>
+        </a>
+        <a href="#" class="music-button buttton-fwd">
+          <span class="iconsearch glyphicon glyphicon-fast-forward" border="0"></span>
+        </a>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-3 row volume-controller">
+      <a href="#" class="volume-button music-button">
+        <span class="iconsearch glyphicon glyphicon-volume-up" border="0"></span>
+      </a>
+      <div id="slidervolume" class="slider shor slider-volume slider-material-orange noUi-target noUi-ltr noUi-horizontal noUi-connect"></div>
+    </div>
+
+  </div>
+  <!-- END - LAYOUT PLAYER -->
+</script>
 <script src="js/main.js"></script>
 
 </html>

@@ -23,6 +23,7 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
 
   // Create the relation Renderer -> App, necessary for the favorite button
   this.renderer.appReference = this;
+  this.musicManager.setAppReference(this);
 
   this.requestGroupAlbums = function(groupName, callback) {
     this.spotifyClient.searchArtists(groupName, {
@@ -428,6 +429,12 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
     }.bind(this));
   }
 
+  this.showPlaySong = function(song){
+    console.log("SHOWPLAYSONG");
+    console.log(song);
+    this.renderer.renderPlayingSong(song);
+  }
+
   this.playSong = function(songObject){
     var query = songObject.artistName + " - " +songObject.songName;
     this.youtubeApi.searchVideo(query, function(videoId){
@@ -438,6 +445,23 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
         this.musicManager.playSongs([songObject]);
       }
     }.bind(this));
+  }
+
+  this.updateProgress = function(progress){
+    this.renderer.renderPlayerProgress(progress);
+  }
+
+  this.onPlayEnded = function(){
+    this.renderer.hidePlayer();
+  }
+
+  this.setSongProgress = function(progress){
+    console.log("PROGRESS: "+progress);
+    this.musicManager.setSongProgress(progress);
+  }
+
+  this.setVolume = function(volume){
+    this.musicManager.setVolume(volume);
   }
 
 }

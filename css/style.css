@@ -67,6 +67,10 @@ html {
   float: left;
   padding: 5px;
   margin: 0px;
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .song {
   height: 80px;
@@ -75,6 +79,9 @@ html {
 .songname {
   margin-top: 5px;
   margin-bottom: 5px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .icon {
   margin-right: 5px;
@@ -101,6 +108,9 @@ html {
     margin-left: 100px;
     margin-right: 100px;
   }
+}
+#filler {
+  height: 120px;
 }
 .well {
   padding: 0;
@@ -315,36 +325,128 @@ select:-webkit-autofill {
   margin-left: 2px;
   margin-top: 8px;
 }
-/* VIEW ARTIST */
-.main-artist-column {
-  margin: 10px;
-  height: inherit;
+/* VIEW PLAYER */
+.slider {
+  height: 3px;
 }
-.artist-title {
-  font-size: 200%;
-  padding: 30px;
+.noUi-origin {
+  height: 3px;
+}
+.slider.slider-custom.noUi-connect {
+  background-color: #f44336;
+  width: 100%;
+}
+.slider.slider-custom .noUi-connect {
+  background-color: #f44336;
+  width: 100%;
+}
+.slider.slider-custom .noUi-handle {
+  margin-top: 1px;
+  border: 5px solid #f44336;
+  background-color: #f44336;
+  cursor: pointer;
+}
+.music-button {
+  color: #003133;
+  padding-top: 5px;
+  text-decoration: none;
+}
+.music-button:hover {
+  color: #f44336;
+  padding-top: 5px;
+  text-decoration: none;
+}
+.music-button:focus {
+  color: #003133;
+  padding-top: 5px;
+  text-decoration: none;
+}
+#slider {
+  margin-bottom: 0px;
+}
+.col-img {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.img-group-wrapper {
+  white-space: nowrap;
   overflow: hidden;
-  font-weight: bold;
+  text-overflow: ellipsis;
 }
-.main-artist-image {
-  padding: 20px;
+.music-controller {
+  background-color: white;
+  white-space: nowrap;
+}
+.img-player {
+  height: 97px;
   float: left;
+  width: auto;
+  margin-top: 0px;
+  display: inline-block;
 }
-.main-album-column {
-  margin: 10px;
-  height: inherit;
-}
-.album-title {
-  font-size: 200%;
-  padding: 15px;
+.info-player {
+  display: inline-block;
   overflow: hidden;
-  font-weight: bold;
+  margin-left: 10px;
+  margin-top: 10px;
 }
-.album-artist-name {
-  padding: 15px;
-  overflow: hidden;
+.buttton-bwd {
+  font-size: 20px;
+  margin-right: 10%;
+  text-decoration: none;
 }
-.main-album-image {
-  padding: 0px;
+.buttton-fwd {
+  font-size: 20px;
+  margin-left: 10%;
+  text-decoration: none;
+}
+.button-play {
+  font-size: 30px;
+  padding-top: 0px;
+}
+.slider.slider-volume.noUi-connect {
+  background-color: #003133;
+  margin-left: 30px;
+  width: 80%;
+}
+.slider.slider-volume .noUi-connect {
+  background-color: #003133;
+  margin-left: 30px;
+  width: 80%;
+}
+.slider.slider-volume .noUi-handle {
+  margin-top: 1px;
+  border: 5px solid #003133;
+  background-color: #003133;
+  cursor: pointer;
+}
+@media (min-width: 320px) {
+  .volume-controller {
+    margin-top: 30px;
+  }
+  .player-controller {
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+}
+@media (min-width: 480px) {
+  .volume-controller {
+    margin-top: 30px;
+  }
+  .player-controller {
+    margin-left: 60px;
+    margin-top: 20px;
+  }
+}
+@media (min-width: 1200px) {
+  .volume-controller {
+    margin-top: 30px;
+  }
+  .player-controller {
+    margin-left: 110px;
+    margin-top: 20px;
+  }
+}
+.volume-button {
   float: left;
 }
