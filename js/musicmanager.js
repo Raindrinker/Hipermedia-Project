@@ -2,6 +2,8 @@ function MusicManager(youtubeMP3Api){
 
   this.youtubeMP3Api = youtubeMP3Api;
 
+  var EVENT_TIME = 200;
+
   var appReference = null;
 
   var currentAudio = null;
@@ -9,6 +11,7 @@ function MusicManager(youtubeMP3Api){
   var currentIndex = 0;
 
   var currentVolume = 0.5;
+  var intervalId = -1;
 
   this.setAppReference = function(app){
     appReference = app;
@@ -31,6 +34,16 @@ function MusicManager(youtubeMP3Api){
   this.play = function(){
     if(currentAudio != null){
       currentAudio.play();
+    }
+  }
+
+  var publishProgress = function(){
+    if(currentAudio != null){
+      var current = currentAudio.currentTime;
+      var duration = currentAudio.duration;
+      var progress = (current/duration) * 100;
+      //console.log("CURRENT: "+current +" | DURATION: "+duration);
+      appReference.updateProgress(progress);
     }
   }
 
@@ -62,13 +75,6 @@ function MusicManager(youtubeMP3Api){
         audio.onended = function(){
           onSongEnded();
         }
-        audio.onprogress = function(event){
-          var current = event.path[0].currentTime;
-          var duration = event.path[0].duration;
-          var progress = (current/duration) * 100;
-          //console.log("CURRENT: "+current +" | DURATION: "+duration);
-          appReference.updateProgress(progress);
-        }
       }
     }
     //console.log(audio);
@@ -76,6 +82,7 @@ function MusicManager(youtubeMP3Api){
   }
 
   var onSongEnded = function(){
+    cancelInterval(intervalId);
     if(currentIndex == currentQueue.length){
       appReference.onPlayEnded();
     } else {
@@ -87,6 +94,7 @@ function MusicManager(youtubeMP3Api){
     if(currentAudio != null){
       currentAudio.pause();
       currentAudio = null;
+      cancelInterval(intervalId);
     }
 
     var videoId = song.videoId;
@@ -96,6 +104,9 @@ function MusicManager(youtubeMP3Api){
 
     createAudioFromLink(link);
     appReference.showPlaySong(song);
+    setInterval(function(){
+      publishProgress();
+    }, EVENT_TIME);
   }
 
   var playNext = function(){
