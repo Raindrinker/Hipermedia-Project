@@ -20,6 +20,8 @@ function Renderer() {
   var albumMainTemplate = Handlebars.compile(albumMainScript);
   var playerTemplate = Handlebars.compile(playerMainScript);
 
+  var isSlidePressed = false;
+
   this.appReference = null;
 
   /**
@@ -252,8 +254,10 @@ function Renderer() {
   }
 
   this.renderPlayerProgress = function(progress){
-    var slider = $("#slider")[0];
-    slider.noUiSlider.set(progress);
+    if(!isSlidePressed){
+      var slider = $("#slider")[0];
+      slider.noUiSlider.set(progress);
+    }
   }
 
   this.renderPlayingSong = function(song){
@@ -286,6 +290,14 @@ function Renderer() {
 
     slider.noUiSlider.on('change', function(a, b, c){
       app.setSongProgress(c);
+    });
+
+    slider.noUiSlider.on('start', function(){
+      isSlidePressed = true;
+    });
+
+    slider.noUiSlider.on('end', function(){
+      isSlidePressed = false;
     });
 
     sliderVolume.noUiSlider.on('change', function(a, b, c){

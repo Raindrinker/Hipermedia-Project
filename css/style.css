@@ -336,6 +336,7 @@ select:-webkit-autofill {
 /* VIEW PLAYER */
 .slider {
   height: 3px;
+  padding-left: 10px;
 }
 .noUi-origin {
   height: 3px;
