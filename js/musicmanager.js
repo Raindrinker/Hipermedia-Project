@@ -82,7 +82,7 @@ function MusicManager(youtubeMP3Api){
   }
 
   var onSongEnded = function(){
-    cancelInterval(intervalId);
+    clearInterval(intervalId);
     if(currentIndex == currentQueue.length){
       appReference.onPlayEnded();
     } else {
@@ -94,7 +94,7 @@ function MusicManager(youtubeMP3Api){
     if(currentAudio != null){
       currentAudio.pause();
       currentAudio = null;
-      cancelInterval(intervalId);
+      clearInterval(intervalId);
     }
 
     var videoId = song.videoId;
