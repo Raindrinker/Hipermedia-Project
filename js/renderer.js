@@ -109,6 +109,7 @@ function Renderer() {
     var appReference = this.appReference;
     $(".link-artist").map(function(index, item){
       $(item).click(function(event){
+        event.stopPropagation();
         var id = item.dataset.groupid;
         console.log("CLICKED: "+id);
         appReference.paintArtist(id);
@@ -117,6 +118,7 @@ function Renderer() {
 
     $(".link-album").map(function(index, item){
       $(item).click(function(event){
+        event.stopPropagation();
         var id = item.dataset.albumid;
         console.log("CLICKED: "+id);
         appReference.paintAlbum(id);
@@ -127,6 +129,7 @@ function Renderer() {
   this.enablePlayable = function(){
     $(".list-group-item.song").map(function(index, item){
       $(item).click(function(event){
+        event.stopPropagation();
         var dataset = item.dataset;
         var artist = item.dataset.groupname;
         var song = item.dataset.name;
@@ -151,8 +154,8 @@ function Renderer() {
    */
   this.enableFavoritable = function() {
 
-    $(".fav").off('click').on('click', function(elem) {
-
+    $(".fav").off('click').click(function(elem) {
+      elem.stopPropagation();
       // Make the initial references
       var element = elem.target;
       var icon = element.childNodes[1];
