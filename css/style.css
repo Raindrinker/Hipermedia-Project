@@ -16,6 +16,10 @@ html {
   padding: 0px;
   transition: box-shadow 0.2s;
 }
+.link-artist,
+.link-album {
+  cursor: pointer;
+}
 .album:hover,
 .artist:hover {
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.6);
@@ -291,6 +295,10 @@ select:-webkit-autofill {
   border-bottom: 30px solid transparent;
   margin: 0px 0px 0px 0px;
   margin-left: 120px;
+}
+.main-album-image,
+.main-artist-image {
+  padding: 0;
 }
 /* OVERLAY */
 .origin {
