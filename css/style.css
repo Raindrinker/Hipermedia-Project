@@ -363,6 +363,10 @@ select:-webkit-autofill {
 }
 #slider {
   margin-bottom: 0px;
+  cursor: pointer;
+}
+#slidervolume {
+  cursor: pointer;
 }
 .col-img {
   margin-top: 0px;
