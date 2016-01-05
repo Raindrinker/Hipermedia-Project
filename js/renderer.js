@@ -210,6 +210,9 @@ function Renderer() {
   this.hide = function(callback) {
     $(".content-overlay").css("opacity", "0");
     $(".content-overlay").css("pointer-events", "none")
+    $("body").animate({
+      scrollTop: $("body").offset().top
+    }, 350);
     setTimeout(function() {
       callback();
     }, 250);
@@ -219,9 +222,6 @@ function Renderer() {
     setTimeout(function() {
       $(".content-overlay").css("opacity", "1");
       $(".content-overlay").css("pointer-events", "all");
-      $("body").animate({
-        scrollTop: 0
-      }, 350);
     }, 250);
   }
 

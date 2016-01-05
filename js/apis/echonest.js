@@ -202,7 +202,6 @@ function EchoNestClient(token, spotifyClient){
         console.log("HTTP Request Failed. NO RELATED SONGS");
         callback([]);
     });
-
   }
 
   this.init = function(){

@@ -375,7 +375,7 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
     this.dbm.deleteFav(type, id);
 
     if(type == "song"){
-      this.echonestclient.updateFavoritedSong(id, true);
+      this.echonestclient.updateFavoritedSong(id, false);
     }
   }
 
