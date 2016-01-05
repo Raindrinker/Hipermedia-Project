@@ -66,12 +66,12 @@ function MusicManager(youtubeMP3Api){
           var current = event.path[0].currentTime;
           var duration = event.path[0].duration;
           var progress = (current/duration) * 100;
-          console.log("CURRENT: "+current +" | DURATION: "+duration);
+          //console.log("CURRENT: "+current +" | DURATION: "+duration);
           appReference.updateProgress(progress);
         }
       }
     }
-    console.log(audio);
+    //console.log(audio);
     audio.play();
   }
 
@@ -92,7 +92,7 @@ function MusicManager(youtubeMP3Api){
     var videoId = song.videoId;
 
     var link = youtubeMP3Api.getTrackForStream(videoId);
-    console.log("LINK FOR STREAM: "+link);
+    //console.log("LINK FOR STREAM: "+link);
 
     createAudioFromLink(link);
     appReference.showPlaySong(song);
@@ -100,13 +100,13 @@ function MusicManager(youtubeMP3Api){
 
   var playNext = function(){
     if(currentIndex < currentQueue.length){
-      console.log("PLAYING");
-      console.log(currentQueue[currentIndex]);
+      //console.log("PLAYING");
+      //console.log(currentQueue[currentIndex]);
       playSong(currentQueue[currentIndex]);
       currentIndex++;
     } else {
-      console.log("LENGTH: "+(currentQueue.length));
-      console.log("INDEX: "+currentIndex);
+      //console.log("LENGTH: "+(currentQueue.length));
+      //console.log("INDEX: "+currentIndex);
     }
   }
 

@@ -13,6 +13,7 @@ function YoutubeApi(token){
       success: function(data){
         var items = data.items;
         if(items.length > 0){
+          console.log("Title of video returned: "+(items[0].snippet.title));
           callback(data.items[0].id.videoId);
         } else {
           callback("");

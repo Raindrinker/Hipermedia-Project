@@ -290,6 +290,35 @@ function Renderer() {
     });
 
     a.collapse("show");
+
+    var pauseButton = $("#playpause_button")[0];
+    $(pauseButton).click(function(){
+      app.pause();
+    }.bind(this));
+
+    this.enableLinkable();
+  }
+
+  this.renderPlayButton = function(clickCallback){
+    var button = $("#playpause_button")[0];
+
+    if(button != null){
+      var span = $(button).find('span')[0];
+      $(span).removeClass('glyphicon-pause');
+      $(span).addClass('glyphicon-play');
+      $(button).click(clickCallback);
+    }
+  }
+
+  this.renderPauseButton = function(clickCallback){
+    var button = $("#playpause_button")[0];
+
+    if(button != null){
+      var span = $(button).find('span')[0];
+      $(span).removeClass('glyphicon-play');
+      $(span).addClass('glyphicon-pause');
+      $(button).click(clickCallback);
+    }
   }
 
   /**

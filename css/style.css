@@ -365,7 +365,8 @@ select:-webkit-autofill {
   margin-bottom: 0px;
   cursor: pointer;
 }
-#slidervolume {
+#slidervolume,
+#playpause_button {
   cursor: pointer;
 }
 .col-img {

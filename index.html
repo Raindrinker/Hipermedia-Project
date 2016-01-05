@@ -89,10 +89,6 @@
                         </button </form>
                 </div>
 
-
-
-
-
                 <div class="jumbotron affix-top" id='bigtitle'>
                     <h1> BetaTune </h1>
                 </div>
@@ -330,9 +326,9 @@
         <img class="img-player" src="{{imgRoute}}"></img>
         <div class="info-player">
           <p class="songname"><b>{{songName}}</b></p>
-          <div class="song-artist-name" data-groupId={{groupId}}>
+          <div class="song-artist-name link-artist" data-groupid={{groupId}}>
             <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
-          <div class="song-album-name" data-albumId={{albumId}}>
+          <div class="song-album-name link-album" data-albumid={{albumId}}>
             <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
           </a>
         </div>
@@ -343,8 +339,8 @@
         <a href="#" class="music-button buttton-bwd">
           <span class="iconsearch glyphicon glyphicon-fast-backward" border="0"></span>
         </a>
-        <a href="#" class="music-button button-play">
-          <span class="iconsearch glyphicon glyphicon-play" border="0"></span>
+        <a id="playpause_button" class="music-button button-play">
+          <span class="iconsearch glyphicon glyphicon-pause" border="0"></span>
         </a>
         <a href="#" class="music-button buttton-fwd">
           <span class="iconsearch glyphicon glyphicon-fast-forward" border="0"></span>

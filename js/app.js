@@ -430,8 +430,8 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
   }
 
   this.showPlaySong = function(song){
-    console.log("SHOWPLAYSONG");
-    console.log(song);
+    //console.log("SHOWPLAYSONG");
+    //console.log(song);
     this.renderer.renderPlayingSong(song);
   }
 
@@ -462,6 +462,32 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
 
   this.setVolume = function(volume){
     this.musicManager.setVolume(volume);
+  }
+
+  this.renderPlayButton = function(){
+    this.renderer.renderPlayButton(function(){
+      this.play();
+    }.bind(this));
+  }
+
+  this.renderPauseButton = function(){
+    this.renderer.renderPauseButton(function(){
+      this.pause();
+    }.bind(this));
+  }
+
+  this.pause = function(){
+    this.musicManager.pause();
+    this.renderer.renderPlayButton(function(){
+      this.play();
+    }.bind(this));
+  }
+
+  this.play = function(){
+    this.musicManager.play();
+    this.renderer.renderPauseButton(function(){
+      this.pause();
+    }.bind(this));
   }
 
 }
