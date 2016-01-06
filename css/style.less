@@ -28,6 +28,10 @@ html {
   cursor:pointer;
 }
 
+.link-artist:hover, .link-album:hover {
+    text-decoration: underline;
+}
+
 .album:hover, .artist:hover{
     box-shadow: 0 6px 12px 0 rgba(0,0,0,.6);
 }
@@ -80,6 +84,8 @@ html {
 .song-artist-name, .song-album-name{
     float: left;
     padding: 5px;
+    padding-top: 0px;
+    padding-bottom: 3px;
     margin: 0px;
     display: inline-block;
     text-overflow: ellipsis;
@@ -93,7 +99,7 @@ html {
 }
 
 .songname{
-    margin-top: 5px;
+    margin-top: 3px;
     margin-bottom: 5px;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -287,6 +293,11 @@ body .container-fluid .playercontent{
     font-size: 30px;
     color: white;
     height: inherit;
+    background-image: linear-gradient(@dark, @dark), linear-gradient(@soft, @soft);
+}
+
+.addplaylistarea {
+    color: white;
     background-image: linear-gradient(@dark, @dark), linear-gradient(@soft, @soft);
 }
 
@@ -554,4 +565,23 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 .volume-button {
   float: left;
+}
+
+.playlist-background {
+    background-color: @soft;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px;
+}
+.playlist-item {
+    color: white;
+}
+
+.playlist-item:hover {
+    background-color: @top;
+}
+
+.input-group-btn .btn-add-playlist{
+    width: 30px;
+    padding: 5px 8px 5px 8px;
 }
