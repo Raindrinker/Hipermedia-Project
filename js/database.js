@@ -6,6 +6,8 @@ function DatabaseManager() {
         tx.executeSql('CREATE TABLE fav_artists (id unique, image, name)');
         tx.executeSql('CREATE TABLE fav_albums (id unique, image, name, groupid, groupname)');
         tx.executeSql('CREATE TABLE fav_songs (id unique, image, name, groupid, groupname, albumid, albumname)');
+        tx.executeSql('CREATE TABLE playlists (id INTEGER PRIMARY KEY ASC, name)');
+        tx.executeSql('CREATE TABLE playlist_has_song (playlistid, songid, image, groupid, groupname, albumid, albumname)');
     });
 
     console.log("database created");
@@ -53,6 +55,33 @@ function DatabaseManager() {
       } else if(type == "album"){
         addFavAlbum(fav.content);
       }
+    }
+
+    this.createPlaylistWithName = function(name){
+      db.transaction(function(tx){
+        tx.executeSql('INSERT INTO playlists (name) VALUES (?)', [name]);
+      })
+    }
+
+    this.getAllPlaylists = function(callback){
+      db.transaction(function(tx){
+        tx.executeSql('SELECT * FROM playlists', [], function(tx, results){
+          callback(results.rows);
+        });
+      });
+    }
+
+    this.addSongToPlaylist = function(playlistid, fav){
+      var songid = fav.favid,
+          image = fav.image,
+          name = fav.name,
+          groupid = fav.groupid,
+          groupname = fav.groupname,
+          albumid = fav.albumid,
+          albumname = fav.albumname;
+      db.transaction(function(tx){
+        tx.executeSql('INSERT INTO playlist_has_song (playlistid, songid, image, groupid, groupname, albumid, albumname) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [playlistid, songid, image, name, groupid, groupname, albumid, albumname]);
+      });
     }
 
     var deleteFavArtist = function(groupid) {

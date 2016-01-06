@@ -18,11 +18,13 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
   this.youtubeApi = youtubeApi;
   this.musicManager = musicManager;
 
+  // Init the echonest client
   this.echonestclient.init();
 
-
-  // Create the relation Renderer -> App, necessary for the favorite button
+  // Create the relation Renderer -> App, necessary for interactions
   this.renderer.appReference = this;
+
+  // Create the relation MusicManager -> App, necessary for interactions
   this.musicManager.setAppReference(this);
 
   this.requestGroupAlbums = function(groupName, callback) {
@@ -81,7 +83,6 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
     }, function(error, data) {
       if (error) console.log(error);
       callback(data.tracks);
-
     });
   }
 
@@ -488,6 +489,14 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
     this.renderer.renderPauseButton(function(){
       this.pause();
     }.bind(this));
+  }
+
+  this.createPlaylistWithName = function(name){
+    this.dbm.createPlaylistWithName(name);
+  }
+
+  this.addSongToPlaylist = function(playlistId, song){
+    this.dbm.addSongToPlaylist(playlistId,song);
   }
 
 }
