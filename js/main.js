@@ -19,6 +19,7 @@ var app = new BetaPlayerApp(api, renderer, dbm, echonestClient, youtubeApi, musi
 
 
 $("#search_form").submit(function(event) {
+  console.log("pene");
   event.preventDefault();
   var query = $("#searcharea").val();
   app.getSongsArtistsAlbumsFromName(query, 12);

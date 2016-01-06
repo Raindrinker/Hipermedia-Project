@@ -89,8 +89,8 @@ function Renderer() {
 
     var compiledHead = artistMainTemplate(headObject);
     $(".base").append(compiledHead);
-    renderSongs(artist.song);
     renderAlbums(artist.album);
+    renderSongs(artist.song);
 
   }
 
@@ -300,7 +300,7 @@ function Renderer() {
       isSlidePressed = false;
     });
 
-    sliderVolume.noUiSlider.on('change', function(a, b, c){
+    sliderVolume.noUiSlider.on('update', function(a, b, c){
       app.setVolume(c);
     });
 
