@@ -57,16 +57,22 @@ function DatabaseManager() {
       }
     }
 
-    this.createPlaylistWithName = function(name){
+    this.createPlaylistWithName = function(name, callback){
       db.transaction(function(tx){
         tx.executeSql('INSERT INTO playlists (name) VALUES (?)', [name]);
+        callback();
       })
     }
 
     this.getAllPlaylists = function(callback){
       db.transaction(function(tx){
         tx.executeSql('SELECT * FROM playlists', [], function(tx, results){
-          callback(results.rows);
+          var rows = [];
+          var len = results.rows.length;
+          for (i = 0; i < len; i++) {
+              rows.push(results.rows.item(i));
+          }
+          callback(rows);
         });
       });
     }

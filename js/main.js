@@ -15,15 +15,19 @@ var youtubeMP3Api = new YoutubeMP3();
 var musicManager = new MusicManager(youtubeMP3Api);
 
 var app = new BetaPlayerApp(api, renderer, dbm, echonestClient, youtubeApi, musicManager);
-
-
+app.init();
 
 $("#search_form").submit(function(event) {
-  console.log("pene");
   event.preventDefault();
   var query = $("#searcharea").val();
   app.getSongsArtistsAlbumsFromName(query, 12);
+});
 
+$("#create_playlist_form").submit(function(event){
+  event.preventDefault();
+  var newPlaylistName = $("#new_playlist_name").val();
+  $("#new_playlist_name").val("");
+  app.createPlaylistWithName(newPlaylistName);
 });
 
 $("#nav-favourites").click(function(){

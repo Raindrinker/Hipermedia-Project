@@ -53,12 +53,12 @@
                     </a>
 
                     <div id="collapse1" class="panel-collapse collapse playlist-background">
-                        <div class="playlist-item">Playlist 1</div>
-                        <div class="playlist-item">Playlist 2</div>
+                        <div id="playlist_list">
+                        </div>
                         <div class="playlist-item">
-                            <form action="/" method="get">
+                            <form action="/" method="get" id="create_playlist_form">
                                 <div class="input-group">
-                                    <input type="text" class="form-control addplaylistarea" placeholder="New playlist...">
+                                    <input type="text" class="form-control addplaylistarea" placeholder="New playlist..." id="new_playlist_name">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default btn-add-playlist" type="button">
                                             <span class="glyphicon glyphicon-plus"></span>
@@ -372,6 +372,14 @@
     </div>
     <!-- END - LAYOUT PLAYER -->
 </script>
+
+<!-- TEMPLATE PLAYLISTS -->
+<script id="playlist-item-template" type="text/x-handlebars-template">
+  {{#each playlist}}
+    <div class="playlist-item" data-id="{{id}}">{{name}}</div>
+  {{/each}}
+</script>
+<!-- END TEMPLATE PLAYLISTS -->
 <script src="js/main.js"></script>
 
 </html>

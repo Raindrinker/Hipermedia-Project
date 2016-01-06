@@ -11,6 +11,7 @@ function Renderer() {
   var artistMainScript = $("#artist-main-template").html();
   var albumMainScript = $("#album-main-template").html();
   var playerMainScript = $("#player-template").html();
+  var playlistItemScript = $("#playlist-item-template").html();
 
   // Precompile Handlebars templates
   var artistsTemplate = Handlebars.compile(artistsScript);
@@ -19,6 +20,7 @@ function Renderer() {
   var artistMainTemplate = Handlebars.compile(artistMainScript);
   var albumMainTemplate = Handlebars.compile(albumMainScript);
   var playerTemplate = Handlebars.compile(playerMainScript);
+  var playlistItemTemplate = Handlebars.compile(playlistItemScript);
 
   var isSlidePressed = false;
 
@@ -373,5 +375,24 @@ function Renderer() {
 
   this.renderRecommendedSongs = function(songs){
     this.renderAll([], [], songs);
+  }
+
+  this.renderPlaylists = function(playlists){
+    var obj = {
+      playlist: playlists
+    }
+
+    var list = $("#playlist_list");
+    $(list).empty();
+    var html = playlistItemTemplate(obj);
+    $(list).append(html);
+
+    $(list).find("div").each(function(index, elem){
+      $(elem).click(function(event){
+        var id = event.target.dataset.id;
+        console.log("ID: "+id);
+        // TODO: appReference.showPlaylistContent(id)
+      });
+    });
   }
 }

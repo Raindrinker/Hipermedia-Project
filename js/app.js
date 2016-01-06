@@ -18,14 +18,18 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
   this.youtubeApi = youtubeApi;
   this.musicManager = musicManager;
 
-  // Init the echonest client
-  this.echonestclient.init();
+  this.init = function(){
+    // Init the echonest client
+    this.echonestclient.init();
 
-  // Create the relation Renderer -> App, necessary for interactions
-  this.renderer.appReference = this;
+    // Create the relation Renderer -> App, necessary for interactions
+    this.renderer.appReference = this;
 
-  // Create the relation MusicManager -> App, necessary for interactions
-  this.musicManager.setAppReference(this);
+    // Create the relation MusicManager -> App, necessary for interactions
+    this.musicManager.setAppReference(this);
+
+    this.renderPlaylists();
+  }
 
   this.requestGroupAlbums = function(groupName, callback) {
     this.spotifyClient.searchArtists(groupName, {
@@ -491,8 +495,18 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
     }.bind(this));
   }
 
+  this.renderPlaylists = function(){
+    this.dbm.getAllPlaylists(function(playlists){
+      console.log("PLAYLISTS");
+      console.log(playlists);
+      this.renderer.renderPlaylists(playlists);
+    }.bind(this));
+  }
+
   this.createPlaylistWithName = function(name){
-    this.dbm.createPlaylistWithName(name);
+    this.dbm.createPlaylistWithName(name, function(){
+      this.renderPlaylists();
+    }.bind(this));
   }
 
   this.addSongToPlaylist = function(playlistId, song){
