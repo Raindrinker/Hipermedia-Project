@@ -23,13 +23,6 @@ $("#search_form").submit(function(event) {
   app.getSongsArtistsAlbumsFromName(query, 12);
 });
 
-$("#create_playlist_form").submit(function(event){
-  event.preventDefault();
-  var newPlaylistName = $("#new_playlist_name").val();
-  $("#new_playlist_name").val("");
-  app.createPlaylistWithName(newPlaylistName);
-});
-
 $("#nav-favourites").click(function(){
   app.showFavourites();
 });

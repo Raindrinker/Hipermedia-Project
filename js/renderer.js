@@ -387,23 +387,32 @@ function Renderer() {
   }
 
   this.renderPlaylists = function(playlists){
+    var showCreate = playlists.length < 8;
+
     var obj = {
-      playlist: playlists
+      playlist: playlists,
+      showcreate: showCreate
     }
 
-    var list = $("#playlist_list");
+    var list = $("#playlist_content");
     $(list).empty();
     var html = playlistItemTemplate(obj);
     $(list).append(html);
 
-    $(list).find("div").each(function(index, elem){
+    $(list).find("#create_playlist_form").submit(function(event){
+      event.preventDefault();
+      var newPlaylistName = $("#new_playlist_name").val();
+      $("#new_playlist_name").val("");
+      this.appReference.createPlaylistWithName(newPlaylistName);
+    }.bind(this));
+
+    $(list).find("div#playlist_list > div.playlist-item").each(function(index, elem){
       $(elem).click(function(event){
         var id = event.target.dataset.id;
         console.log("ID: "+id);
-        appReference.onPlaylistSelected(id);
-        // TODO: appReference.showPlaylistContent(id)
-      });
-    });
+        this.appReference.onPlaylistSelected(id);
+      }.bind(this));
+    }.bind(this));
   }
 
 }

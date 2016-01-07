@@ -82,7 +82,7 @@
                     </a>
 
                     <div id="collapse1" class="panel-collapse collapse playlist-background">
-                        <div id="playlist_list">
+                        <div id="playlist_content">
                         </div>
 
                     </div>
@@ -398,9 +398,11 @@
 
 <!-- TEMPLATE PLAYLISTS -->
 <script id="playlist-item-template" type="text/x-handlebars-template">
-    {{#each playlist}}
-    <div class="playlist-item" data-id="{{id}}">{{name}}</div>
-    {{/each}}
+    <div id="playlist_list">
+      {{#each playlist}}
+      <div class="playlist-item" data-id="{{id}}">{{name}}</div>
+      {{/each}}
+    </div>
     {{#if showcreate}}
     <div class="playlist-item">
         <form action="/" method="get" id="create_playlist_form">

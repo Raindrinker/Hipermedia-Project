@@ -416,7 +416,6 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
     });
   }
 
-
   /**
    * Function that shows songs that the user might like based on his previous
    * actions and favorited elements.
