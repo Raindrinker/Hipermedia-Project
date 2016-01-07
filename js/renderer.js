@@ -158,16 +158,13 @@ function Renderer() {
    */
   this.enableFavoritable = function() {
 
+      $("#myModal").on("show.bs.modal", function(e){
+          $("body").addClass("test");
+      })
+
       $(".add").click(function(event) {
-          console.log(event);
-          //event.stopPropagation();
-          //console.log("drop");
-          //console.log(event.target);
-          console.log("ATTR");
-          console.log($(event.target).dropdown);
-          console.log("FUNC");
-          console.log($(event.target).dropdown("toggle"));
-          $(event.target).dropdown("toggle");
+          event.stopPropagation();
+          $("#myModal").modal();
       });
 
     $(".fav").off('click').click(function(elem) {

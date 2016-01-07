@@ -28,6 +28,25 @@
 </head>
 
 <body>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <div id="wrapper">
 
@@ -273,17 +292,10 @@
                     {{#each song}}
 
                     <div class="list-group-item song" data-songid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}" data-albumname="{{albumName}}">
-                        <div class="dropdown">
-                            <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini add dropdown-toggle" data-toggle="dropdown">
-                                <div class="favicon glyphicon glyphicon-star"></div>
-                            </a>
 
-                            <ul class="dropdown-menu">
-                                <li><a href="#">HTML</a></li>
-                                <li><a href="#">CSS</a></li>
-                                <li><a href="#">JavaScript</a></li>
-                            </ul>
-                        </div>
+                        <a href="javascript:void(0)" data-type="song" class="btn btn-default btn-fab btn-fab-mini add">
+                            <div class="favicon glyphicon glyphicon-list"></div>
+                        </a>
 
                         <a href="javascript:void(0)" data-type="song" data-favid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}" data-albumname="{{albumName}}" class="btn btn-default btn-fab btn-fab-mini fav">
                             {{#if fav}}

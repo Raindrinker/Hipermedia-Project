@@ -72,7 +72,6 @@ html {
 }
 .song-artist-name,
 .song-album-name {
-  float: left;
   padding: 5px;
   padding-top: 0px;
   padding-bottom: 3px;
@@ -85,6 +84,9 @@ html {
 .song {
   height: 80px;
   padding: 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .songname {
   margin-top: 3px;
@@ -201,7 +203,7 @@ body .container-fluid .playercontent {
   text-overflow: ellipsis;
   white-space: nowrap;
   transition: background-color 0.2s;
-  overflow: visible;
+  overflow: hidden;
 }
 .list-group:hover .list-group-item:hover {
   background-color: lightgray;
@@ -333,7 +335,7 @@ select:-webkit-autofill {
   font-size: 150%;
   background-color: rgba(255, 255, 255, 0.8);
 }
-.dropdown {
+.btn.btn-fab.add {
   position: absolute;
   top: 10px;
   right: 65px;
@@ -503,4 +505,10 @@ select:-webkit-autofill {
 .dropdown-menu {
   position: relative;
   z-index: 10;
+}
+.test[style] {
+  padding-right: 0 !important;
+}
+.test.modal-open {
+  overflow: visible;
 }
