@@ -38,7 +38,17 @@
                     <h4 class="modal-title">Modal Header</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Some text in the modal.</p>
+                    <ul class="list-group playlist-list">
+                        <li class="list-group-item">First item</li>
+                        <li class="list-group-item">Second item</li>
+                        <li class="list-group-item">Third item</li>
+                        <li class="list-group-item">First item</li>
+                        <li class="list-group-item">Second item</li>
+                        <li class="list-group-item">Third item</li>
+                        <li class="list-group-item">First item</li>
+                        <li class="list-group-item">Second item</li>
+                        <li class="list-group-item">Third item</li>
+                    </ul>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -74,19 +84,7 @@
                     <div id="collapse1" class="panel-collapse collapse playlist-background">
                         <div id="playlist_list">
                         </div>
-                        <div class="playlist-item">
-                            <form action="/" method="get" id="create_playlist_form">
-                                <div class="input-group">
-                                    <input type="text" class="form-control addplaylistarea" placeholder="New playlist..." id="new_playlist_name">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default btn-add-playlist" type="submit">
-                                            <span class="glyphicon glyphicon-plus"></span>
-                                        </button>
-                                    </span>
-                                </div>
-                                <!-- /input-group -->
-                            </form>
-                        </div>
+
                     </div>
                 </li>
 
@@ -403,6 +401,21 @@
     {{#each playlist}}
     <div class="playlist-item" data-id="{{id}}">{{name}}</div>
     {{/each}}
+    {{#if showcreate}}
+    <div class="playlist-item">
+        <form action="/" method="get" id="create_playlist_form">
+            <div class="input-group">
+                <input type="text" class="form-control addplaylistarea" placeholder="New playlist..." id="new_playlist_name">
+                <span class="input-group-btn">
+                    <button class="btn btn-default btn-add-playlist" type="submit">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </span>
+            </div>
+            <!-- /input-group -->
+        </form>
+    </div>
+    {{/if}}
 </script>
 <!-- END TEMPLATE PLAYLISTS -->
 <script src="js/main.js"></script>
