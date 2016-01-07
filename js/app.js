@@ -513,4 +513,11 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
     this.dbm.addSongToPlaylist(playlistId,song);
   }
 
+  this.onPlaylistSelected = function(playlistId){
+    this.dbm.getAllSongsFromPlaylist(playlistId,function(songs){
+      this.renderer.renderPlaylist(songs);
+    }.bind(this));
+  }
+
+
 }

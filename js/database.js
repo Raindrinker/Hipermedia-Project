@@ -77,6 +77,19 @@ function DatabaseManager() {
       });
     }
 
+    this.getAllSongsFromPlaylist = function(playlistId, callback){
+      db.transaction(function(tx){
+        tx.executeSql('SELECT * FROM playlist_has_song WHERE playlistid = ?', [playlistId], function(tx, results){
+          var rows = [];
+          var len = results.rows.length;
+          for (i = 0; i < len; i++) {
+              rows.push(results.rows.item(i));
+          }
+          callback(rows);
+        });
+      });
+    }
+
     this.addSongToPlaylist = function(playlistid, fav){
       var songid = fav.favid,
           image = fav.image,

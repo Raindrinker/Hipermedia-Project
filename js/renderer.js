@@ -391,8 +391,10 @@ function Renderer() {
       $(elem).click(function(event){
         var id = event.target.dataset.id;
         console.log("ID: "+id);
+        appReference.onPlaylistSelected(id);
         // TODO: appReference.showPlaylistContent(id)
       });
     });
   }
+
 }
