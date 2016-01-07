@@ -158,6 +158,12 @@ function Renderer() {
    */
   this.enableFavoritable = function() {
 
+      $(".add").click(function(elem) {
+          elem.stopPropagation();
+          console.log("drop");
+          $('.dropdown-toggle').dropdown("toggle");
+      });
+
     $(".fav").off('click').click(function(elem) {
       elem.stopPropagation();
       // Make the initial references
