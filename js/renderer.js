@@ -158,10 +158,16 @@ function Renderer() {
    */
   this.enableFavoritable = function() {
 
-      $(".add").click(function(elem) {
-          elem.stopPropagation();
-          console.log("drop");
-          $('.dropdown-toggle').dropdown("toggle");
+      $(".add").click(function(event) {
+          console.log(event);
+          //event.stopPropagation();
+          //console.log("drop");
+          //console.log(event.target);
+          console.log("ATTR");
+          console.log($(event.target).dropdown);
+          console.log("FUNC");
+          console.log($(event.target).dropdown("toggle"));
+          $(event.target).dropdown("toggle");
       });
 
     $(".fav").off('click').click(function(elem) {
