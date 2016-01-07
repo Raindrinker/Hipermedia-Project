@@ -265,6 +265,7 @@
     </div>
     <div class="row songs">
 
+
         <div class="col-xs-12 songcolumn">
             <div class="well">
 
@@ -272,6 +273,18 @@
                     {{#each song}}
 
                     <div class="list-group-item song" data-songid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}" data-albumname="{{albumName}}">
+                        <div class="dropdown">
+                            <a href="javascript:void(0)" class="btn btn-default btn-fab btn-fab-mini add dropdown-toggle">
+                                <div class="favicon glyphicon glyphicon-star"></div>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="#">HTML</a></li>
+                                <li><a href="#">CSS</a></li>
+                                <li><a href="#">JavaScript</a></li>
+                            </ul>
+                        </div>
+
                         <a href="javascript:void(0)" data-type="song" data-favid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}" data-albumname="{{albumName}}" class="btn btn-default btn-fab btn-fab-mini fav">
                             {{#if fav}}
                             <div class="favicon glyphicon glyphicon-star"></div>
@@ -375,9 +388,9 @@
 
 <!-- TEMPLATE PLAYLISTS -->
 <script id="playlist-item-template" type="text/x-handlebars-template">
-  {{#each playlist}}
+    {{#each playlist}}
     <div class="playlist-item" data-id="{{id}}">{{name}}</div>
-  {{/each}}
+    {{/each}}
 </script>
 <!-- END TEMPLATE PLAYLISTS -->
 <script src="js/main.js"></script>

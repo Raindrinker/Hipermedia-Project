@@ -333,10 +333,20 @@ select:-webkit-autofill {
   font-size: 150%;
   background-color: rgba(255, 255, 255, 0.8);
 }
-.btn.btn-fab.fav:focus {
+.btn.btn-fab.add {
+  position: absolute;
+  top: 10px;
+  right: 65px;
+  z-index: 2;
+  font-size: 150%;
   background-color: rgba(255, 255, 255, 0.8);
 }
-.btn.btn-fab.fav:hover {
+.btn.btn-fab.fav:focus,
+.btn.btn-fab.add:focus {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.btn.btn-fab.fav:hover,
+.btn.btn-fab.add:hover {
   background-color: #ffffff;
 }
 .favicon {
@@ -489,4 +499,8 @@ select:-webkit-autofill {
 .input-group-btn .btn-add-playlist {
   width: 30px;
   padding: 5px 8px 5px 8px;
+}
+.dropdown-menu {
+  position: relative;
+  z-index: 10;
 }
