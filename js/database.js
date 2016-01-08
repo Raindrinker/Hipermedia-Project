@@ -98,7 +98,6 @@ function DatabaseManager() {
           groupname = fav.artistName,
           albumid = fav.albumId,
           albumname = fav.albumName;
-          console.log(fav);
       db.transaction(function(tx){
         tx.executeSql('INSERT INTO playlist_has_song (playlistid, songid, image, songname, groupid, groupname, albumid, albumname) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [playlistid, songid, image, name, groupid, groupname, albumid, albumname]);
       });

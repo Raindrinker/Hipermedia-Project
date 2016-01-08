@@ -111,8 +111,8 @@ function MusicManager(youtubeMP3Api){
 
   var playNext = function(){
     if(currentIndex < currentQueue.length){
-      //console.log("PLAYING");
-      //console.log(currentQueue[currentIndex]);
+      console.log("PLAYING");
+      console.log(currentQueue[currentIndex]);
       playSong(currentQueue[currentIndex]);
       currentIndex++;
     } else {

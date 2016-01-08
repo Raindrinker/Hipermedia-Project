@@ -303,8 +303,8 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
       // Get the 10 most famous songs for that artist
       this.getArtistTopTracksFromId(artistId, 10, function(tracks){
 
-        // Get the 10 most popular albums for that artist
-        this.spotifyClient.getArtistAlbums(artistId, {limit: 10}, function(error, data){
+        // Get the 12 most popular albums for that artist
+        this.spotifyClient.getArtistAlbums(artistId, {limit: 12}, function(error, data){
           if(error) console.log(error);
 
           // Prepare the albums object in the correct format
@@ -517,6 +517,7 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
       var formatted = songs.map(function(song){
         return{
           favid: song.songid,
+          id: song.songid,
           imgRoute: song.image,
           songName: song.songname,
           groupId: song.groupid,
@@ -527,6 +528,10 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
 
       });
       this.renderer.renderAll([], [], formatted);
+
+      this.youtubeApi.prepareVideos(formatted, function(prepared){
+        this.musicManager.playSongs(formatted);
+      }.bind(this));
     }.bind(this));
   }
 

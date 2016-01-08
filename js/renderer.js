@@ -162,24 +162,16 @@ function Renderer() {
 
       $("#myModal").on("show.bs.modal", function(e){
           $("body").addClass("test");
-      })
+      });
 
       $(".add").click(function(event) {
           event.stopPropagation();
-
           var target = event.target;
           var icon = target.childNodes[1];
-
           if(target.tagName == "DIV"){
             icon = target;
             target = target.parentNode;
           }
-
-          console.log("TARGET");
-          console.log(target);
-          console.log("ICON");
-          console.log(icon);
-
 
           var dataset = target.dataset;
 
@@ -452,7 +444,6 @@ function Renderer() {
   }
 
   this.renderPlaylistsModal = function(song, playlists){
-    console.log(song);
     var modalList = $("#modal_list")[0];
     var obj = {
       song: song,
@@ -479,10 +470,6 @@ function Renderer() {
         }
 
         this.appReference.addSongToPlaylist(playlistId,song);
-
-        console.log("ADDED SONG TO "+playlistId);
-        console.log("SONG ADDED:");
-        console.log(song);
         this.hideModal();
 
       }.bind(this));
