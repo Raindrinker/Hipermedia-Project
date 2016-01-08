@@ -12,6 +12,7 @@ function Renderer() {
   var albumMainScript = $("#album-main-template").html();
   var playerMainScript = $("#player-template").html();
   var playlistItemScript = $("#playlist-item-template").html();
+  var playlistModalScript = $("#playlist-modal-template").html();
 
   // Precompile Handlebars templates
   var artistsTemplate = Handlebars.compile(artistsScript);
@@ -21,6 +22,7 @@ function Renderer() {
   var albumMainTemplate = Handlebars.compile(albumMainScript);
   var playerTemplate = Handlebars.compile(playerMainScript);
   var playlistItemTemplate = Handlebars.compile(playlistItemScript);
+  var playlistModalTemplate = Handlebars.compile(playlistModalScript);
 
   var isSlidePressed = false;
 
@@ -164,8 +166,38 @@ function Renderer() {
 
       $(".add").click(function(event) {
           event.stopPropagation();
-          $("#myModal").modal();
-      });
+
+          var target = event.target;
+          var icon = target.childNodes[1];
+
+          if(target.tagName == "DIV"){
+            icon = target;
+            target = target.parentNode;
+          }
+
+          console.log("TARGET");
+          console.log(target);
+          console.log("ICON");
+          console.log(icon);
+
+
+          var dataset = target.dataset;
+
+          var obj = {
+            id: dataset.favid,
+            imgRoute: dataset.image,
+            songName: dataset.name,
+            groupId: dataset.groupid,
+            artistName: dataset.groupname,
+            albumId: dataset.albumid,
+            albumName: dataset.albumname
+          }
+
+          this.appReference.onAddSongToPlaylistClicked(function(playlists){
+            this.renderPlaylistsModal(obj, playlists);
+            $("#myModal").modal();
+          }.bind(this));
+      }.bind(this));
 
     $(".fav").off('click').click(function(elem) {
       elem.stopPropagation();
@@ -411,6 +443,48 @@ function Renderer() {
         var id = event.target.dataset.id;
         console.log("ID: "+id);
         this.appReference.onPlaylistSelected(id);
+      }.bind(this));
+    }.bind(this));
+  }
+
+  this.hideModal = function(){
+    $("#myModal").modal('toggle');
+  }
+
+  this.renderPlaylistsModal = function(song, playlists){
+    console.log(song);
+    var modalList = $("#modal_list")[0];
+    var obj = {
+      song: song,
+      playlist: playlists
+    }
+
+    var html = playlistModalTemplate(obj);
+    $(modalList).empty();
+    $(modalList).append(html);
+
+    $(modalList).find('li').each(function(index, elem){
+      $(elem).click(function(event){
+        var playlistId = elem.dataset.playlistid;
+        var dataset = elem.dataset;
+
+        var song = {
+          favid: dataset.songid,
+          imgRoute: dataset.image,
+          songName: dataset.name,
+          groupId: dataset.groupid,
+          artistName: dataset.groupname,
+          albumId: dataset.albumid,
+          albumName: dataset.albumname
+        }
+
+        this.appReference.addSongToPlaylist(playlistId,song);
+
+        console.log("ADDED SONG TO "+playlistId);
+        console.log("SONG ADDED:");
+        console.log(song);
+        this.hideModal();
+
       }.bind(this));
     }.bind(this));
   }

@@ -514,8 +514,24 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
 
   this.onPlaylistSelected = function(playlistId){
     this.dbm.getAllSongsFromPlaylist(playlistId,function(songs){
-      this.renderer.renderPlaylist(songs);
+      var formatted = songs.map(function(song){
+        return{
+          favid: song.songid,
+          imgRoute: song.image,
+          songName: song.songname,
+          groupId: song.groupid,
+          artistName: song.groupname,
+          albumId: song.albumid,
+          albumName: song.albumname
+        }
+
+      });
+      this.renderer.renderAll([], [], formatted);
     }.bind(this));
+  }
+
+  this.onAddSongToPlaylistClicked = function(callback){
+    this.dbm.getAllPlaylists(callback);
   }
 
 
