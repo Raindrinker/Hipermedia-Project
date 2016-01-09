@@ -116,8 +116,13 @@ function MusicManager(youtubeMP3Api) {
       playSong(currentQueue[currentIndex]);
       currentIndex++;
     } else {
-      //console.log("LENGTH: "+(currentQueue.length));
-      //console.log("INDEX: "+currentIndex);
+      if(currentAudio != null){
+        currentAudio.pause();
+        currentAudio = null;
+        currentIndex = 0;
+        currentQueue = [];
+      }
+      appReference.onPlayEnded();
     }
   }
 
@@ -147,9 +152,9 @@ function MusicManager(youtubeMP3Api) {
       var current = currentAudio.currentTime;
 
       // currentIndex == 1 means that we are playing the first song
-      if (current < 20 || currentIndex == 1) {
+      if (current > 20 || currentIndex == 1) {
         currentAudio.currentTime = 0;
-      } else if (currentIndex > 1) {
+      } else if (current < 20 && currentIndex > 1) {
         currentIndex = (currentIndex - 2);
         playNext();
       }
