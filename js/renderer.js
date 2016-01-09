@@ -81,7 +81,7 @@ function Renderer() {
     renderGeneric("song", songs, songsTemplate);
   }
 
-  var realRenderMainArtist = function(artist){
+  var realRenderMainArtist = function(artist) {
 
     var headObject = {
       imgRoute: artist.imgRoute,
@@ -98,7 +98,7 @@ function Renderer() {
 
   }
 
-  var realRenderMainAlbum = function(album){
+  var realRenderMainAlbum = function(album) {
     var headObject = {
       imgRoute: album.imgRoute,
       artistName: album.artistName,
@@ -111,30 +111,30 @@ function Renderer() {
     renderSongs(album.song);
   }
 
-  this.enableLinkable = function(){
+  this.enableLinkable = function() {
     var appReference = this.appReference;
-    $(".link-artist").map(function(index, item){
-      $(item).click(function(event){
+    $(".link-artist").map(function(index, item) {
+      $(item).click(function(event) {
         event.stopPropagation();
         var id = item.dataset.groupid;
-        console.log("CLICKED: "+id);
+        console.log("CLICKED: " + id);
         appReference.paintArtist(id);
       });
     });
 
-    $(".link-album").map(function(index, item){
-      $(item).click(function(event){
+    $(".link-album").map(function(index, item) {
+      $(item).click(function(event) {
         event.stopPropagation();
         var id = item.dataset.albumid;
-        console.log("CLICKED: "+id);
+        console.log("CLICKED: " + id);
         appReference.paintAlbum(id);
       });
     });
   }
 
-  this.enablePlayable = function(){
-    $(".list-group-item.song").map(function(index, item){
-      $(item).click(function(event){
+  this.enablePlayable = function() {
+    $(".list-group-item.song").map(function(index, item) {
+      $(item).click(function(event) {
         event.stopPropagation();
         var dataset = item.dataset;
         var artist = item.dataset.groupname;
@@ -160,36 +160,36 @@ function Renderer() {
    */
   this.enableFavoritable = function() {
 
-      $("#myModal").on("show.bs.modal", function(e){
-          $("body").addClass("test");
-      });
+    $("#myModal").on("show.bs.modal", function(e) {
+      $("body").addClass("test");
+    });
 
-      $(".add").click(function(event) {
-          event.stopPropagation();
-          var target = event.target;
-          var icon = target.childNodes[1];
-          if(target.tagName == "DIV"){
-            icon = target;
-            target = target.parentNode;
-          }
+    $(".add").click(function(event) {
+      event.stopPropagation();
+      var target = event.target;
+      var icon = target.childNodes[1];
+      if (target.tagName == "DIV") {
+        icon = target;
+        target = target.parentNode;
+      }
 
-          var dataset = target.dataset;
+      var dataset = target.dataset;
 
-          var obj = {
-            id: dataset.favid,
-            imgRoute: dataset.image,
-            songName: dataset.name,
-            groupId: dataset.groupid,
-            artistName: dataset.groupname,
-            albumId: dataset.albumid,
-            albumName: dataset.albumname
-          }
+      var obj = {
+        id: dataset.favid,
+        imgRoute: dataset.image,
+        songName: dataset.name,
+        groupId: dataset.groupid,
+        artistName: dataset.groupname,
+        albumId: dataset.albumid,
+        albumName: dataset.albumname
+      }
 
-          this.appReference.onAddSongToPlaylistClicked(function(playlists){
-            this.renderPlaylistsModal(obj, playlists);
-            $("#myModal").modal();
-          }.bind(this));
+      this.appReference.onAddSongToPlaylistClicked(function(playlists) {
+        this.renderPlaylistsModal(obj, playlists);
+        $("#myModal").modal();
       }.bind(this));
+    }.bind(this));
 
     $(".fav").off('click').click(function(elem) {
       elem.stopPropagation();
@@ -221,16 +221,16 @@ function Renderer() {
           type: type
         };
 
-        var content  = {};
+        var content = {};
         content.favid = element.dataset.favid;
         content.image = element.dataset.image;
         content.name = element.dataset.name;
 
-        if (type == "album"){
+        if (type == "album") {
           content.groupid = element.dataset.groupid;
           content.groupname = element.dataset.groupname;
           object.content = content;
-        } else if (type == "song"){
+        } else if (type == "song") {
           content.groupid = element.dataset.groupid;
           content.groupname = element.dataset.groupname;
           content.albumid = element.dataset.albumid;
@@ -266,8 +266,8 @@ function Renderer() {
     $(".base").empty();
   }
 
-  this.renderMainArtist = function(artist){
-    this.hide(function(){
+  this.renderMainArtist = function(artist) {
+    this.hide(function() {
       this.clearAll();
       realRenderMainArtist(artist);
       this.enableFavoritable();
@@ -277,8 +277,8 @@ function Renderer() {
     }.bind(this));
   }
 
-  this.renderMainAlbum = function(album){
-    this.hide(function(){
+  this.renderMainAlbum = function(album) {
+    this.hide(function() {
       this.clearAll();
       realRenderMainAlbum(album);
       this.enableFavoritable();
@@ -288,14 +288,14 @@ function Renderer() {
     }.bind(this));
   }
 
-  this.renderPlayerProgress = function(progress){
-    if(!isSlidePressed){
+  this.renderPlayerProgress = function(progress) {
+    if (!isSlidePressed) {
       var slider = $("#slider")[0];
       slider.noUiSlider.set(progress);
     }
   }
 
-  this.renderPlayingSong = function(song){
+  this.renderPlayingSong = function(song) {
 
     var a = $("#player");
     $(a).empty();
@@ -306,53 +306,64 @@ function Renderer() {
     var sliderVolume = $("#slidervolume")[0];
 
     noUiSlider.create(slider, {
-        start: 0,
-        range: {
-            'min': 0,
-            'max': 100
-        }
+      start: 0,
+      range: {
+        'min': 0,
+        'max': 100
+      }
     });
 
     noUiSlider.create(sliderVolume, {
       start: 50,
       range: {
-          'min': 0,
-          'max': 100
-        }
+        'min': 0,
+        'max': 100
+      }
     });
 
     var app = this.appReference;
 
-    slider.noUiSlider.on('change', function(a, b, c){
+    slider.noUiSlider.on('change', function(a, b, c) {
       app.setSongProgress(c);
     });
 
-    slider.noUiSlider.on('start', function(){
+    slider.noUiSlider.on('start', function() {
       isSlidePressed = true;
     });
 
-    slider.noUiSlider.on('end', function(){
+    slider.noUiSlider.on('end', function() {
       isSlidePressed = false;
     });
 
-    sliderVolume.noUiSlider.on('update', function(a, b, c){
+    sliderVolume.noUiSlider.on('update', function(a, b, c) {
       app.setVolume(c);
     });
 
     a.collapse("show");
 
     var pauseButton = $("#playpause_button")[0];
-    $(pauseButton).click(function(){
+    var forwardButton = $("#forward_button")[0];
+    var backButton = $("#back_button")[0];
+
+    $(forwardButton).click(function(){
+      app.onForwardButtonClick();
+    });
+
+    $(backButton).click(function(){
+      app.onBackButtonClick();
+    });
+    
+    $(pauseButton).click(function() {
       app.pause();
     }.bind(this));
 
     this.enableLinkable();
   }
 
-  this.renderPlayButton = function(clickCallback){
+  this.renderPlayButton = function(clickCallback) {
     var button = $("#playpause_button")[0];
 
-    if(button != null){
+    if (button != null) {
       var span = $(button).find('span')[0];
       $(span).removeClass('glyphicon-pause');
       $(span).addClass('glyphicon-play');
@@ -360,10 +371,10 @@ function Renderer() {
     }
   }
 
-  this.renderPauseButton = function(clickCallback){
+  this.renderPauseButton = function(clickCallback) {
     var button = $("#playpause_button")[0];
 
-    if(button != null){
+    if (button != null) {
       var span = $(button).find('span')[0];
       $(span).removeClass('glyphicon-play');
       $(span).addClass('glyphicon-pause');
@@ -401,16 +412,16 @@ function Renderer() {
     }.bind(this));
   }
 
-  this.hidePlayer = function(){
+  this.hidePlayer = function() {
     var a = $("#player");
     a.collapse("hide");
   }
 
-  this.renderRecommendedSongs = function(songs){
+  this.renderRecommendedSongs = function(songs) {
     this.renderAll([], [], songs);
   }
 
-  this.renderPlaylists = function(playlists){
+  this.renderPlaylists = function(playlists) {
     var showCreate = playlists.length < 8;
 
     var obj = {
@@ -423,27 +434,27 @@ function Renderer() {
     var html = playlistItemTemplate(obj);
     $(list).append(html);
 
-    $(list).find("#create_playlist_form").submit(function(event){
+    $(list).find("#create_playlist_form").submit(function(event) {
       event.preventDefault();
       var newPlaylistName = $("#new_playlist_name").val();
       $("#new_playlist_name").val("");
       this.appReference.createPlaylistWithName(newPlaylistName);
     }.bind(this));
 
-    $(list).find("div#playlist_list > div.playlist-item").each(function(index, elem){
-      $(elem).click(function(event){
+    $(list).find("div#playlist_list > div.playlist-item").each(function(index, elem) {
+      $(elem).click(function(event) {
         var id = event.target.dataset.id;
-        console.log("ID: "+id);
+        console.log("ID: " + id);
         this.appReference.onPlaylistSelected(id);
       }.bind(this));
     }.bind(this));
   }
 
-  this.hideModal = function(){
+  this.hideModal = function() {
     $("#myModal").modal('toggle');
   }
 
-  this.renderPlaylistsModal = function(song, playlists){
+  this.renderPlaylistsModal = function(song, playlists) {
     var modalList = $("#modal_list")[0];
     var obj = {
       song: song,
@@ -454,8 +465,8 @@ function Renderer() {
     $(modalList).empty();
     $(modalList).append(html);
 
-    $(modalList).find('li').each(function(index, elem){
-      $(elem).click(function(event){
+    $(modalList).find('li').each(function(index, elem) {
+      $(elem).click(function(event) {
         var playlistId = elem.dataset.playlistid;
         var dataset = elem.dataset;
 
@@ -469,7 +480,7 @@ function Renderer() {
           albumName: dataset.albumname
         }
 
-        this.appReference.addSongToPlaylist(playlistId,song);
+        this.appReference.addSongToPlaylist(playlistId, song);
         this.hideModal();
 
       }.bind(this));

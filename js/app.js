@@ -539,5 +539,12 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
     this.dbm.getAllPlaylists(callback);
   }
 
+  this.onForwardButtonClick = function(){
+    this.musicManager.forward();
+  }
+
+  this.onBackButtonClick = function(){
+    this.musicManager.back();
+  }
 
 }

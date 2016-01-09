@@ -137,6 +137,25 @@ function MusicManager(youtubeMP3Api){
     }
   }
 
+  this.forward = function(){
+    playNext();
+  }
+
+  this.back = function(){
+    if(currentAudio != null){
+
+      var current = currentAudio.currentTime;
+
+      // currentIndex == 1 means that we are playing the first song
+      if(current < 20 || currentIndex == 1){
+        currentAudio.currentTime = 0;
+      } else if (currentIndex > 1) {
+        currentIndex = (currentIndex - 2);
+        playNext();
+      }
+    }
+  }
+
   this.setVolume = function(volume){
     if(currentAudio != null){
       var newVolume = volume/100;
