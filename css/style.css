@@ -502,6 +502,9 @@ select:-webkit-autofill {
 .playlist-item:hover {
   background-color: #f44336;
 }
+#create_playlist_form {
+  padding-left: 20px;
+}
 .input-group-btn .btn-add-playlist {
   width: 30px;
   padding: 5px 8px 5px 8px;
