@@ -352,7 +352,7 @@ function Renderer() {
     $(backButton).click(function(){
       app.onBackButtonClick();
     });
-    
+
     $(pauseButton).click(function() {
       app.pause();
     }.bind(this));
@@ -441,7 +441,7 @@ function Renderer() {
       this.appReference.createPlaylistWithName(newPlaylistName);
     }.bind(this));
 
-    $(list).find("div#playlist_list > div.playlist-item").each(function(index, elem) {
+    $(list).find("ul#playlist_list > li.playlist-item").each(function(index, elem) {
       $(elem).click(function(event) {
         var id = event.target.dataset.id;
         console.log("ID: " + id);
