@@ -154,12 +154,7 @@ function Renderer() {
     }.bind(this));
   }
 
-  /**
-   * Function that enables the favorite buttons and assigns the action
-   * It does not need any parameter
-   */
-  this.enableFavoritable = function() {
-
+  this.enableAddableToPlaylist = function(){
     $("#myModal").on("show.bs.modal", function(e) {
       $("body").addClass("test");
     });
@@ -190,6 +185,31 @@ function Renderer() {
         $("#myModal").modal();
       }.bind(this));
     }.bind(this));
+
+    $(".delete").click(function(event) {
+      event.stopPropagation();
+      var target = event.target;
+      var icon = target.childNodes[1];
+      if (target.tagName == "DIV") {
+        icon = target;
+        target = target.parentNode;
+      }
+
+      var dataset = target.dataset;
+
+      var songid = dataset.favid;
+      var playlistid = dataset.playlistid;
+
+      this.appReference.onDeleteSongFromPlaylistClicked(playlistid, songid);
+      $(target).hide();
+    }.bind(this));
+  }
+
+  /**
+   * Function that enables the favorite buttons and assigns the action
+   * It does not need any parameter
+   */
+  this.enableFavoritable = function() {
 
     $(".fav").off('click').click(function(elem) {
       elem.stopPropagation();
@@ -271,6 +291,7 @@ function Renderer() {
       this.clearAll();
       realRenderMainArtist(artist);
       this.enableFavoritable();
+      this.enableAddableToPlaylist();
       this.enableLinkable();
       this.enablePlayable();
       this.reveal();
@@ -282,6 +303,7 @@ function Renderer() {
       this.clearAll();
       realRenderMainAlbum(album);
       this.enableFavoritable();
+      this.enableAddableToPlaylist();
       this.enableLinkable();
       this.enablePlayable();
       this.reveal();
@@ -407,6 +429,7 @@ function Renderer() {
 
       // Enable the favorite buttons
       this.enableFavoritable();
+      this.enableAddableToPlaylist();
       this.enableLinkable();
       this.enablePlayable();
     }.bind(this));
@@ -419,6 +442,10 @@ function Renderer() {
 
   this.renderRecommendedSongs = function(songs) {
     this.renderAll([], [], songs);
+  }
+
+  this.renderPlaylistContent = function(content){
+    this.renderAll([], [], content);
   }
 
   this.renderPlaylists = function(playlists) {

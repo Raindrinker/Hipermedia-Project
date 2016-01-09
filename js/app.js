@@ -514,6 +514,12 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
     this.dbm.addSongToPlaylist(playlistId, song);
   }
 
+  this.onDeleteSongFromPlaylistClicked = function(playlistId, songId){
+    console.log("PLAYLIST TO DELETE FROM: "+playlistId);
+    console.log("SONG TO DELETE FROM: "+songId);
+    this.dbm.deleteSongFromPlaylist(playlistId, songId);
+  }
+
   this.onPlaylistSelected = function(playlistId) {
     this.dbm.getAllSongsFromPlaylist(playlistId, function(songs) {
       var formatted = songs.map(function(song) {
@@ -525,13 +531,16 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
           groupId: song.groupid,
           artistName: song.groupname,
           albumId: song.albumid,
-          albumName: song.albumname
+          albumName: song.albumname,
+          playlistId: playlistId,
+          delete: true
         }
       });
 
       this.youtubeApi.prepareVideos(formatted, function(prepared) {
         this.dbm.markFavSongs(prepared, function(marked){
-          this.renderer.renderAll([], [], marked);
+
+          this.renderer.renderPlaylistContent(marked);
           this.musicManager.playSongs(marked);
         }.bind(this));
       }.bind(this));

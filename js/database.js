@@ -103,6 +103,12 @@ function DatabaseManager() {
     });
   }
 
+  this.deleteSongFromPlaylist = function(playlistId, songId){
+    db.transaction(function(tx){
+      tx.executeSql('DELETE FROM playlist_has_song WHERE playlistid=? AND songid=?', [playlistId, songId]);
+    });
+  }
+
   var deleteFavArtist = function(groupid) {
     db.transaction(function(tx) {
       tx.executeSql('DELETE FROM fav_artists WHERE id=(?)', [groupid]);
@@ -256,6 +262,8 @@ function DatabaseManager() {
       tx.executeSql('DELETE FROM fav_artists');
       tx.executeSql('DELETE FROM fav_albums');
       tx.executeSql('DELETE FROM fav_songs');
+      tx.executeSql('DELETE FROM playlists');
+      tx.executeSql('DELETE FROM playlist_has_song');
     });
   }
 }

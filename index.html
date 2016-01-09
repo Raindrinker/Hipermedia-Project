@@ -279,9 +279,15 @@
 
                     <div class="list-group-item song" data-songid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}" data-albumname="{{albumName}}">
 
+                        {{#if delete}}
+                        <a href="javascript:void(0)" data-type="song" class="btn btn-default btn-fab btn-fab-mini delete" data-favid="{{id}}" data-playlistid="{{playlistId}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}" data-albumname="{{albumName}}">
+                            <div class="favicon glyphicon glyphicon-remove"></div>
+                        </a>
+                        {{else}}
                         <a href="javascript:void(0)" data-type="song" class="btn btn-default btn-fab btn-fab-mini add" data-favid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}" data-albumname="{{albumName}}">
                             <div class="favicon glyphicon glyphicon-list"></div>
                         </a>
+                        {{/if}}
 
                         <a href="javascript:void(0)" data-type="song" data-favid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}" data-albumname="{{albumName}}" class="btn btn-default btn-fab btn-fab-mini fav">
                             {{#if fav}}
