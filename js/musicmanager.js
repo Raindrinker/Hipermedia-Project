@@ -1,4 +1,4 @@
-function MusicManager(youtubeMP3Api){
+function MusicManager(youtubeMP3Api) {
 
   this.youtubeMP3Api = youtubeMP3Api;
 
@@ -13,41 +13,41 @@ function MusicManager(youtubeMP3Api){
   var currentVolume = 0.5;
   var intervalId = -1;
 
-  this.setAppReference = function(app){
+  this.setAppReference = function(app) {
     appReference = app;
   }
 
-  this.stop = function(){
+  this.stop = function() {
 
   }
 
-  this.getCurrentAudio = function(){
+  this.getCurrentAudio = function() {
     return currentAudio;
   }
 
-  this.pause = function(){
-    if(currentAudio != null){
+  this.pause = function() {
+    if (currentAudio != null) {
       currentAudio.pause();
     }
   }
 
-  this.play = function(){
-    if(currentAudio != null){
+  this.play = function() {
+    if (currentAudio != null) {
       currentAudio.play();
     }
   }
 
-  var publishProgress = function(){
-    if(currentAudio != null){
+  var publishProgress = function() {
+    if (currentAudio != null) {
       var current = currentAudio.currentTime;
       var duration = currentAudio.duration;
-      var progress = (current/duration) * 100;
+      var progress = (current / duration) * 100;
       //console.log("CURRENT: "+current +" | DURATION: "+duration);
       appReference.updateProgress(progress);
     }
   }
 
-  var createAudioFromLink = function(link){
+  var createAudioFromLink = function(link) {
 
     var source = document.createElement("source");
     source.setAttribute("src", link);
@@ -64,34 +64,34 @@ function MusicManager(youtubeMP3Api){
 
     //$(".origin").append(audio);
     currentAudio = audio;
-    audio.onloadeddata = function(e){
-      if(e.target.duration == 20.038821){
-        audio.pause();
-        currentAudio = null;
-        console.log("NOS PILLO LA MAFIA");
-        createAudioFromLink(link);
-      } else {
-        audio.volume = currentVolume;
-        audio.onended = function(){
-          onSongEnded();
+    audio.onloadeddata = function(e) {
+        if (e.target.duration == 20.038821) {
+          audio.pause();
+          currentAudio = null;
+          console.log("NOS PILLO LA MAFIA");
+          createAudioFromLink(link);
+        } else {
+          audio.volume = currentVolume;
+          audio.onended = function() {
+            onSongEnded();
+          }
         }
       }
-    }
-    //console.log(audio);
+      //console.log(audio);
     audio.play();
   }
 
-  var onSongEnded = function(){
+  var onSongEnded = function() {
     clearInterval(intervalId);
-    if(currentIndex == currentQueue.length){
+    if (currentIndex == currentQueue.length) {
       appReference.onPlayEnded();
     } else {
       playNext();
     }
   }
 
-  var playSong = function(song){
-    if(currentAudio != null){
+  var playSong = function(song) {
+    if (currentAudio != null) {
       currentAudio.pause();
       currentAudio = null;
       clearInterval(intervalId);
@@ -104,13 +104,13 @@ function MusicManager(youtubeMP3Api){
 
     createAudioFromLink(link);
     appReference.showPlaySong(song);
-    setInterval(function(){
+    setInterval(function() {
       publishProgress();
     }, EVENT_TIME);
   }
 
-  var playNext = function(){
-    if(currentIndex < currentQueue.length){
+  var playNext = function() {
+    if (currentIndex < currentQueue.length) {
       console.log("PLAYING");
       console.log(currentQueue[currentIndex]);
       playSong(currentQueue[currentIndex]);
@@ -121,7 +121,7 @@ function MusicManager(youtubeMP3Api){
     }
   }
 
-  this.playSongs = function(songs){
+  this.playSongs = function(songs) {
     console.log("SONGS");
     console.log(songs);
     currentQueue = songs;
@@ -130,24 +130,24 @@ function MusicManager(youtubeMP3Api){
     playNext();
   }
 
-  this.setSongProgress = function(progress){
-    if(currentAudio != null){
+  this.setSongProgress = function(progress) {
+    if (currentAudio != null) {
       var newProgress = currentAudio.duration * progress / 100;
       currentAudio.currentTime = newProgress;
     }
   }
 
-  this.forward = function(){
+  this.forward = function() {
     playNext();
   }
 
-  this.back = function(){
-    if(currentAudio != null){
+  this.back = function() {
+    if (currentAudio != null) {
 
       var current = currentAudio.currentTime;
 
       // currentIndex == 1 means that we are playing the first song
-      if(current < 20 || currentIndex == 1){
+      if (current < 20 || currentIndex == 1) {
         currentAudio.currentTime = 0;
       } else if (currentIndex > 1) {
         currentIndex = (currentIndex - 2);
@@ -156,9 +156,9 @@ function MusicManager(youtubeMP3Api){
     }
   }
 
-  this.setVolume = function(volume){
-    if(currentAudio != null){
-      var newVolume = volume/100;
+  this.setVolume = function(volume) {
+    if (currentAudio != null) {
+      var newVolume = volume / 100;
       currentAudio.volume = newVolume;
       currentVolume = newVolume;
     }
