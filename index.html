@@ -387,11 +387,11 @@
 
 <!-- TEMPLATE PLAYLISTS -->
 <script id="playlist-item-template" type="text/x-handlebars-template">
-    <div id="playlist_list">
+    <ul id="playlist_list">
       {{#each playlist}}
-      <div class="playlist-item" data-id="{{id}}">{{name}}</div>
+      <li class="playlist-item" data-id="{{id}}">{{name}}</li>
       {{/each}}
-    </div>
+    </ul>
     {{#if showcreate}}
     <div class="playlist-item">
         <form action="/" method="get" id="create_playlist_form">

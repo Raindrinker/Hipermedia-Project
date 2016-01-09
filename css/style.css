@@ -492,6 +492,10 @@ select:-webkit-autofill {
   overflow: hidden;
   margin: 20px;
 }
+#playlist_list {
+  list-style-type: none;
+  padding: 0;
+}
 .playlist-item {
   color: white;
 }
