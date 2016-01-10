@@ -547,6 +547,12 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
     }.bind(this));
   }
 
+  this.onDeletePlaylistSelected = function(playlistId){
+    this.dbm.deletePlaylist(playlistId, function(){
+      this.renderPlaylists();
+    }.bind(this));
+  }
+
   this.onAddSongToPlaylistClicked = function(callback) {
     this.dbm.getAllPlaylists(callback);
   }

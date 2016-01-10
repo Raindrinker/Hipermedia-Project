@@ -394,7 +394,14 @@
 <script id="playlist-item-template" type="text/x-handlebars-template">
     <ul id="playlist_list">
       {{#each playlist}}
-      <li class="playlist-item" data-id="{{id}}">{{name}}</li>
+      <li class="input-group" data-id="{{id}}">
+        <span class="playlist-item">{{name}}</span>
+        <span class="input-group-btn">
+            <button class="btn btn-default btn-delete-playlist">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </span>
+      </li>
       {{/each}}
     </ul>
     {{#if showcreate}}

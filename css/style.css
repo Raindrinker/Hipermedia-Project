@@ -502,13 +502,24 @@ select:-webkit-autofill {
 .playlist-item {
   color: white;
 }
+.input-group:hover,
 .playlist-item:hover {
   background-color: #f44336;
+}
+/* Remove the blue border on focus in the form input */
+#new_playlist_name:focus {
+  outline-style: none;
+  box-shadow: none;
+  border-color: transparent;
 }
 #create_playlist_form {
   padding-left: 20px;
 }
 .input-group-btn .btn-add-playlist {
+  width: 30px;
+  padding: 5px 8px 5px 8px;
+}
+.input-group-btn .btn-delete-playlist {
   width: 30px;
   padding: 5px 8px 5px 8px;
 }

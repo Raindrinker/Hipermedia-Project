@@ -468,11 +468,34 @@ function Renderer() {
       this.appReference.createPlaylistWithName(newPlaylistName);
     }.bind(this));
 
-    $(list).find("ul#playlist_list > li.playlist-item").each(function(index, elem) {
+    $(list).find("ul#playlist_list > li.input-group").each(function(index, elem) {
       $(elem).click(function(event) {
         var id = event.target.dataset.id;
         console.log("ID: " + id);
         this.appReference.onPlaylistSelected(id);
+      }.bind(this));
+    }.bind(this));
+
+    $(list).find("ul#playlist_list  button.btn-delete-playlist").each(function(index, elem){
+      $(elem).click(function(event){
+        event.stopPropagation();
+
+        // Ensure which of the elements have been clicked
+        var target = event.target;
+
+        if(target.tagName == "SPAN"){
+          if(target.classList.contains("glyphicon-remove")){
+            target = target.parentNode.parentNode.parentNode;
+          } else {
+            target = target.parentNode;
+          }
+        } else if (target.tagName == "BUTTON"){
+          target = target.parentNode.parentNode;
+        }
+
+        var id = target.dataset.id;
+        console.log("ID TO DELETE: "+id);
+        this.appReference.onDeletePlaylistSelected(id);
       }.bind(this));
     }.bind(this));
   }

@@ -109,6 +109,14 @@ function DatabaseManager() {
     });
   }
 
+  this.deletePlaylist = function(playlistId, callback){
+    db.transaction(function(tx){
+      tx.executeSql('DELETE FROM playlist_has_song WHERE playlistid = ?', [playlistId]);
+      tx.executeSql('DELETE FROM playlists WHERE id = ?', [playlistId]);
+      callback();
+    });
+  }
+
   var deleteFavArtist = function(groupid) {
     db.transaction(function(tx) {
       tx.executeSql('DELETE FROM fav_artists WHERE id=(?)', [groupid]);
