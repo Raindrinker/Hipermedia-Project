@@ -49,6 +49,13 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
 
   }
 
+  /**
+   * Function that, given an artist name, returns the N top tracks for that artist
+   * It requires 3 parameters:
+   *  - artistName: Name of the artist
+   *  - numTracks: N top tracks to be returned
+   *  - callback: Function that will receive an array of tracks
+   */
   this.getArtistTopTracksFromName = function(artistName, numTracks, callback) {
     this.spotifyClient.searchArtists(artistName, {
       limit: 10
