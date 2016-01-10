@@ -13,7 +13,7 @@ html {
 }
 .album,
 .artist {
-  padding: 0px;
+  padding: 0;
   transition: box-shadow 0.2s;
 }
 .link-artist,
@@ -72,10 +72,8 @@ html {
 }
 .song-artist-name,
 .song-album-name {
-  padding: 5px;
-  padding-top: 0px;
-  padding-bottom: 3px;
-  margin: 0px;
+  padding: 0 5px 3px;
+  margin: 0;
   display: inline-block;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -83,7 +81,7 @@ html {
 }
 .song {
   height: 80px;
-  padding: 0px;
+  padding: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -131,8 +129,8 @@ body .container-fluid .well {
   padding: 0;
 }
 .container-fluid {
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
 }
 .sidebar {
   background-color: blue;
@@ -142,25 +140,25 @@ body .container-fluid .well {
 }
 img {
   width: 100%;
-  padding: 0px;
+  padding: 0;
 }
 .album-image {
-  padding: 0px;
+  padding: 0;
 }
 .jumbotron {
   text-align: center;
   height: 200px;
-  border-radius: 0px;
+  border-radius: 0;
 }
 body .container-fluid #bigtitle,
 body .container-fluid #smalltitle {
-  border-radius: 0px;
+  border-radius: 0;
 }
 body {
   background-color: #006064;
 }
 #page-content-wrapper {
-  padding: 0px;
+  padding: 0;
 }
 #floating-toggle {
   margin-left: 12px;
@@ -169,7 +167,7 @@ body {
   z-index: 5;
 }
 #menu-toggle {
-  padding: 10px 15px 10px 15px;
+  padding: 10px 15px;
   background-color: #003133;
   color: white;
 }
@@ -194,7 +192,7 @@ body {
 }
 body .container-fluid .playercontent {
   height: 100px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   margin-top: 20px;
   box-shadow: 0 -8px 17px 0 rgba(0, 0, 0, 0.2), 0 -6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -230,11 +228,11 @@ body .container-fluid .playercontent {
   z-index: 3;
 }
 .form-group {
-  margin: 0px;
+  margin: 0;
 }
 #searchdiv {
-  top: 0px;
-  margin: 0px;
+  top: 0;
+  margin: 0;
   position: fixed;
   top: 130px;
   z-index: 4;
@@ -258,7 +256,7 @@ body .container-fluid .playercontent {
 input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #f44336 inset !important;
+  -webkit-box-shadow: 0 0 0 1000px #f44336 inset !important;
   background-color: #f44336 !important;
   margin-right: 25px !important;
   border-radius: 5px !important;
@@ -290,7 +288,7 @@ select:-webkit-autofill {
   height: 60px;
   background: #f44336;
   position: absolute;
-  margin-left: 0px;
+  margin-left: 0;
   -webkit-filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.5));
   -moz-filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.5));
   -ms-filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.5));
@@ -305,8 +303,7 @@ select:-webkit-autofill {
   border-left: 40px solid #f44336;
   border-top: 30px solid transparent;
   border-bottom: 30px solid transparent;
-  margin: 0px 0px 0px 0px;
-  margin-left: 120px;
+  margin: 0 0 0 120px;
 }
 .main-album-image,
 .main-artist-image {
@@ -396,7 +393,7 @@ select:-webkit-autofill {
   text-decoration: none;
 }
 #slider {
-  margin-bottom: 0px;
+  margin-bottom: 0;
   cursor: pointer;
 }
 #slidervolume,
@@ -406,8 +403,8 @@ select:-webkit-autofill {
   cursor: pointer;
 }
 .col-img {
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .img-group-wrapper {
   white-space: nowrap;
@@ -422,7 +419,7 @@ select:-webkit-autofill {
   height: 97px;
   float: left;
   width: auto;
-  margin-top: 0px;
+  margin-top: 0;
   display: inline-block;
 }
 .info-player {
@@ -443,7 +440,7 @@ select:-webkit-autofill {
 }
 .button-play {
   font-size: 30px;
-  padding-top: 0px;
+  padding-top: 0;
 }
 .slider.slider-volume.noUi-connect {
   background-color: #003133;
@@ -519,11 +516,11 @@ select:-webkit-autofill {
 }
 .input-group-btn .btn-add-playlist {
   width: 30px;
-  padding: 5px 8px 5px 8px;
+  padding: 5px 8px;
 }
 .input-group-btn .btn-delete-playlist {
   width: 30px;
-  padding: 5px 8px 5px 8px;
+  padding: 5px 8px;
 }
 .dropdown-menu {
   position: relative;

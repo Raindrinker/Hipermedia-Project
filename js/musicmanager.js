@@ -116,7 +116,7 @@ function MusicManager(youtubeMP3Api) {
       playSong(currentQueue[currentIndex]);
       currentIndex++;
     } else {
-      if(currentAudio != null){
+      if (currentAudio != null) {
         currentAudio.pause();
         currentAudio = null;
         currentIndex = 0;

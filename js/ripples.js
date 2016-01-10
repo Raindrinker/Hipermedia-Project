@@ -44,13 +44,13 @@
    * Initialize the plugin
    */
   Ripples.prototype.init = function() {
-    var $element  = this.element;
+    var $element = this.element;
 
     $element.on("mousedown touchstart", function(event) {
       /**
        * Verify if the user is just touching on a device and return if so
        */
-      if(self.isTouch() && event.type === "mousedown") {
+      if (self.isTouch() && event.type === "mousedown") {
         return;
       }
 
@@ -59,7 +59,7 @@
        * Verify if the current element already has a ripple wrapper element and
        * creates if it doesn't
        */
-      if(!($element.find(".ripple-container").length)) {
+      if (!($element.find(".ripple-container").length)) {
         $element.append("<div class=\"ripple-container\"></div>");
       }
 
@@ -80,7 +80,7 @@
       /**
        * If relY and/or relX are false, return the event
        */
-      if(!relY && !relX) {
+      if (!relY && !relX) {
         return;
       }
 
@@ -97,12 +97,12 @@
       var $ripple = $("<div></div>");
 
       $ripple
-      .addClass("ripple")
-      .css({
-        "left": relX,
-        "top": relY,
-        "background-color": rippleColor
-      });
+        .addClass("ripple")
+        .css({
+          "left": relX,
+          "top": relY,
+          "background-color": rippleColor
+        });
 
 
       /**
@@ -114,7 +114,9 @@
       /**
        * Make sure the ripple has the styles applied (ugly hack but it works)
        */
-      (function() { return window.getComputedStyle($ripple[0]).opacity; })();
+      (function() {
+        return window.getComputedStyle($ripple[0]).opacity;
+      })();
 
 
       /**
@@ -137,7 +139,7 @@
       $element.on("mouseup mouseleave touchend", function() {
         $ripple.data("mousedown", "off");
 
-        if($ripple.data("animating") === "off") {
+        if ($ripple.data("animating") === "off") {
           self.rippleOut($ripple);
         }
       });
@@ -158,10 +160,10 @@
   /**
    * Get the relX
    */
-  Ripples.prototype.getRelX = function($wrapper,  event) {
+  Ripples.prototype.getRelX = function($wrapper, event) {
     var wrapperOffset = $wrapper.offset();
 
-    if(!self.isTouch()) {
+    if (!self.isTouch()) {
       /**
        * Get the mouse position relative to the ripple wrapper
        */
@@ -173,7 +175,7 @@
        */
       event = event.originalEvent;
 
-      if(event.touches.length === 1) {
+      if (event.touches.length === 1) {
         return event.touches[0].pageX - wrapperOffset.left;
       }
 
@@ -188,7 +190,7 @@
   Ripples.prototype.getRelY = function($wrapper, event) {
     var wrapperOffset = $wrapper.offset();
 
-    if(!self.isTouch()) {
+    if (!self.isTouch()) {
       /**
        * Get the mouse position relative to the ripple wrapper
        */
@@ -200,7 +202,7 @@
        */
       event = event.originalEvent;
 
-      if(event.touches.length === 1) {
+      if (event.touches.length === 1) {
         return event.touches[0].pageY - wrapperOffset.top;
       }
 
@@ -224,7 +226,7 @@
    * Verify if the client browser has transistion support
    */
   Ripples.prototype.hasTransitionSupport = function() {
-    var thisBody  = document.body || document.documentElement;
+    var thisBody = document.body || document.documentElement;
     var thisStyle = thisBody.style;
 
     var support = (
@@ -253,7 +255,7 @@
   Ripples.prototype.rippleEnd = function($ripple) {
     $ripple.data("animating", "off");
 
-    if($ripple.data("mousedown") === "off") {
+    if ($ripple.data("mousedown") === "off") {
       self.rippleOut($ripple);
     }
   };
@@ -265,10 +267,12 @@
   Ripples.prototype.rippleOut = function($ripple) {
     $ripple.off();
 
-    if(self.hasTransitionSupport()) {
+    if (self.hasTransitionSupport()) {
       $ripple.addClass("ripple-out");
     } else {
-      $ripple.animate({"opacity": 0}, 100, function() {
+      $ripple.animate({
+        "opacity": 0
+      }, 100, function() {
         $ripple.trigger("transitionend");
       });
     }
@@ -285,17 +289,17 @@
   Ripples.prototype.rippleOn = function($element, $ripple) {
     var size = self.getNewSize($element, $ripple);
 
-    if(self.hasTransitionSupport()) {
+    if (self.hasTransitionSupport()) {
       $ripple
-      .css({
-        "-ms-transform": "scale(" + size + ")",
-        "-moz-transform": "scale(" + size + ")",
-        "-webkit-transform": "scale(" + size + ")",
-        "transform": "scale(" + size + ")"
-      })
-      .addClass("ripple-on")
-      .data("animating", "on")
-      .data("mousedown", "on");
+        .css({
+          "-ms-transform": "scale(" + size + ")",
+          "-moz-transform": "scale(" + size + ")",
+          "-webkit-transform": "scale(" + size + ")",
+          "transform": "scale(" + size + ")"
+        })
+        .addClass("ripple-on")
+        .data("animating", "on")
+        .data("mousedown", "on");
     } else {
       $ripple.animate({
         "width": Math.max($element.outerWidth(), $element.outerHeight()) * 2,
@@ -315,7 +319,7 @@
    */
   $.fn.ripples = function(options) {
     return this.each(function() {
-      if(!$.data(this, "plugin_" + ripples)) {
+      if (!$.data(this, "plugin_" + ripples)) {
         $.data(this, "plugin_" + ripples, new Ripples(this, options));
       }
     });

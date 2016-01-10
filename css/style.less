@@ -3,424 +3,362 @@
 @soft: #006064;
 @dark: #003133;
 ------------*/
-
 /*---DARK---
 @top:  #37474F;
 @soft: #B0BEC5;
 @dark: #263238;
 ------------*/
 @light: #78909C;
-
 @top: #F44336;
 @soft: #006064;
 @dark: #003133;
-
 html {
-    overflow-y: scroll;
+  overflow-y: scroll;
 }
-
-.album, .artist{
-  padding: 0px;
+.album,
+.artist {
+  padding: 0;
   transition: box-shadow 0.2s;
 }
-
-.link-artist,.link-album {
-  cursor:pointer;
+.link-artist,
+.link-album {
+  cursor: pointer;
 }
-
-.link-artist:hover, .link-album:hover {
-    text-decoration: underline;
+.link-artist:hover,
+.link-album:hover {
+  text-decoration: underline;
 }
-
-.album:hover, .artist:hover{
-    box-shadow: 0 6px 12px 0 rgba(0,0,0,.6);
+.album:hover,
+.artist:hover {
+  box-shadow: 0 6px 12px 0 rgba(0,0,0,.6);
 }
-
-.albums, .artists, .songs{
-    margin: 10px;
+.albums,
+.artists,
+.songs {
+  margin: 10px;
 }
-
-.panel{
-    margin-bottom: 5px;
-    background-color: white;
+.panel {
+  margin-bottom: 5px;
+  background-color: white;
 }
-
-.square-box{
-    position: relative;
-    width: 100%;
-    overflow: hidden;
+.square-box {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 }
-
-.square-box:before{
-    content: "";
-    display: block;
-    padding-top: 100%;
+.square-box:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
 }
-
-.square-content{
-    position:  absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+.square-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
-
-.albumname, .artistname, .songname{
-    font-size: 130%;
+.albumname,
+.artistname,
+.songname {
+  font-size: 130%;
 }
-
-.artistcolumn, .albumcolumn, .songcolumn{
-    padding: 10px;
-
+.artistcolumn,
+.albumcolumn,
+.songcolumn {
+  padding: 10px;
 }
-
-.album-snippet{
-    height: 100%;
-    width: auto;
-    float: left;
-    margin-right: 20px;
+.album-snippet {
+  height: 100%;
+  width: auto;
+  float: left;
+  margin-right: 20px;
 }
-
-.song-artist-name, .song-album-name{
-    padding: 5px;
-    padding-top: 0px;
-    padding-bottom: 3px;
-    margin: 0px;
-    display: inline-block;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+.song-artist-name,
+.song-album-name {
+  padding: 0 5px 3px;
+  margin: 0;
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
-
-.song{
-    height: 80px;
-    padding: 0px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+.song {
+  height: 80px;
+  padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-
-.songname{
-    margin-top: 3px;
-    margin-bottom: 5px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+.songname {
+  margin-top: 3px;
+  margin-bottom: 5px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
-
-.icon{
-    margin-right: 5px;
+.icon {
+  margin-right: 5px;
 }
-
-.iconsearch{
-    margin-top: 2px;
+.iconsearch {
+  margin-top: 2px;
 }
-
-.btn.btn-fab{
-    background-color: lightgray;
-    margin-top: 5px;
+.btn.btn-fab {
+  background-color: lightgray;
+  margin-top: 5px;
 }
-
 @media (min-width: 480px) {
-    .albums, .artists, .songs{
-        margin-left: 50px;
-        margin-right: 50px;
-    }
+  .albums,
+  .artists,
+  .songs {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
 }
-
-
 @media (min-width: 1200px) {
-    .albums, .artists, .songs{
-        margin-left: 100px;
-        margin-right: 100px;
-    }
+  .albums,
+  .artists,
+  .songs {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
 }
-
 #filler {
   height: 120px;
 }
-
-.well{
+.well {
   padding: 0;
 }
-
-body .container-fluid .well{
-    padding: 0;
+body .container-fluid .well {
+  padding: 0;
 }
-
-
-.container-fluid{
-  padding: 0px;
-  margin: 0px;
+.container-fluid {
+  padding: 0;
+  margin: 0;
 }
-
-.sidebar{
+.sidebar {
   background-color: blue;
   max-height: 100%;
   height: 100%;
   position: relative;
 }
-
-img{
-    width: 100%;
-    padding: 0px;
+img {
+  width: 100%;
+  padding: 0;
 }
-
-.album-image{
-    padding: 0px;
+.album-image {
+  padding: 0;
 }
-
-.jumbotron{
-    text-align: center;
-    height: 200px;
-    border-radius: 0px;
+.jumbotron {
+  text-align: center;
+  height: 200px;
+  border-radius: 0;
 }
-
-body .container-fluid #bigtitle, body .container-fluid #smalltitle{
-    border-radius: 0px;
+body .container-fluid #bigtitle,
+body .container-fluid #smalltitle {
+  border-radius: 0;
 }
-
-body{
-    background-color: @soft;
+body {
+  background-color: @soft;
 }
-
-#page-content-wrapper{
-    padding: 0px;
+#page-content-wrapper {
+  padding: 0;
 }
-
-#floating-toggle{
-    margin-left: 12px;
-    margin-top: 5px;
-    position: fixed;
-    z-index: 5;
+#floating-toggle {
+  margin-left: 12px;
+  margin-top: 5px;
+  position: fixed;
+  z-index: 5;
 }
-
-#menu-toggle{
-    padding: 10px 15px 10px 15px;
-    background-color: @dark;
-    color: white;
+#menu-toggle {
+  padding: 10px 15px;
+  background-color: @dark;
+  color: white;
 }
-
-#menu-toggle:focus{
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+#menu-toggle:focus {
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
 }
-
-#menu-toggle:hover{
-    box-shadow: 0 0 6px rgba(0,0,0,.18),0 6px 12px rgba(0,0,0,.36);
+#menu-toggle:hover {
+  box-shadow: 0 0 6px rgba(0,0,0,.18),0 6px 12px rgba(0,0,0,.36);
 }
-
-.btn:focus{
-        outline: none;
+.btn:focus {
+  outline: none;
 }
-
-
-
-.player{
-    width: 100%;
-    z-index: 5;
-    position: fixed;
-    bottom: 0;
+.player {
+  width: 100%;
+  z-index: 5;
+  position: fixed;
+  bottom: 0;
 }
-
-.logo{
-    height: 200px;
-    padding-top: 10px;
+.logo {
+  height: 200px;
+  padding-top: 10px;
 }
-
-body .container-fluid .playercontent{
-    height: 100px;
-    margin-bottom: 0px;
-    margin-top: 20px;
-    box-shadow: 0 -8px 17px 0 rgba(0,0,0,.2),0 -6px 20px 0 rgba(0,0,0,.19);
+body .container-fluid .playercontent {
+  height: 100px;
+  margin-bottom: 0;
+  margin-top: 20px;
+  box-shadow: 0 -8px 17px 0 rgba(0,0,0,.2),0 -6px 20px 0 rgba(0,0,0,.19);
 }
-
-.list-group .list-group-item{
-    padding: 8px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    transition: background-color 0.2s;
-    overflow: hidden;
+.list-group .list-group-item {
+  padding: 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: background-color 0.2s;
+  overflow: hidden;
 }
-
-.list-group:hover .list-group-item:hover{
-    background-color: lightgray;
+.list-group:hover .list-group-item:hover {
+  background-color: lightgray;
 }
-
-.menu-item{
-    padding: 10px;
+.menu-item {
+  padding: 10px;
 }
-
-#content{
-    position: relative;
+#content {
+  position: relative;
 }
-
-#page-content-wrapper{
-    position: relative;
+#page-content-wrapper {
+  position: relative;
 }
-
-#smalltitle{
-    text-align: center;
-    visibility: hidden;
-    z-index: 3;
-    height: 70px;
-    background: @top;
+#smalltitle {
+  text-align: center;
+  visibility: hidden;
+  z-index: 3;
+  height: 70px;
+  background: @top;
 }
-
-#bigtitle{
-    background: @top;
-    color: white;
-    z-index: 3;
+#bigtitle {
+  background: @top;
+  color: white;
+  z-index: 3;
 }
-
-.form-group{
-    margin: 0px;
+.form-group {
+  margin: 0;
 }
-
-#searchdiv{
-    top: 0px;
-    margin: 0px;
-    position: fixed;
-    top: 130px;
-    z-index: 4;
+#searchdiv {
+  top: 0;
+  margin: 0;
+  position: fixed;
+  top: 130px;
+  z-index: 4;
 }
-
-#search{
-
-    width: 30%;
-    margin-left: 34%;
-    float: left;
+#search {
+  width: 30%;
+  margin-left: 34%;
+  float: left;
 }
-
-#searcharea{
-    font-size: 30px;
-    color: white;
-    height: inherit;
-    background-image: linear-gradient(@dark, @dark), linear-gradient(@soft, @soft);
+#searcharea {
+  font-size: 30px;
+  color: white;
+  height: inherit;
+  background-image: linear-gradient(@dark, @dark), linear-gradient(@soft, @soft);
 }
-
 .addplaylistarea {
-    color: white;
-    background-image: linear-gradient(@dark, @dark), linear-gradient(@soft, @soft);
+  color: white;
+  background-image: linear-gradient(@dark, @dark), linear-gradient(@soft, @soft);
 }
-
 /* Override styles for chrome autocomplete on input */
-input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px @top inset !important;
-    background-color: @top !important;
-    margin-right: 25px !important;
-    border-radius: 5px !important;
-    margin-bottom: 10px !important;
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px @top inset !important;
+  background-color: @top !important;
+  margin-right: 25px !important;
+  border-radius: 5px !important;
+  margin-bottom: 10px !important;
 }
-
-#searchbutton{
-    background: @soft;
+#searchbutton {
+  background: @soft;
 }
-
-#searchbutton:focus{
-    background: @soft;
+#searchbutton:focus {
+  background: @soft;
 }
-
-#searchbutton:hover{
-    background: white;
+#searchbutton:hover {
+  background: white;
 }
-
 /*SHAPE*/
-
 .arrow-zone {
-    height: 60px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  height: 60px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
-
-.arrow-text{
-    font-size: 120%;
-    color: white;
-    padding-top: 18px;
-    padding-left: 20px;
+.arrow-text {
+  font-size: 120%;
+  color: white;
+  padding-top: 18px;
+  padding-left: 20px;
 }
-
 .arrow {
-   width: 120px;
-   height: 60px;
-   background: @top;
-   position: absolute;
-   margin-left: 0px;
-   -webkit-filter: drop-shadow(0 6px 6px rgba(0,0,0,.5));
-		-moz-filter: drop-shadow(0 6px 6px rgba(0,0,0,.5));
-		-ms-filter: drop-shadow(0 6px 6px rgba(0,0,0,.5));
-		-o-filter: drop-shadow(0 6px 6px rgba(0,0,0,.5));
-		filter: drop-shadow(0 6px 6px rgba(0,0,0,.5));
+  width: 120px;
+  height: 60px;
+  background: @top;
+  position: absolute;
+  margin-left: 0;
+  -webkit-filter: drop-shadow(0 6px 6px rgba(0,0,0,.5));
+  -moz-filter: drop-shadow(0 6px 6px rgba(0,0,0,.5));
+  -ms-filter: drop-shadow(0 6px 6px rgba(0,0,0,.5));
+  -o-filter: drop-shadow(0 6px 6px rgba(0,0,0,.5));
+  filter:drop-shadow(0 6px 6px rgba(0,0,0,.5));
 }
 .arrow:before {
-   content:"";
-   position: absolute;
-   width: 0;
-   height: 0;
-   border-left: 40px solid @top;
-   border-top: 30px solid transparent;
-   border-bottom: 30px solid transparent;
-   margin: 0px 0px 0px 0px;
-   margin-left: 120px;
-
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 40px solid @top;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  margin: 0 0 0 120px;
 }
-
-.main-album-image,.main-artist-image{
-  padding:0;
+.main-album-image,
+.main-artist-image {
+  padding: 0;
 }
-
 /* OVERLAY */
-
 .origin {
-    position: relative;
+  position: relative;
 }
-
 .content-overlay {
-    position: absolute;
-    top:0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background: @soft;
-    opacity: 0;
-    transition: opacity 0.25s;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: @soft;
+  opacity: 0;
+  transition: opacity 0.25s;
 }
-
 /* FAV */
-
 .btn.btn-fab.fav {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    z-index: 2;
-    font-size: 150%;
-    background-color: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  z-index: 2;
+  font-size: 150%;
+  background-color: rgba(255, 255, 255, 0.8);
 }
-
-.btn.btn-fab.add, .btn.btn-fab.delete  {
-    position: absolute;
-    top: 10px;
-    right: 65px;
-    z-index: 1;
-    font-size: 150%;
-    background-color: rgba(255, 255, 255, 0.8);
+.btn.btn-fab.add,
+.btn.btn-fab.delete {
+  position: absolute;
+  top: 10px;
+  right: 65px;
+  z-index: 1;
+  font-size: 150%;
+  background-color: rgba(255, 255, 255, 0.8);
 }
-
-.btn.btn-fab.fav:focus, .btn.btn-fab.add:focus, .btn.btn-fab.delete:focus{
-    background-color: rgba(255, 255, 255, 0.8);
+.btn.btn-fab.fav:focus,
+.btn.btn-fab.add:focus,
+.btn.btn-fab.delete:focus {
+  background-color: rgba(255, 255, 255, 0.8);
 }
-
-.btn.btn-fab.fav:hover, .btn.btn-fab.add:hover, .btn.btn-fab.delete:hover{
-    background-color: rgba(255, 255, 255, 1);
+.btn.btn-fab.fav:hover,
+.btn.btn-fab.add:hover,
+.btn.btn-fab.delete:hover {
+  background-color: rgba(255, 255, 255, 1);
 }
-
-
-
-.favicon{
-    margin-left: 2px;
-    margin-top: 8px;
+.favicon {
+  margin-left: 2px;
+  margin-top: 8px;
 }
-
-
 /* VIEW PLAYER */
 .slider {
   height: 3px;
@@ -429,217 +367,183 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .noUi-origin {
   height: 3px;
 }
-
 .slider.slider-custom.noUi-connect {
   background-color: @top;
   width: 100%;
 }
-
 .slider.slider-custom .noUi-connect {
   background-color: @top;
   width: 100%;
 }
-
 .slider.slider-custom .noUi-handle {
   margin-top: 1px;
   border: 5px solid @top;
   background-color: @top;
   cursor: pointer;
 }
-
-.music-button{
+.music-button {
   color: @dark;
   padding-top: 5px;
   text-decoration: none;
 }
-
-.music-button:hover{
+.music-button:hover {
   color: @top;
   padding-top: 5px;
   text-decoration: none;
 }
-
-.music-button:focus{
+.music-button:focus {
   color: @dark;
   padding-top: 5px;
-    text-decoration: none;
+  text-decoration: none;
 }
-
 #slider {
-  margin-bottom: 0px;
+  margin-bottom: 0;
   cursor: pointer;
 }
-
-#slidervolume, #playpause_button, #back_button, #forward_button {
-  cursor:pointer;
+#slidervolume,
+#playpause_button,
+#back_button,
+#forward_button {
+  cursor: pointer;
 }
-
 .col-img {
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
-
-.img-group-wrapper{
+.img-group-wrapper {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-.music-controller{
+.music-controller {
   background-color: white;
   white-space: nowrap;
 }
-
-.img-player{
+.img-player {
   height: 97px;
   float: left;
   width: auto;
-  margin-top: 0px;
+  margin-top: 0;
   display: inline-block;
 }
-
-.info-player{
+.info-player {
   display: inline-block;
   overflow: hidden;
   margin-left: 10px;
   margin-top: 10px;
 }
-
-.buttton-bwd{
+.buttton-bwd {
   font-size: 20px;
   margin-right: 10%;
   text-decoration: none;
 }
-
-.buttton-fwd{
+.buttton-fwd {
   font-size: 20px;
   margin-left: 10%;
   text-decoration: none;
 }
-
-.button-play{
+.button-play {
   font-size: 30px;
-  padding-top: 0px;
+  padding-top: 0;
 }
-
 .slider.slider-volume.noUi-connect {
   background-color: @dark;
-  margin-left:30px;
+  margin-left: 30px;
   width: 80%;
 }
-
 .slider.slider-volume .noUi-connect {
   background-color: @dark;
-  margin-left:30px;
+  margin-left: 30px;
   width: 80%;
 }
-
 .slider.slider-volume .noUi-handle {
   margin-top: 1px;
   border: 5px solid @dark;
   background-color: @dark;
   cursor: pointer;
 }
-
 @media (min-width: 320px) {
-  .volume-controller{
+  .volume-controller {
     margin-top: 30px;
   }
-
-  .player-controller{
+  .player-controller {
     margin-left: 20px;
     margin-top: 20px;
   }
 }
-
 @media (min-width: 480px) {
-  .volume-controller{
+  .volume-controller {
     margin-top: 30px;
   }
-
-  .player-controller{
+  .player-controller {
     margin-left: 60px;
     margin-top: 20px;
   }
 }
-
 @media (min-width: 1200px) {
-  .volume-controller{
+  .volume-controller {
     margin-top: 30px;
   }
-
-  .player-controller{
+  .player-controller {
     margin-left: 110px;
     margin-top: 20px;
   }
 }
-
 .volume-button {
   float: left;
 }
-
 .playlist-background {
-    background-color: @soft;
-    border-radius: 10px;
-    overflow: hidden;
-    margin: 20px;
+  background-color: @soft;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px;
 }
-
 #playlist_list {
   list-style-type: none;
   padding: 0;
 }
-
 .playlist-item {
-    color: white;
+  color: white;
 }
-
-.input-group:hover, .playlist-item:hover {
-    background-color: @top;
+.input-group:hover,
+.playlist-item:hover {
+  background-color: @top;
 }
-
 /* Remove the blue border on focus in the form input */
 #new_playlist_name:focus {
-  outline-style:none;
-  box-shadow:none;
-  border-color:transparent;
+  outline-style: none;
+  box-shadow: none;
+  border-color: transparent;
 }
-
 #create_playlist_form {
   padding-left: 20px;
 }
-
-.input-group-btn .btn-add-playlist{
-    width: 30px;
-    padding: 5px 8px 5px 8px;
+.input-group-btn .btn-add-playlist {
+  width: 30px;
+  padding: 5px 8px;
 }
-
-.input-group-btn .btn-delete-playlist{
-    width: 30px;
-    padding: 5px 8px 5px 8px;
+.input-group-btn .btn-delete-playlist {
+  width: 30px;
+  padding: 5px 8px;
 }
-
 .dropdown-menu {
-    position:relative;
-    z-index: 10;
+  position: relative;
+  z-index: 10;
 }
-
 .test[style] {
-   padding-right:0 !important;
+  padding-right: 0 !important;
 }
 .test.modal-open {
-   overflow: visible;
+  overflow: visible;
 }
-
 .btn.btn-fab.play-playlist {
-    position: absolute;
-    padding-top: 7px;
-    top: 10px;
-    right: 15px;
-    z-index: 2;
-    background-color: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  padding-top: 7px;
+  top: 10px;
+  right: 15px;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.8);
 }
-
 .playlist-title {
-    min-height: 60px;
+  min-height: 60px;
 }

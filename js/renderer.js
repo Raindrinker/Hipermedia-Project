@@ -111,7 +111,7 @@ function Renderer() {
     $(".base").append(compiledHead);
     renderSongs(songs);
 
-    $("#play_playlist_button").click(function(event){
+    $("#play_playlist_button").click(function(event) {
       var id = this.dataset.playlist;
 
       appReference.playPlaylist(id);
@@ -174,7 +174,7 @@ function Renderer() {
     }.bind(this));
   }
 
-  this.enableAddableToPlaylist = function(){
+  this.enableAddableToPlaylist = function() {
     $("#myModal").on("show.bs.modal", function(e) {
       $("body").addClass("test");
     });
@@ -226,7 +226,7 @@ function Renderer() {
       var container = parent.parentNode;
       $(parent).remove();
 
-      if(container.children.length == 0){
+      if (container.children.length == 0) {
         $(container.parentNode).remove();
       }
     }.bind(this));
@@ -394,11 +394,11 @@ function Renderer() {
     var forwardButton = $("#forward_button")[0];
     var backButton = $("#back_button")[0];
 
-    $(forwardButton).click(function(){
+    $(forwardButton).click(function() {
       app.onForwardButtonClick();
     });
 
-    $(backButton).click(function(){
+    $(backButton).click(function() {
       app.onBackButtonClick();
     });
 
@@ -471,25 +471,25 @@ function Renderer() {
     this.renderAll([], [], songs);
   }
 
-  this.renderPlaylistContent = function(content, playlistName, playlistId){
-      console.log("renderplaylistcontent");
-      // Hide the current content with a fancy animation
-      this.hide(function() {
+  this.renderPlaylistContent = function(content, playlistName, playlistId) {
+    console.log("renderplaylistcontent");
+    // Hide the current content with a fancy animation
+    this.hide(function() {
 
-        // Once the animation has finished, clear the content
-        this.clearAll();
+      // Once the animation has finished, clear the content
+      this.clearAll();
 
-        renderMainPlaylist(playlistName, playlistId, content, this.appReference);
+      renderMainPlaylist(playlistName, playlistId, content, this.appReference);
 
-        // Make the fancy animation to reveal
-        this.reveal();
+      // Make the fancy animation to reveal
+      this.reveal();
 
-        // Enable the favorite buttons
-        this.enableFavoritable();
-        this.enableAddableToPlaylist();
-        this.enableLinkable();
-        this.enablePlayable();
-      }.bind(this));
+      // Enable the favorite buttons
+      this.enableFavoritable();
+      this.enableAddableToPlaylist();
+      this.enableLinkable();
+      this.enablePlayable();
+    }.bind(this));
   }
 
   this.renderPlaylists = function(playlists) {
@@ -511,18 +511,18 @@ function Renderer() {
 
       var i;
       var add = true;
-      for(i=0;i<playlists.length;i++){
-        if(playlists[i].name == newPlaylistName){
+      for (i = 0; i < playlists.length; i++) {
+        if (playlists[i].name == newPlaylistName) {
           add = false;
           break;
         }
       }
 
-      if(add){
+      if (add) {
         $("#new_playlist_name").val("");
       }
 
-      if(add && newPlaylistName.trim().length > 0){
+      if (add && newPlaylistName.trim().length > 0) {
         this.appReference.createPlaylistWithName(newPlaylistName);
       }
     }.bind(this));
@@ -532,7 +532,7 @@ function Renderer() {
 
         var target = event.target;
 
-        if(target.tagName == "SPAN"){
+        if (target.tagName == "SPAN") {
           target = target.parentNode;
         }
 
@@ -543,25 +543,25 @@ function Renderer() {
       }.bind(this));
     }.bind(this));
 
-    $(list).find("ul#playlist_list  button.btn-delete-playlist").each(function(index, elem){
-      $(elem).click(function(event){
+    $(list).find("ul#playlist_list  button.btn-delete-playlist").each(function(index, elem) {
+      $(elem).click(function(event) {
         event.stopPropagation();
 
         // Ensure which of the elements have been clicked
         var target = event.target;
 
-        if(target.tagName == "SPAN"){
-          if(target.classList.contains("glyphicon-remove")){
+        if (target.tagName == "SPAN") {
+          if (target.classList.contains("glyphicon-remove")) {
             target = target.parentNode.parentNode.parentNode;
           } else {
             target = target.parentNode;
           }
-        } else if (target.tagName == "BUTTON"){
+        } else if (target.tagName == "BUTTON") {
           target = target.parentNode.parentNode;
         }
 
         var id = target.dataset.id;
-        console.log("ID TO DELETE: "+id);
+        console.log("ID TO DELETE: " + id);
         this.appReference.onDeletePlaylistSelected(id);
       }.bind(this));
     }.bind(this));

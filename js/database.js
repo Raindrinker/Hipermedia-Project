@@ -13,10 +13,10 @@ function DatabaseManager() {
   console.log("database created");
 
   /**
-    * This function adds a favourite artist to the database.
-    * It needs 1 parameter:
-    *  - fav: object that defines an artist (groupid, image, name)
-    */
+   * This function adds a favourite artist to the database.
+   * It needs 1 parameter:
+   *  - fav: object that defines an artist (groupid, image, name)
+   */
   var addFavArtist = function(fav) {
     var groupid = fav.favid,
       image = fav.image,
@@ -28,10 +28,10 @@ function DatabaseManager() {
 
 
   /**
-    * This function adds a favourite album to the database.
-    * It needs 1 parameter:
-    *  - fav: object that defines an album (albumid, image, name, groupid, groupname)
-    */
+   * This function adds a favourite album to the database.
+   * It needs 1 parameter:
+   *  - fav: object that defines an album (albumid, image, name, groupid, groupname)
+   */
   var addFavAlbum = function(fav) {
     var albumid = fav.favid,
       image = fav.image,
@@ -44,10 +44,10 @@ function DatabaseManager() {
   };
 
   /**
-    * This function adds a favourite song to the database.
-    * It needs 1 parameter:
-    *  - fav: object that defines a song (songid, image, name, groupid, groupname, albumid, albumname)
-    */
+   * This function adds a favourite song to the database.
+   * It needs 1 parameter:
+   *  - fav: object that defines a song (songid, image, name, groupid, groupname, albumid, albumname)
+   */
   var addFavSong = function(fav) {
     var songid = fav.favid,
       image = fav.image,
@@ -62,10 +62,10 @@ function DatabaseManager() {
   };
 
   /**
-    * This function adds a favourite object to the database.
-    * It needs 1 parameter:
-    *  - fav: object that defines the TYPE of the element (artist/song/album) and the CONTENT
-    */
+   * This function adds a favourite object to the database.
+   * It needs 1 parameter:
+   *  - fav: object that defines the TYPE of the element (artist/song/album) and the CONTENT
+   */
   this.addFav = function(fav) {
     var type = fav.type;
 
@@ -79,12 +79,12 @@ function DatabaseManager() {
   }
 
   /**
-    * This function creates a playlist given a name.
-    * It does not perform any kind of duplicate check, so you should check it previously.
-    * It needs 2 parameters:
-    *  - name: Name of the playlist to be created
-    *  - callback: Function that will be called once the transaction has finished
-    */
+   * This function creates a playlist given a name.
+   * It does not perform any kind of duplicate check, so you should check it previously.
+   * It needs 2 parameters:
+   *  - name: Name of the playlist to be created
+   *  - callback: Function that will be called once the transaction has finished
+   */
   this.createPlaylistWithName = function(name, callback) {
     db.transaction(function(tx) {
       tx.executeSql('INSERT INTO playlists (name) VALUES (?)', [name]);
@@ -94,10 +94,10 @@ function DatabaseManager() {
 
 
   /**
-    * This function gets all the playlists stored in the database
-    * It needs 1 parameter:
-    *  - callback: function that will receive an array of playlists
-    */
+   * This function gets all the playlists stored in the database
+   * It needs 1 parameter:
+   *  - callback: function that will receive an array of playlists
+   */
   this.getAllPlaylists = function(callback) {
     db.transaction(function(tx) {
       tx.executeSql('SELECT * FROM playlists', [], function(tx, results) {
@@ -113,11 +113,11 @@ function DatabaseManager() {
 
 
   /**
-    * This function returns all the songs that are included in a paylist, and also the playlist name
-    * It needs 2 parameters:
-    *  - playlistId: id of the playlist
-    *  - callback: function that will receive an array of songs, and the playlist name
-    */
+   * This function returns all the songs that are included in a paylist, and also the playlist name
+   * It needs 2 parameters:
+   *  - playlistId: id of the playlist
+   *  - callback: function that will receive an array of songs, and the playlist name
+   */
   this.getAllSongsFromPlaylist = function(playlistId, callback) {
     db.transaction(function(tx) {
       tx.executeSql('SELECT * FROM playlist_has_song WHERE playlistid = ?', [playlistId], function(trx, results) {
@@ -127,8 +127,8 @@ function DatabaseManager() {
           rows.push(results.rows.item(i));
         }
         trx.executeSql('SELECT name FROM playlists WHERE id = ?', [playlistId], function(tx, name) {
-            var playlistName = name.rows.item(0).name;
-            callback(rows, playlistName);
+          var playlistName = name.rows.item(0).name;
+          callback(rows, playlistName);
         });
       });
     });
@@ -136,11 +136,11 @@ function DatabaseManager() {
 
 
   /**
-    * This function adds a song to a playlist
-    * It needs 2 parameters:
-    *  - playlistId: id of the playlist
-    *  - fav: Song to be added (favid, imgRoute, songName, groupId, artistName, albumId, albumName)
-    */
+   * This function adds a song to a playlist
+   * It needs 2 parameters:
+   *  - playlistId: id of the playlist
+   *  - fav: Song to be added (favid, imgRoute, songName, groupId, artistName, albumId, albumName)
+   */
   this.addSongToPlaylist = function(playlistid, fav) {
     var songid = fav.favid,
       image = fav.imgRoute,
@@ -155,26 +155,26 @@ function DatabaseManager() {
   }
 
   /**
-    * This function deletes a song from a playlist
-    * It needs 2 parameters:
-    *  - playlistId: Id of the playlist
-    *  - songId: Id of the song
-    */
-  this.deleteSongFromPlaylist = function(playlistId, songId){
-    db.transaction(function(tx){
+   * This function deletes a song from a playlist
+   * It needs 2 parameters:
+   *  - playlistId: Id of the playlist
+   *  - songId: Id of the song
+   */
+  this.deleteSongFromPlaylist = function(playlistId, songId) {
+    db.transaction(function(tx) {
       tx.executeSql('DELETE FROM playlist_has_song WHERE playlistid=? AND songid=?', [playlistId, songId]);
     });
   }
 
 
   /**
-    * This deletes a playlist and all the songs it contains
-    * It needs 2 parameters:
-    *  - playlistId: Id of the playlist to be deleted
-    *  - callback: Function that will be called once the deletion has been made
-    */
-  this.deletePlaylist = function(playlistId, callback){
-    db.transaction(function(tx){
+   * This deletes a playlist and all the songs it contains
+   * It needs 2 parameters:
+   *  - playlistId: Id of the playlist to be deleted
+   *  - callback: Function that will be called once the deletion has been made
+   */
+  this.deletePlaylist = function(playlistId, callback) {
+    db.transaction(function(tx) {
 
       // Delete all the songs contained by the playlist
       tx.executeSql('DELETE FROM playlist_has_song WHERE playlistid = ?', [playlistId]);
@@ -187,10 +187,10 @@ function DatabaseManager() {
 
 
   /**
-    * This function deletes a favourite artist from the database.
-    * It needs 1 parameter:
-    *  - groupid: id of the artist to be deleted
-    */
+   * This function deletes a favourite artist from the database.
+   * It needs 1 parameter:
+   *  - groupid: id of the artist to be deleted
+   */
   var deleteFavArtist = function(groupid) {
     db.transaction(function(tx) {
       tx.executeSql('DELETE FROM fav_artists WHERE id=(?)', [groupid]);
@@ -199,10 +199,10 @@ function DatabaseManager() {
 
 
   /**
-    * This function deletes a favourite album from the database.
-    * It needs 1 parameter:
-    *  - albumid: id of the album to be deleted
-    */
+   * This function deletes a favourite album from the database.
+   * It needs 1 parameter:
+   *  - albumid: id of the album to be deleted
+   */
   var deleteFavAlbum = function(albumid) {
     db.transaction(function(tx) {
       tx.executeSql('DELETE FROM fav_albums WHERE id=(?)', [albumid]);
@@ -211,10 +211,10 @@ function DatabaseManager() {
 
 
   /**
-    * This function deletes a favourite song from the database.
-    * It needs 1 parameter:
-    *  - songid: id of the song to be deleted
-    */
+   * This function deletes a favourite song from the database.
+   * It needs 1 parameter:
+   *  - songid: id of the song to be deleted
+   */
   var deleteFavSong = function(songid) {
     db.transaction(function(tx) {
       tx.executeSql('DELETE FROM fav_songs WHERE id=(?)', [songid]);
@@ -223,11 +223,11 @@ function DatabaseManager() {
 
 
   /**
-    * This function deletes an object from the favourite databases
-    * It needs 2 parameters:
-    *  - type: string that defines the object to be deleted (artist, album, song)
-    *  - id: id of the object to be deleted
-    */
+   * This function deletes an object from the favourite databases
+   * It needs 2 parameters:
+   *  - type: string that defines the object to be deleted (artist, album, song)
+   *  - id: id of the object to be deleted
+   */
   this.deleteFav = function(type, id) {
     if (type == "artist") {
       deleteFavArtist(id);

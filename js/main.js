@@ -29,29 +29,3 @@ $("#nav-favourites").click(function() {
 $("#nav-recommendations").click(function() {
   app.showRecommendations();
 });
-
-function openSlider() {
-  var open_height = $(".panel-biography").attr("box_h") + "px";
-  $(".panel-biography").animate({
-    "height": open_height
-  }, {
-    duration: "slow"
-  });
-  $(".toggle-biography").html('<a href="#">close</a>');
-  $(".toggle-biography a").click(function() {
-    closeSlider()
-  })
-}
-
-function closeSlider() {
-  var sliderHeight = "100px";
-  $(".panel-biography").animate({
-    "height": sliderHeight
-  }, {
-    duration: "slow"
-  });
-  $(".toggle-biography").html('<a href="#">click</a>');
-  $(".toggle-biography a").click(function() {
-    openSlider()
-  })
-}

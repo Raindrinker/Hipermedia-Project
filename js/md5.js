@@ -118,9 +118,9 @@ function ii(a, b, c, d, x, s, t) {
   return cmn(c ^ (b | (~d)), a, b, x, s, t);
 }
 
- /**
-  * Necessary function for MD5
-  */
+/**
+ * Necessary function for MD5
+ */
 function md51(s) {
   txt = '';
   var n = s.length,

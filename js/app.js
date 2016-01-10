@@ -521,9 +521,9 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
     this.dbm.addSongToPlaylist(playlistId, song);
   }
 
-  this.onDeleteSongFromPlaylistClicked = function(playlistId, songId){
-    console.log("PLAYLIST TO DELETE FROM: "+playlistId);
-    console.log("SONG TO DELETE FROM: "+songId);
+  this.onDeleteSongFromPlaylistClicked = function(playlistId, songId) {
+    console.log("PLAYLIST TO DELETE FROM: " + playlistId);
+    console.log("SONG TO DELETE FROM: " + songId);
     this.dbm.deleteSongFromPlaylist(playlistId, songId);
   }
 
@@ -544,14 +544,14 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
         }
       });
 
-        this.dbm.markFavSongs(formatted, function(marked){
-          this.renderer.renderPlaylistContent(marked, playlistName, playlistId);
-        }.bind(this));
+      this.dbm.markFavSongs(formatted, function(marked) {
+        this.renderer.renderPlaylistContent(marked, playlistName, playlistId);
+      }.bind(this));
     }.bind(this));
   }
 
-  this.playPlaylist = function(playlistId){
-    this.dbm.getAllSongsFromPlaylist(playlistId, function(songs){
+  this.playPlaylist = function(playlistId) {
+    this.dbm.getAllSongsFromPlaylist(playlistId, function(songs) {
       var formatted = songs.map(function(song) {
         return {
           favid: song.songid,
@@ -566,14 +566,14 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
           delete: true
         }
       });
-      this.youtubeApi.prepareVideos(formatted, function(prepared){
+      this.youtubeApi.prepareVideos(formatted, function(prepared) {
         this.musicManager.playSongs(prepared);
       }.bind(this));
     }.bind(this));
   }
 
-  this.onDeletePlaylistSelected = function(playlistId){
-    this.dbm.deletePlaylist(playlistId, function(){
+  this.onDeletePlaylistSelected = function(playlistId) {
+    this.dbm.deletePlaylist(playlistId, function() {
       this.renderPlaylists();
     }.bind(this));
   }

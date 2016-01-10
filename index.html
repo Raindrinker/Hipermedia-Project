@@ -2,172 +2,172 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>BetaTune</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>BetaTune</title>
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-material-design.min.css" rel="stylesheet">
-    <link href="css/ripples.min.css" rel="stylesheet">
-    <link href="css/BootstrapXL.css" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-material-design.min.css" rel="stylesheet">
+  <link href="css/ripples.min.css" rel="stylesheet">
+  <link href="css/BootstrapXL.css" rel="stylesheet">
 
-    <!-- Sidebar -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
+  <!-- Sidebar -->
+  <link href="css/simple-sidebar.css" rel="stylesheet">
 
-    <link href="css/style.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 
 <body>
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add to playlist...</h4>
-                </div>
-                <div class="modal-body" id="modal_list">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add to playlist...</h4>
         </div>
+        <div class="modal-body" id="modal_list">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
     </div>
+  </div>
 
-    <div id="wrapper">
+  <div id="wrapper">
 
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li>
-                    <a href="#" class="logo">
-                        <img class="img-responsive" src="assets/logo.jpg">
-                    </a>
-                </li>
-                <li>
-                    <a class="menu-item" href="javascript:;" id="nav-recommendations">
-                        <div class="icon glyphicon glyphicon-thumbs-up"></div>Recommendations</a>
-                </li>
-                <li>
-                    <a class="menu-item" href="javascript:;" id="nav-favourites">
-                        <div class="icon glyphicon glyphicon-star-empty"></div>Favourites</a>
-                </li>
-                <li>
-                    <a data-toggle="collapse" href="#collapse1" class="menu-item" id="nav-playlists">
-                        <div class="icon glyphicon glyphicon-list"></div>Playlists</a>
-                    </a>
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li>
+          <a href="#" class="logo">
+            <img class="img-responsive" src="assets/logo.jpg">
+          </a>
+        </li>
+        <li>
+          <a class="menu-item" href="javascript:;" id="nav-recommendations">
+            <div class="icon glyphicon glyphicon-thumbs-up"></div>Recommendations</a>
+        </li>
+        <li>
+          <a class="menu-item" href="javascript:;" id="nav-favourites">
+            <div class="icon glyphicon glyphicon-star-empty"></div>Favourites</a>
+        </li>
+        <li>
+          <a data-toggle="collapse" href="#collapse1" class="menu-item" id="nav-playlists">
+            <div class="icon glyphicon glyphicon-list"></div>Playlists</a>
+          </a>
 
-                    <div id="collapse1" class="panel-collapse collapse playlist-background">
-                        <div id="playlist_content">
-                        </div>
-
-                    </div>
-                </li>
-
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid" id="content">
-
-
-
-                <div id="floating-toggle">
-                    <a href="#menu-toggle" class="btn btn-raised" id="menu-toggle">
-                        <span class="glyphicon glyphicon-menu-hamburger"></span>
-                    </a>
-                </div>
-
-                <!-- REPRODUCTOR DE MUSICA -->
-                <div class="player">
-                    <div id="player" class="collapse">
-                    </div>
-                </div>
-
-                <div class="well affix affix-top col-xs-12 smalltitle" id="smalltitle">
-                </div>
-
-                <div class="affix affix-top col-xs-12 smalltitle" id="searchdiv">
-                    <form action="/" method="get" id="search_form">
-                        <div class="form-group has-success is-empty" id="search">
-                            <input type="text" class="form-control" id="searcharea" autocomplete="off"></input>
-                            <span class="material-input"></span>
-                        </div>
-
-                        <button href="javascript:;" class="btn btn-fab searchbutton" id="searchbutton" type="submit">
-                            <span class="iconsearch glyphicon glyphicon-search" border="0"></span>
-                        </button>
-                    </form>
-                </div>
-
-                <div class="jumbotron affix-top" id='bigtitle'>
-                    <h1> BetaTune </h1>
-                </div>
-
-                <div class="container-fluid origin">
-                    <div class="content-overlay">
-                        <div class="base">
-                        </div>
-                        <div id="filler">
-                        </div>
-
-                    </div>
-
-
-
-                </div>
-
+          <div id="collapse1" class="panel-collapse collapse playlist-background">
+            <div id="playlist_content">
             </div>
 
+          </div>
+        </li>
+
+      </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <div class="container-fluid" id="content">
+
+
+
+        <div id="floating-toggle">
+          <a href="#menu-toggle" class="btn btn-raised" id="menu-toggle">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </a>
+        </div>
+
+        <!-- REPRODUCTOR DE MUSICA -->
+        <div class="player">
+          <div id="player" class="collapse">
+          </div>
+        </div>
+
+        <div class="well affix affix-top col-xs-12 smalltitle" id="smalltitle">
+        </div>
+
+        <div class="affix affix-top col-xs-12 smalltitle" id="searchdiv">
+          <form action="/" method="get" id="search_form">
+            <div class="form-group has-success is-empty" id="search">
+              <input type="text" class="form-control" id="searcharea" autocomplete="off"></input>
+              <span class="material-input"></span>
+            </div>
+
+            <button href="javascript:;" class="btn btn-fab searchbutton" id="searchbutton" type="submit">
+              <span class="iconsearch glyphicon glyphicon-search" border="0"></span>
+            </button>
+          </form>
+        </div>
+
+        <div class="jumbotron affix-top" id='bigtitle'>
+          <h1> BetaTune </h1>
+        </div>
+
+        <div class="container-fluid origin">
+          <div class="content-overlay">
+            <div class="base">
+            </div>
+            <div id="filler">
+            </div>
+
+          </div>
+
+
 
         </div>
-        <!-- /#page-content-wrapper -->
+
+      </div>
 
 
     </div>
-    <!-- /#wrapper -->
+    <!-- /#page-content-wrapper -->
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/material.min.js"></script>
-    <script src="js/ripples.min.js"></script>
-    <script src="js/sticky_top.js"></script>
-    <script src="js/handlebars-v4.0.5.js"></script>
-    <script src="js/md5.js"></script>
-    <script src="js/nouislider.min.js"></script>
-    <script src="js/renderer.js"></script>
-    <script src="js/apis/spotify.js"></script>
-    <script src="js/apis/youtube.js"></script>
-    <script src="js/apis/youtubemp3.js"></script>
-    <script src="js/apis/echonest.js"></script>
-    <script src="js/musicmanager.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/database.js"></script>
 
-    <!-- Menu Toggle Script -->
-    <script>
-        $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-    </script>
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/material.min.js"></script>
+  <script src="js/ripples.min.js"></script>
+  <script src="js/sticky_top.js"></script>
+  <script src="js/handlebars-v4.0.5.js"></script>
+  <script src="js/md5.js"></script>
+  <script src="js/nouislider.min.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/apis/spotify.js"></script>
+  <script src="js/apis/youtube.js"></script>
+  <script src="js/apis/youtubemp3.js"></script>
+  <script src="js/apis/echonest.js"></script>
+  <script src="js/musicmanager.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/database.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
 
 </body>
 
@@ -176,283 +176,283 @@
 <!-- TEMPLATE ARTISTS -->
 
 <script id="artists-template" type="text/x-handlebars-template">
-    <div class="arrow-zone">
-        <div class="arrow">
-            <div class="arrow-text">
-                <div class="icon glyphicon glyphicon-user"></div> ARTISTS</div>
-        </div>
+  <div class="arrow-zone">
+    <div class="arrow">
+      <div class="arrow-text">
+        <div class="icon glyphicon glyphicon-user"></div> ARTISTS</div>
     </div>
-    <div class="row artists">
+  </div>
+  <div class="row artists">
 
-        {{#each artist}}
+    {{#each artist}}
 
-        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 artistcolumn">
-            <div class="panel artist">
-                <a href="javascript:void(0)" data-type="artist" data-favid="{{id}}" data-groupid="{{id}}" data-image="{{imgRoute}}" data-name="{{artistName}}" class="btn btn-default btn-fab btn-fab-mini fav">
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 artistcolumn">
+      <div class="panel artist">
+        <a href="javascript:void(0)" data-type="artist" data-favid="{{id}}" data-groupid="{{id}}" data-image="{{imgRoute}}" data-name="{{artistName}}" class="btn btn-default btn-fab btn-fab-mini fav">
                     {{#if fav}}
                     <div class="favicon glyphicon glyphicon-star"></div>
                     {{else}}
                     <div class="favicon glyphicon glyphicon-star-empty"></div>
                     {{/if}}
                 </a>
-                <a href="javascript:;" data-groupid="{{id}}" class="square link-artist">
-                    <div class='square-box'>
-                        <div class='square-content'>
-                            <img class="img-thumbnail img-responsive artist-image" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
-                        </div>
-                    </div>
-
-
-                </a>
-
-                <div class="list-group">
-                    <a href="javascript:;" class="list-group-item link-artist" data-groupid="{{id}}">
-                        <div class="icon glyphicon glyphicon-user"></div> <b class="artistname">{{artistName}}</b></a>
-                </div>
+        <a href="javascript:;" data-groupid="{{id}}" class="square link-artist">
+          <div class='square-box'>
+            <div class='square-content'>
+              <img class="img-thumbnail img-responsive artist-image" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
             </div>
-        </div>
+          </div>
 
-        {{/each}}
+
+        </a>
+
+        <div class="list-group">
+          <a href="javascript:;" class="list-group-item link-artist" data-groupid="{{id}}">
+            <div class="icon glyphicon glyphicon-user"></div> <b class="artistname">{{artistName}}</b></a>
+        </div>
+      </div>
     </div>
+
+    {{/each}}
+  </div>
 </script>
 
 <!-- TEMPLATE ALBUMS -->
 
 <script id="albums-template" type="text/x-handlebars-template">
-    <div class="arrow-zone">
-        <div class="arrow">
-            <div class="arrow-text">
-                <div class="icon glyphicon glyphicon-cd"></div> ALBUMS</div>
-        </div>
+  <div class="arrow-zone">
+    <div class="arrow">
+      <div class="arrow-text">
+        <div class="icon glyphicon glyphicon-cd"></div> ALBUMS</div>
     </div>
-    <div class="row albums">
+  </div>
+  <div class="row albums">
 
-        {{#each album}}
+    {{#each album}}
 
-        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 albumcolumn">
-            <div class="panel album">
-                <a href="javascript:void(0)" data-type="album" data-favid="{{id}}" data-image="{{imgRoute}}" data-name="{{albumName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" class="btn btn-default btn-fab btn-fab-mini fav">
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 albumcolumn">
+      <div class="panel album">
+        <a href="javascript:void(0)" data-type="album" data-favid="{{id}}" data-image="{{imgRoute}}" data-name="{{albumName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" class="btn btn-default btn-fab btn-fab-mini fav">
                     {{#if fav}}
                     <div class="favicon glyphicon glyphicon-star"></div>
                     {{else}}
                     <div class="favicon glyphicon glyphicon-star-empty"></div>
                     {{/if}}
                 </a>
-                <a href="javascript:;" data-albumid="{{id}}" class="link-album">
-                    <div class='square-box'>
-                        <div class='square-content'>
-                            <img class="img-responsive" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
-                        </div>
-                    </div>
-
-                </a>
-                <div class="list-group">
-                    <a href="javascript:;" class="list-group-item link-album" data-albumid="{{id}}">
-                        <div class="icon glyphicon glyphicon-cd"></div> <b class="albumname">{{albumName}}</b></a>
-                    <a href="javascript:;" class="list-group-item link-artist" data-groupid="{{groupId}}">
-                        <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</a>
-                </div>
+        <a href="javascript:;" data-albumid="{{id}}" class="link-album">
+          <div class='square-box'>
+            <div class='square-content'>
+              <img class="img-responsive" src="{{imgRoute}}" data-toggle="collapse" data-target="#player"></img>
             </div>
-        </div>
+          </div>
 
-        {{/each}}
+        </a>
+        <div class="list-group">
+          <a href="javascript:;" class="list-group-item link-album" data-albumid="{{id}}">
+            <div class="icon glyphicon glyphicon-cd"></div> <b class="albumname">{{albumName}}</b></a>
+          <a href="javascript:;" class="list-group-item link-artist" data-groupid="{{groupId}}">
+            <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</a>
+        </div>
+      </div>
     </div>
+
+    {{/each}}
+  </div>
 </script>
 
 <!-- TEMPLATE SONGS -->
 
 <script id="songs-template" type="text/x-handlebars-template">
-    <div class="arrow-zone">
-        <div class="arrow">
-            <div class="arrow-text">
-                <div class="icon glyphicon glyphicon-music"></div> SONGS</div>
-        </div>
+  <div class="arrow-zone">
+    <div class="arrow">
+      <div class="arrow-text">
+        <div class="icon glyphicon glyphicon-music"></div> SONGS</div>
     </div>
-    <div class="row songs">
+  </div>
+  <div class="row songs">
 
 
-        <div class="col-xs-12 songcolumn">
-            <div class="well">
+    <div class="col-xs-12 songcolumn">
+      <div class="well">
 
-                <div class="list-group">
-                    {{#each song}}
+        <div class="list-group">
+          {{#each song}}
 
-                    <div class="list-group-item song" data-songid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}" data-albumname="{{albumName}}">
+          <div class="list-group-item song" data-songid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}" data-albumname="{{albumName}}">
 
-                        {{#if delete}}
-                        <a href="javascript:void(0)" data-type="song" class="btn btn-default btn-fab btn-fab-mini delete" data-favid="{{id}}" data-playlistid="{{playlistId}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}"
-                        data-albumid="{{albumId}}" data-albumname="{{albumName}}">
-                            <div class="favicon glyphicon glyphicon-remove"></div>
-                        </a>
-                        {{else}}
-                        <a href="javascript:void(0)" data-type="song" class="btn btn-default btn-fab btn-fab-mini add" data-favid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}"
-                        data-albumname="{{albumName}}">
-                            <div class="favicon glyphicon glyphicon-list"></div>
-                        </a>
-                        {{/if}}
+            {{#if delete}}
+            <a href="javascript:void(0)" data-type="song" class="btn btn-default btn-fab btn-fab-mini delete" data-favid="{{id}}" data-playlistid="{{playlistId}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}"
+            data-albumid="{{albumId}}" data-albumname="{{albumName}}">
+              <div class="favicon glyphicon glyphicon-remove"></div>
+            </a>
+            {{else}}
+            <a href="javascript:void(0)" data-type="song" class="btn btn-default btn-fab btn-fab-mini add" data-favid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}"
+            data-albumname="{{albumName}}">
+              <div class="favicon glyphicon glyphicon-list"></div>
+            </a>
+            {{/if}}
 
-                        <a href="javascript:void(0)" data-type="song" data-favid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}" data-albumname="{{albumName}}" class="btn btn-default btn-fab btn-fab-mini fav">
+            <a href="javascript:void(0)" data-type="song" data-favid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}" data-albumname="{{albumName}}" class="btn btn-default btn-fab btn-fab-mini fav">
                             {{#if fav}}
                             <div class="favicon glyphicon glyphicon-star"></div>
                             {{else}}
                             <div class="favicon glyphicon glyphicon-star-empty"></div>
                             {{/if}}
                         </a>
-                        <img class="album-snippet" src="{{imgRoute}}"></img>
+            <img class="album-snippet" src="{{imgRoute}}"></img>
 
-                        <p class="songname"><b>{{songName}}</b></p>
-                        <div class="song-artist-name link-artist" data-groupId={{groupId}}>
-                            <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
-                        <div class="song-album-name link-album" data-albumId={{albumId}}>
-                            <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
-                        </a>
-                    </div>
+            <p class="songname"><b>{{songName}}</b></p>
+            <div class="song-artist-name link-artist" data-groupId={{groupId}}>
+              <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
+            <div class="song-album-name link-album" data-albumId={{albumId}}>
+              <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
+            </a>
+          </div>
 
-                    {{/each}}
-                </div>
-
-            </div>
-
-
+          {{/each}}
         </div>
+
+      </div>
+
+
+    </div>
 </script>
 
 <!-- TEMPLATE MAIN ARTIST -->
 
 <script id="artist-main-template" type="text/x-handlebars-template">
-    <!-- LAYOUT ARTIST: -->
-    <div class="row songs">
-        <div class="container-fluid well main-artist-column">
-            <img class="col-xs-12 col-sm-6 col-md-4 main-artist-image" src="{{imgRoute}}"></img>
-            <div class="col-xs-12 col-sm-6 col-md-8">
-                <h2 class="artist-title">{{artistName}}</h2>
-            </div>
-        </div>
+  <!-- LAYOUT ARTIST: -->
+  <div class="row songs">
+    <div class="container-fluid well main-artist-column">
+      <img class="col-xs-12 col-sm-6 col-md-4 main-artist-image" src="{{imgRoute}}"></img>
+      <div class="col-xs-12 col-sm-6 col-md-8">
+        <h2 class="artist-title">{{artistName}}</h2>
+      </div>
     </div>
-    <!-- END - LAYOUT ARTIST -->
+  </div>
+  <!-- END - LAYOUT ARTIST -->
 </script>
 
 <!-- TEMPLATE MAIN ALBUM -->
 <script id="album-main-template" type="text/x-handlebars-template">
-    <!-- LAYOUT ALBUM: -->
-    <div class="row songs">
-        <div class="container-fluid well main-album-column">
-            <img class="col-xs-12 col-sm-6 col-md-4 main-album-image" src="{{imgRoute}}"></img>
-            <div class="col-xs-12 col-sm-6 col-md-8">
-                <h2 class="album-title">{{albumName}}</h2>
-                <h3 data-groupid="{{groupId}}" class="album-artist-name link-artist">{{artistName}}</h3>
-            </div>
-        </div>
+  <!-- LAYOUT ALBUM: -->
+  <div class="row songs">
+    <div class="container-fluid well main-album-column">
+      <img class="col-xs-12 col-sm-6 col-md-4 main-album-image" src="{{imgRoute}}"></img>
+      <div class="col-xs-12 col-sm-6 col-md-8">
+        <h2 class="album-title">{{albumName}}</h2>
+        <h3 data-groupid="{{groupId}}" class="album-artist-name link-artist">{{artistName}}</h3>
+      </div>
     </div>
-    <!-- END - LAYOUT ALBUM -->
+  </div>
+  <!-- END - LAYOUT ALBUM -->
 </script>
 
 <!-- TEMPLATE MAIN PLAYLIST -->
 <script id="playlist-main-template" type="text/x-handlebars-template">
-    <div class="row songs">
-        <div class="container-fluid well main-playlist-column">
-            <img class="hidden-xs col-sm-3 col-md-3 main-playlist-image" src="assets/playlist.png"></img>
-            <div class="col-xs-10 col-sm-7 col-md-7">
-                <h2 class="playlist-title">{{playlistName}}</h2>
-            </div>
-            <div class="col-xs-2">
-                <a class="btn btn-default btn-fab play-playlist" id="play_playlist_button" data-playlist="{{playlistId}}">
-                    <div class="favicon glyphicon glyphicon-play"></div>
-                </a>
-            </div>
-        </div>
-
-
-
+  <div class="row songs">
+    <div class="container-fluid well main-playlist-column">
+      <img class="hidden-xs col-sm-3 col-md-3 main-playlist-image" src="assets/playlist.png"></img>
+      <div class="col-xs-10 col-sm-7 col-md-7">
+        <h2 class="playlist-title">{{playlistName}}</h2>
+      </div>
+      <div class="col-xs-2">
+        <a class="btn btn-default btn-fab play-playlist" id="play_playlist_button" data-playlist="{{playlistId}}">
+          <div class="favicon glyphicon glyphicon-play"></div>
+        </a>
+      </div>
     </div>
-    <!-- END - LAYOUT ALBUM -->
+
+
+
+  </div>
+  <!-- END - LAYOUT ALBUM -->
 </script>
 
 <!-- TEMPLATE PLAYER -->
 <script id="player-template" type="text/x-handlebars-template">
-    <!-- LAYOUT PLAYER: -->
-    <div id="slider" class="slider shor slider-custom slider-material-orange noUi-target noUi-ltr noUi-horizontal noUi-connect"></div>
-    <div class="row music-controller">
-        <div class="col-xs-12 col-md-4 col-img">
-            <div class="img-group-wrapper">
-                <img class="img-player link-album" src="{{imgRoute}}" data-albumid="{{albumId}}"></img>
-                <div class="info-player">
-                    <p class="songname"><b>{{songName}}</b></p>
+  <!-- LAYOUT PLAYER: -->
+  <div id="slider" class="slider shor slider-custom slider-material-orange noUi-target noUi-ltr noUi-horizontal noUi-connect"></div>
+  <div class="row music-controller">
+    <div class="col-xs-12 col-md-4 col-img">
+      <div class="img-group-wrapper">
+        <img class="img-player link-album" src="{{imgRoute}}" data-albumid="{{albumId}}"></img>
+        <div class="info-player">
+          <p class="songname"><b>{{songName}}</b></p>
 
-                    <div class="song-artist-name link-artist" data-groupid={{groupId}}>
-                        <div class="icon glyphicon glyphicon-user"></div>{{artistName}}
-                    </div>
-                    <div class="song-album-name link-album" data-albumid={{albumId}}>
-                        <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}
-                    </div>
+          <div class="song-artist-name link-artist" data-groupid={{groupId}}>
+            <div class="icon glyphicon glyphicon-user"></div>{{artistName}}
+          </div>
+          <div class="song-album-name link-album" data-albumid={{albumId}}>
+            <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}
+          </div>
 
-                </div>
-            </div>
         </div>
-        <div class="col-xs-6 col-md-5">
-            <div class="player-controller center-block">
-                <a id="back_button" class="music-button buttton-bwd">
-                    <span class="iconsearch glyphicon glyphicon-fast-backward" border="0"></span>
-                </a>
-                <a id="playpause_button" class="music-button button-play">
-                    <span class="iconsearch glyphicon glyphicon-pause" border="0"></span>
-                </a>
-                <a id="forward_button" class="music-button buttton-fwd">
-                    <span class="iconsearch glyphicon glyphicon-fast-forward" border="0"></span>
-                </a>
-            </div>
-        </div>
-        <div class="col-xs-6 col-md-3 row volume-controller">
-            <a href="#" class="volume-button music-button">
-                <span class="iconsearch glyphicon glyphicon-volume-up" border="0"></span>
-            </a>
-            <div id="slidervolume" class="slider shor slider-volume slider-material-orange noUi-target noUi-ltr noUi-horizontal noUi-connect"></div>
-        </div>
-
+      </div>
     </div>
-    <!-- END - LAYOUT PLAYER -->
+    <div class="col-xs-6 col-md-5">
+      <div class="player-controller center-block">
+        <a id="back_button" class="music-button buttton-bwd">
+          <span class="iconsearch glyphicon glyphicon-fast-backward" border="0"></span>
+        </a>
+        <a id="playpause_button" class="music-button button-play">
+          <span class="iconsearch glyphicon glyphicon-pause" border="0"></span>
+        </a>
+        <a id="forward_button" class="music-button buttton-fwd">
+          <span class="iconsearch glyphicon glyphicon-fast-forward" border="0"></span>
+        </a>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-3 row volume-controller">
+      <a href="#" class="volume-button music-button">
+        <span class="iconsearch glyphicon glyphicon-volume-up" border="0"></span>
+      </a>
+      <div id="slidervolume" class="slider shor slider-volume slider-material-orange noUi-target noUi-ltr noUi-horizontal noUi-connect"></div>
+    </div>
+
+  </div>
+  <!-- END - LAYOUT PLAYER -->
 </script>
 
 <!-- TEMPLATE PLAYLISTS -->
 <script id="playlist-item-template" type="text/x-handlebars-template">
-    <ul id="playlist_list">
-        {{#each playlist}}
-        <li class="input-group" data-id="{{id}}">
-            <span class="playlist-item">{{name}}</span>
-            <span class="input-group-btn">
-                <button class="btn btn-default btn-delete-playlist">
-                    <span class="glyphicon glyphicon-remove"></span>
-                </button>
-            </span>
-        </li>
-        {{/each}}
-    </ul>
-    {{#if showcreate}}
-    <div class="playlist-item">
-        <form action="/" method="get" id="create_playlist_form">
-            <div class="input-group">
-                <input type="text" class="form-control addplaylistarea" placeholder="New playlist..." id="new_playlist_name" autocomplete="off">
-                <span class="input-group-btn">
-                    <button class="btn btn-default btn-add-playlist" type="submit">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </button>
-                </span>
-            </div>
-            <!-- /input-group -->
-        </form>
-    </div>
-    {{/if}}
+  <ul id="playlist_list">
+    {{#each playlist}}
+    <li class="input-group" data-id="{{id}}">
+      <span class="playlist-item">{{name}}</span>
+      <span class="input-group-btn">
+        <button class="btn btn-default btn-delete-playlist">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+      </span>
+    </li>
+    {{/each}}
+  </ul>
+  {{#if showcreate}}
+  <div class="playlist-item">
+    <form action="/" method="get" id="create_playlist_form">
+      <div class="input-group">
+        <input type="text" class="form-control addplaylistarea" placeholder="New playlist..." id="new_playlist_name" autocomplete="off">
+        <span class="input-group-btn">
+          <button class="btn btn-default btn-add-playlist" type="submit">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </span>
+      </div>
+      <!-- /input-group -->
+    </form>
+  </div>
+  {{/if}}
 </script>
 <!-- END TEMPLATE PLAYLISTS -->
 
 <!-- TEMPLATE PLAYLISTS MODAL -->
 <script id="playlist-modal-template" type="text/x-handlebars-template">
-    <ul class="list-group playlist-list">
-        {{#each playlist}}
-        <li class="list-group-item" data-playlistid="{{id}}" data-songid="{{../song.id}}" data-image="{{../song.imgRoute}}" data-name="{{../song.songName}}" data-groupid="{{../song.groupId}}" data-groupname="{{../song.artistName}}" data-albumid="{{../song.albumId}}"
-        data-albumname="{{../song.albumName}}">{{name}}</li>
-        {{/each}}
-    </ul>
+  <ul class="list-group playlist-list">
+    {{#each playlist}}
+    <li class="list-group-item" data-playlistid="{{id}}" data-songid="{{../song.id}}" data-image="{{../song.imgRoute}}" data-name="{{../song.songName}}" data-groupid="{{../song.groupId}}" data-groupname="{{../song.artistName}}" data-albumid="{{../song.albumId}}"
+    data-albumname="{{../song.albumName}}">{{name}}</li>
+    {{/each}}
+  </ul>
 </script>
 <!-- END TEMPLATE PLAYLISTS MODAL -->
 
