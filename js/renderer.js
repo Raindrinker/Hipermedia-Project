@@ -529,11 +529,14 @@ function Renderer() {
 
     $(list).find("ul#playlist_list > li.input-group").each(function(index, elem) {
       $(elem).click(function(event) {
-        var id = event.target.dataset.id;
 
+        var target = event.target;
 
-        // CONTROL CLICK
-        ;;;;;;;;;;;;;;;;;;;;
+        if(target.tagName == "SPAN"){
+          target = target.parentNode;
+        }
+
+        var id = target.dataset.id;
 
         console.log("ID: " + id);
         this.appReference.onPlaylistSelected(id);

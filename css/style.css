@@ -400,7 +400,9 @@ select:-webkit-autofill {
   cursor: pointer;
 }
 #slidervolume,
-#playpause_button {
+#playpause_button,
+#back_button,
+#forward_button {
   cursor: pointer;
 }
 .col-img {
