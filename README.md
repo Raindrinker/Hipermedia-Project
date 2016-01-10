@@ -45,6 +45,30 @@ Per la part de recomanació s'ha utilitzat Echonest. Al iniciar l'aplicació es 
   <img src="https://i.gyazo.com/e5708d34235fd953c69c1b1f04a75207.png"/>
 </p>
 
+## Estructura de l'aplicació
+
+L'aplicació està dividida en mòduls, on cada mòdul s'encarrega d'una única tasca.
+
+* Database: Inserció i esborrat de dades a la base de dades
+* Renderer: S'encarrega d'utilitzar els templates, renderitzar l'HTML i assignar els listeners
+* MusicManager: La seva responsabilitat és gestionar la reproducció de música, tant controlar l'estat de la reproducció actual (play, pause, volum) com gestionar la cua de reproducció.
+* App: Té una referència als client d'apis necessaris, així com als altres mòduls de l'aplicació. Fa de connector entre tots, de forma que un renderer, per exemple, mai hauria de conèixer el DatabaseManager.
+
+Apart d'aquests mòduls, disposem dels següents clients d'apis:
+
+* Spotify: Hem utilitzat una versió Open Source disponible (referenciada als crèdits)
+* MusicBrainz
+* Echonest
+* Youtube
+* YoutubeMP3Api (d'on convertim un id de Youtube a un Stream de música)
+
+A més, per tal d'aplicar patrons de disseny de software, les *instàncies* reben totes les seves dependències per constructor, cosa que fa que tots els mòduls que tenen una mateixa dependència en comparteixin instància, i facilita les tasques a l'hora de fer debug, ja que el mòdul rebut pot ser un *mock*.
+
+## Estructura de directoris
+
+* El codi .css/.less es troba sota la carpeta css/.
+* El codi javascript es troba sota la carpeta js/.
+* Els clients d'apis es troben sota la carpeta js/apis/.
 
 ## Fonts consultades
 
