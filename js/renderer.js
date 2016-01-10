@@ -221,7 +221,14 @@ function Renderer() {
       var playlistid = dataset.playlistid;
 
       this.appReference.onDeleteSongFromPlaylistClicked(playlistid, songid);
-      $(target).hide();
+
+      var parent = target.parentNode;
+      var container = parent.parentNode;
+      $(parent).remove();
+
+      if(container.children.length == 0){
+        $(container.parentNode).remove();
+      }
     }.bind(this));
   }
 
@@ -501,13 +508,33 @@ function Renderer() {
     $(list).find("#create_playlist_form").submit(function(event) {
       event.preventDefault();
       var newPlaylistName = $("#new_playlist_name").val();
-      $("#new_playlist_name").val("");
-      this.appReference.createPlaylistWithName(newPlaylistName);
+
+      var i;
+      var add = true;
+      for(i=0;i<playlists.length;i++){
+        if(playlists[i].name == newPlaylistName){
+          add = false;
+          break;
+        }
+      }
+
+      if(add){
+        $("#new_playlist_name").val("");
+      }
+
+      if(add && newPlaylistName.trim().length > 0){
+        this.appReference.createPlaylistWithName(newPlaylistName);
+      }
     }.bind(this));
 
     $(list).find("ul#playlist_list > li.input-group").each(function(index, elem) {
       $(elem).click(function(event) {
         var id = event.target.dataset.id;
+
+
+        // CONTROL CLICK
+        ;;;;;;;;;;;;;;;;;;;;
+
         console.log("ID: " + id);
         this.appReference.onPlaylistSelected(id);
       }.bind(this));
