@@ -24,6 +24,14 @@ html {
   transition: box-shadow 0.2s;
 }
 
+.link-artist,.link-album {
+  cursor:pointer;
+}
+
+.link-artist:hover, .link-album:hover {
+    text-decoration: underline;
+}
+
 .album:hover, .artist:hover{
     box-shadow: 0 6px 12px 0 rgba(0,0,0,.6);
 }
@@ -74,8 +82,9 @@ html {
 }
 
 .song-artist-name, .song-album-name{
-    float: left;
     padding: 5px;
+    padding-top: 0px;
+    padding-bottom: 3px;
     margin: 0px;
     display: inline-block;
     text-overflow: ellipsis;
@@ -86,10 +95,13 @@ html {
 .song{
     height: 80px;
     padding: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .songname{
-    margin-top: 5px;
+    margin-top: 3px;
     margin-bottom: 5px;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -225,9 +237,9 @@ body .container-fluid .playercontent{
 .list-group .list-group-item{
     padding: 8px;
     text-overflow: ellipsis;
-    overflow: hidden;
     white-space: nowrap;
     transition: background-color 0.2s;
+    overflow: hidden;
 }
 
 .list-group:hover .list-group-item:hover{
@@ -283,6 +295,11 @@ body .container-fluid .playercontent{
     font-size: 30px;
     color: white;
     height: inherit;
+    background-image: linear-gradient(@dark, @dark), linear-gradient(@soft, @soft);
+}
+
+.addplaylistarea {
+    color: white;
     background-image: linear-gradient(@dark, @dark), linear-gradient(@soft, @soft);
 }
 
@@ -347,6 +364,10 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 }
 
+.main-album-image,.main-artist-image{
+  padding:0;
+}
+
 /* OVERLAY */
 
 .origin {
@@ -366,7 +387,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 /* FAV */
 
-.btn.btn-fab.fav{
+.btn.btn-fab.fav {
     position: absolute;
     top: 10px;
     right: 15px;
@@ -375,11 +396,20 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     background-color: rgba(255, 255, 255, 0.8);
 }
 
-.btn.btn-fab.fav:focus{
+.btn.btn-fab.add, .btn.btn-fab.delete  {
+    position: absolute;
+    top: 10px;
+    right: 65px;
+    z-index: 1;
+    font-size: 150%;
     background-color: rgba(255, 255, 255, 0.8);
 }
 
-.btn.btn-fab.fav:hover{
+.btn.btn-fab.fav:focus, .btn.btn-fab.add:focus, .btn.btn-fab.delete:focus{
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.btn.btn-fab.fav:hover, .btn.btn-fab.add:hover, .btn.btn-fab.delete:hover{
     background-color: rgba(255, 255, 255, 1);
 }
 
@@ -394,6 +424,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 /* VIEW PLAYER */
 .slider {
   height: 3px;
+  padding-left: 10px;
 }
 .noUi-origin {
   height: 3px;
@@ -436,6 +467,11 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 #slider {
   margin-bottom: 0px;
+  cursor: pointer;
+}
+
+#slidervolume, #playpause_button {
+  cursor:pointer;
 }
 
 .col-img {
@@ -540,4 +576,70 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 .volume-button {
   float: left;
+}
+
+.playlist-background {
+    background-color: @soft;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px;
+}
+
+#playlist_list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.playlist-item {
+    color: white;
+}
+
+.input-group:hover, .playlist-item:hover {
+    background-color: @top;
+}
+
+/* Remove the blue border on focus in the form input */
+#new_playlist_name:focus {
+  outline-style:none;
+  box-shadow:none;
+  border-color:transparent;
+}
+
+#create_playlist_form {
+  padding-left: 20px;
+}
+
+.input-group-btn .btn-add-playlist{
+    width: 30px;
+    padding: 5px 8px 5px 8px;
+}
+
+.input-group-btn .btn-delete-playlist{
+    width: 30px;
+    padding: 5px 8px 5px 8px;
+}
+
+.dropdown-menu {
+    position:relative;
+    z-index: 10;
+}
+
+.test[style] {
+   padding-right:0 !important;
+}
+.test.modal-open {
+   overflow: visible;
+}
+
+.btn.btn-fab.play-playlist {
+    position: absolute;
+    padding-top: 7px;
+    top: 10px;
+    right: 15px;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.playlist-title {
+    min-height: 60px;
 }

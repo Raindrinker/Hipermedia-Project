@@ -111,8 +111,8 @@ function EchoNestClient(token, spotifyClient){
       var song = songs[index];
 
       var artistId = null;
-
-      if(song.artist_foreign_ids.length > 0){
+      var foreign_ids = song.artist_foreign_ids;
+      if(foreign_ids != null && foreign_ids.length > 0){
         var splits = song.artist_foreign_ids[0].foreign_id.split(":");
         if(splits.length == 3){
           artistId = splits[2];
@@ -202,7 +202,6 @@ function EchoNestClient(token, spotifyClient){
         console.log("HTTP Request Failed. NO RELATED SONGS");
         callback([]);
     });
-
   }
 
   this.init = function(){

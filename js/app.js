@@ -18,12 +18,18 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
   this.youtubeApi = youtubeApi;
   this.musicManager = musicManager;
 
-  this.echonestclient.init();
+  this.init = function() {
+    // Init the echonest client
+    this.echonestclient.init();
 
+    // Create the relation Renderer -> App, necessary for interactions
+    this.renderer.appReference = this;
 
-  // Create the relation Renderer -> App, necessary for the favorite button
-  this.renderer.appReference = this;
-  this.musicManager.setAppReference(this);
+    // Create the relation MusicManager -> App, necessary for interactions
+    this.musicManager.setAppReference(this);
+
+    this.renderPlaylists();
+  }
 
   this.requestGroupAlbums = function(groupName, callback) {
     this.spotifyClient.searchArtists(groupName, {
@@ -81,7 +87,6 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
     }, function(error, data) {
       if (error) console.log(error);
       callback(data.tracks);
-
     });
   }
 
@@ -226,11 +231,11 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
    * It needs 1 parameter:
    *  - albumId: Spotify id for the album
    */
-  this.paintAlbum = function(albumId){
+  this.paintAlbum = function(albumId) {
 
     // Get the album information from spotify
-    this.spotifyClient.getAlbum(albumId, {}, function(err, album){
-      if(err) console.log(err);
+    this.spotifyClient.getAlbum(albumId, {}, function(err, album) {
+      if (err) console.log(err);
 
       // Get the album attributes
       var albumName = album.name;
@@ -242,12 +247,12 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
       }
 
       // Get the album tracks from Spotify
-      this.spotifyClient.getAlbumTracks(albumId, {}, function(error, tracks){
+      this.spotifyClient.getAlbumTracks(albumId, {}, function(error, tracks) {
 
-        if(error)console.log(error);
+        if (error) console.log(error);
 
         // Format the songs
-        var songs = tracks.items.map(function(song){
+        var songs = tracks.items.map(function(song) {
           return {
             id: song.id,
             songId: song.id,
@@ -280,12 +285,12 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
    * the group's most famous songs, and their top 10 albums, all ready to be browsed,
    * favorited and/or played.
    */
-  this.paintArtist = function(artistId){
+  this.paintArtist = function(artistId) {
 
     // Get the artist information from Spotify
-    this.spotifyClient.getArtist(artistId, {}, function(err, artistInfo){
+    this.spotifyClient.getArtist(artistId, {}, function(err, artistInfo) {
 
-      if(err) console.log(err);
+      if (err) console.log(err);
 
       // Get artist data
       var artistName = artistInfo.name;
@@ -296,14 +301,16 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
       }
 
       // Get the 10 most famous songs for that artist
-      this.getArtistTopTracksFromId(artistId, 10, function(tracks){
+      this.getArtistTopTracksFromId(artistId, 10, function(tracks) {
 
-        // Get the 10 most popular albums for that artist
-        this.spotifyClient.getArtistAlbums(artistId, {limit: 10}, function(error, data){
-          if(error) console.log(error);
+        // Get the 12 most popular albums for that artist
+        this.spotifyClient.getArtistAlbums(artistId, {
+          limit: 12
+        }, function(error, data) {
+          if (error) console.log(error);
 
           // Prepare the albums object in the correct format
-          var albums = data.items.map(function(album){
+          var albums = data.items.map(function(album) {
 
             var imageurl = "http://lorempixel.com/400/400/abstract/";
             if (album.images.length > 0) {
@@ -321,7 +328,7 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
           });
 
           // Prepare the songs object in the correct format
-          var songs = tracks.map(function(song){
+          var songs = tracks.map(function(song) {
 
             var imageurl = "http://lorempixel.com/400/400/abstract/";
             if (song.album.images.length > 0) {
@@ -341,10 +348,10 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
           });
 
           // Send the songs to the DatabaseManager to calculate their fav status
-          this.dbm.markFavSongs(songs, function(marked){
+          this.dbm.markFavSongs(songs, function(marked) {
 
             // Send the albums to the DatabaseManager to calculate their fav status
-            this.dbm.markFavAlbums(albums, function(albumsMarked){
+            this.dbm.markFavAlbums(albums, function(albumsMarked) {
 
               // Create the artist object
               var artist = {
@@ -374,8 +381,8 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
   this.deleteFav = function(type, id) {
     this.dbm.deleteFav(type, id);
 
-    if(type == "song"){
-      this.echonestclient.updateFavoritedSong(id, true);
+    if (type == "song") {
+      this.echonestclient.updateFavoritedSong(id, false);
     }
   }
 
@@ -391,7 +398,7 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
     this.dbm.addFav(object);
     var id = object.content.favid;
     var type = object.type;
-    if(type == "song"){
+    if (type == "song") {
       this.echonestclient.updateFavoritedSong(id, true);
     }
   }
@@ -401,45 +408,44 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
    * Function that shows the user's favorite elements (artists, albums and songs).
    * It does not need any parameter
    */
-  this.showFavourites = function(){
+  this.showFavourites = function() {
 
     // Request all the favorite elements from the DatabaseManager
-    this.dbm.getAllFavs(function(artists, albums, songs){
+    this.dbm.getAllFavs(function(artists, albums, songs) {
 
       // Render the elements
       this.renderer.renderAll(artists, albums, songs);
     });
   }
 
-
   /**
    * Function that shows songs that the user might like based on his previous
    * actions and favorited elements.
    * IT does not need any paramter
    */
-  this.showRecommendations = function(){
+  this.showRecommendations = function() {
 
     // Get the related songs from the EchoNestClient
-    this.echonestclient.getRelatedSongs(10, function(songs){
+    this.echonestclient.getRelatedSongs(10, function(songs) {
       // Mark the fav status for the songs
-      this.dbm.markFavSongs(songs, function(markedSongs){
+      this.dbm.markFavSongs(songs, function(markedSongs) {
         // Render the songs
         this.renderer.renderRecommendedSongs(markedSongs);
       }.bind(this));
     }.bind(this));
   }
 
-  this.showPlaySong = function(song){
-    console.log("SHOWPLAYSONG");
-    console.log(song);
+  this.showPlaySong = function(song) {
+    //console.log("SHOWPLAYSONG");
+    //console.log(song);
     this.renderer.renderPlayingSong(song);
   }
 
-  this.playSong = function(songObject){
-    var query = songObject.artistName + " - " +songObject.songName;
-    this.youtubeApi.searchVideo(query, function(videoId){
+  this.playSong = function(songObject) {
+    var query = songObject.artistName + " - " + songObject.songName;
+    this.youtubeApi.searchVideo(query, function(videoId) {
       songObject.videoId = videoId;
-      if(videoId == undefined || videoId.length == 0){
+      if (videoId == undefined || videoId.length == 0) {
         console.log("Video not found");
       } else {
         this.musicManager.playSongs([songObject]);
@@ -447,21 +453,134 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
     }.bind(this));
   }
 
-  this.updateProgress = function(progress){
+  this.updateProgress = function(progress) {
     this.renderer.renderPlayerProgress(progress);
   }
 
-  this.onPlayEnded = function(){
+  this.onPlayEnded = function() {
     this.renderer.hidePlayer();
   }
 
-  this.setSongProgress = function(progress){
-    console.log("PROGRESS: "+progress);
+  this.setSongProgress = function(progress) {
+    console.log("PROGRESS: " + progress);
     this.musicManager.setSongProgress(progress);
   }
 
-  this.setVolume = function(volume){
+  this.setVolume = function(volume) {
     this.musicManager.setVolume(volume);
+  }
+
+  this.renderPlayButton = function() {
+    this.renderer.renderPlayButton(function() {
+      this.play();
+    }.bind(this));
+  }
+
+  this.renderPauseButton = function() {
+    this.renderer.renderPauseButton(function() {
+      this.pause();
+    }.bind(this));
+  }
+
+  this.pause = function() {
+    this.musicManager.pause();
+    this.renderer.renderPlayButton(function() {
+      this.play();
+    }.bind(this));
+  }
+
+  this.play = function() {
+    this.musicManager.play();
+    this.renderer.renderPauseButton(function() {
+      this.pause();
+    }.bind(this));
+  }
+
+  this.renderPlaylists = function() {
+    this.dbm.getAllPlaylists(function(playlists) {
+      console.log("PLAYLISTS");
+      console.log(playlists);
+      this.renderer.renderPlaylists(playlists);
+    }.bind(this));
+  }
+
+  this.createPlaylistWithName = function(name) {
+    this.dbm.createPlaylistWithName(name, function() {
+      this.renderPlaylists();
+    }.bind(this));
+  }
+
+  this.addSongToPlaylist = function(playlistId, song) {
+    this.dbm.addSongToPlaylist(playlistId, song);
+  }
+
+  this.onDeleteSongFromPlaylistClicked = function(playlistId, songId){
+    console.log("PLAYLIST TO DELETE FROM: "+playlistId);
+    console.log("SONG TO DELETE FROM: "+songId);
+    this.dbm.deleteSongFromPlaylist(playlistId, songId);
+  }
+
+  this.onPlaylistSelected = function(playlistId) {
+    this.dbm.getAllSongsFromPlaylist(playlistId, function(songs, playlistName) {
+      var formatted = songs.map(function(song) {
+        return {
+          favid: song.songid,
+          id: song.songid,
+          imgRoute: song.image,
+          songName: song.songname,
+          groupId: song.groupid,
+          artistName: song.groupname,
+          albumId: song.albumid,
+          albumName: song.albumname,
+          playlistId: playlistId,
+          delete: true
+        }
+      });
+
+        this.dbm.markFavSongs(formatted, function(marked){
+          this.renderer.renderPlaylistContent(marked, playlistName, playlistId);
+        }.bind(this));
+    }.bind(this));
+  }
+
+  this.playPlaylist = function(playlistId){
+    this.dbm.getAllSongsFromPlaylist(playlistId, function(songs){
+      var formatted = songs.map(function(song) {
+        return {
+          favid: song.songid,
+          id: song.songid,
+          imgRoute: song.image,
+          songName: song.songname,
+          groupId: song.groupid,
+          artistName: song.groupname,
+          albumId: song.albumid,
+          albumName: song.albumname,
+          playlistId: playlistId,
+          delete: true
+        }
+      });
+      this.youtubeApi.prepareVideos(formatted, function(prepared){
+        this.musicManager.playSongs(prepared);
+      }.bind(this));
+    }.bind(this));
+  }
+
+  this.onDeletePlaylistSelected = function(playlistId){
+    this.dbm.deletePlaylist(playlistId, function(){
+      this.renderPlaylists();
+    }.bind(this));
+  }
+
+  this.onAddSongToPlaylistClicked = function(callback) {
+    this.dbm.getAllPlaylists(callback);
+  }
+
+  this.onForwardButtonClick = function() {
+    this.musicManager.forward();
+  }
+
+  this.onBackButtonClick = function() {
+    this.musicManager.back();
   }
 
 }

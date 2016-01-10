@@ -16,6 +16,14 @@ html {
   padding: 0px;
   transition: box-shadow 0.2s;
 }
+.link-artist,
+.link-album {
+  cursor: pointer;
+}
+.link-artist:hover,
+.link-album:hover {
+  text-decoration: underline;
+}
 .album:hover,
 .artist:hover {
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.6);
@@ -64,8 +72,9 @@ html {
 }
 .song-artist-name,
 .song-album-name {
-  float: left;
   padding: 5px;
+  padding-top: 0px;
+  padding-bottom: 3px;
   margin: 0px;
   display: inline-block;
   text-overflow: ellipsis;
@@ -75,9 +84,12 @@ html {
 .song {
   height: 80px;
   padding: 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .songname {
-  margin-top: 5px;
+  margin-top: 3px;
   margin-bottom: 5px;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -189,9 +201,9 @@ body .container-fluid .playercontent {
 .list-group .list-group-item {
   padding: 8px;
   text-overflow: ellipsis;
-  overflow: hidden;
   white-space: nowrap;
   transition: background-color 0.2s;
+  overflow: hidden;
 }
 .list-group:hover .list-group-item:hover {
   background-color: lightgray;
@@ -236,6 +248,10 @@ body .container-fluid .playercontent {
   font-size: 30px;
   color: white;
   height: inherit;
+  background-image: linear-gradient(#003133, #003133), linear-gradient(#006064, #006064);
+}
+.addplaylistarea {
+  color: white;
   background-image: linear-gradient(#003133, #003133), linear-gradient(#006064, #006064);
 }
 /* Override styles for chrome autocomplete on input */
@@ -292,6 +308,10 @@ select:-webkit-autofill {
   margin: 0px 0px 0px 0px;
   margin-left: 120px;
 }
+.main-album-image,
+.main-artist-image {
+  padding: 0;
+}
 /* OVERLAY */
 .origin {
   position: relative;
@@ -315,10 +335,23 @@ select:-webkit-autofill {
   font-size: 150%;
   background-color: rgba(255, 255, 255, 0.8);
 }
-.btn.btn-fab.fav:focus {
+.btn.btn-fab.add,
+.btn.btn-fab.delete {
+  position: absolute;
+  top: 10px;
+  right: 65px;
+  z-index: 1;
+  font-size: 150%;
   background-color: rgba(255, 255, 255, 0.8);
 }
-.btn.btn-fab.fav:hover {
+.btn.btn-fab.fav:focus,
+.btn.btn-fab.add:focus,
+.btn.btn-fab.delete:focus {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.btn.btn-fab.fav:hover,
+.btn.btn-fab.add:hover,
+.btn.btn-fab.delete:hover {
   background-color: #ffffff;
 }
 .favicon {
@@ -328,6 +361,7 @@ select:-webkit-autofill {
 /* VIEW PLAYER */
 .slider {
   height: 3px;
+  padding-left: 10px;
 }
 .noUi-origin {
   height: 3px;
@@ -363,6 +397,11 @@ select:-webkit-autofill {
 }
 #slider {
   margin-bottom: 0px;
+  cursor: pointer;
+}
+#slidervolume,
+#playpause_button {
+  cursor: pointer;
 }
 .col-img {
   margin-top: 0px;
@@ -449,4 +488,59 @@ select:-webkit-autofill {
 }
 .volume-button {
   float: left;
+}
+.playlist-background {
+  background-color: #006064;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px;
+}
+#playlist_list {
+  list-style-type: none;
+  padding: 0;
+}
+.playlist-item {
+  color: white;
+}
+.input-group:hover,
+.playlist-item:hover {
+  background-color: #f44336;
+}
+/* Remove the blue border on focus in the form input */
+#new_playlist_name:focus {
+  outline-style: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+#create_playlist_form {
+  padding-left: 20px;
+}
+.input-group-btn .btn-add-playlist {
+  width: 30px;
+  padding: 5px 8px 5px 8px;
+}
+.input-group-btn .btn-delete-playlist {
+  width: 30px;
+  padding: 5px 8px 5px 8px;
+}
+.dropdown-menu {
+  position: relative;
+  z-index: 10;
+}
+.test[style] {
+  padding-right: 0 !important;
+}
+.test.modal-open {
+  overflow: visible;
+}
+.btn.btn-fab.play-playlist {
+  position: absolute;
+  padding-top: 7px;
+  top: 10px;
+  right: 15px;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.playlist-title {
+  min-height: 60px;
 }

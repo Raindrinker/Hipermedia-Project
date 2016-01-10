@@ -28,6 +28,24 @@
 </head>
 
 <body>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add to playlist...</h4>
+                </div>
+                <div class="modal-body" id="modal_list">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <div id="wrapper">
 
@@ -40,16 +58,23 @@
                     </a>
                 </li>
                 <li>
-                    <a class="menu-item" href="#" id="nav-recommendations">
+                    <a class="menu-item" href="javascript:;" id="nav-recommendations">
                         <div class="icon glyphicon glyphicon-thumbs-up"></div>Recommendations</a>
                 </li>
                 <li>
-                    <a class="menu-item" href="#" id="nav-favourites">
+                    <a class="menu-item" href="javascript:;" id="nav-favourites">
                         <div class="icon glyphicon glyphicon-star-empty"></div>Favourites</a>
                 </li>
                 <li>
-                    <a class="menu-item" href="#">
-                        <div class="icon glyphicon glyphicon-list-alt"></div>Playlists</a>
+                    <a data-toggle="collapse" href="#collapse1" class="menu-item" id="nav-playlists">
+                        <div class="icon glyphicon glyphicon-list"></div>Playlists</a>
+                    </a>
+
+                    <div id="collapse1" class="panel-collapse collapse playlist-background">
+                        <div id="playlist_content">
+                        </div>
+
+                    </div>
                 </li>
 
             </ul>
@@ -80,18 +105,15 @@
                 <div class="affix affix-top col-xs-12 smalltitle" id="searchdiv">
                     <form action="/" method="get" id="search_form">
                         <div class="form-group has-success is-empty" id="search">
-                            <input type="text" class="form-control" id="searcharea" autocomplete="off">
+                            <input type="text" class="form-control" id="searcharea" autocomplete="off"></input>
                             <span class="material-input"></span>
                         </div>
 
                         <button href="javascript:;" class="btn btn-fab searchbutton" id="searchbutton" type="submit">
                             <span class="iconsearch glyphicon glyphicon-search" border="0"></span>
-                        </button </form>
+                        </button>
+                    </form>
                 </div>
-
-
-
-
 
                 <div class="jumbotron affix-top" id='bigtitle'>
                     <h1> BetaTune </h1>
@@ -120,14 +142,6 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- TO IMPLEMENT WITH API
-    <audio controls>
-      <source src="http://www.youtubeinmp3.com/download/get/?i=H9vTgOeibHKETdHtjE80N8Ef6Mi5FjGiS5kFwaPzY6GKrd3ee0NINhPCXLujTWUJ26L0Iu942VvR%2Br5UCfzWqw%3D%3D&t=Dream%20Theater%20-%20%22Pull%20Me%20Under%22.mp3" type="audio/mpeg" />
-      <a href="http://www.youtubeinmp3.com/download/get/?i=H9vTgOeibHKETdHtjE80N8Ef6Mi5FjGiS5kFwaPzY6GKrd3ee0NINhPCXLujTWUJ26L0Iu942VvR%2Br5UCfzWqw%3D%3D&t=Dream%20Theater%20-%20%22Pull%20Me%20Under%22.mp3">THING AND STUFF</a>
-    </audio>
-
-    -->
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -137,7 +151,6 @@
     <script src="js/sticky_top.js"></script>
     <script src="js/handlebars-v4.0.5.js"></script>
     <script src="js/md5.js"></script>
-    <script src="js/cors.js"></script>
     <script src="js/nouislider.min.js"></script>
     <script src="js/renderer.js"></script>
     <script src="js/apis/spotify.js"></script>
@@ -257,6 +270,7 @@
     </div>
     <div class="row songs">
 
+
         <div class="col-xs-12 songcolumn">
             <div class="well">
 
@@ -264,6 +278,19 @@
                     {{#each song}}
 
                     <div class="list-group-item song" data-songid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}" data-albumname="{{albumName}}">
+
+                        {{#if delete}}
+                        <a href="javascript:void(0)" data-type="song" class="btn btn-default btn-fab btn-fab-mini delete" data-favid="{{id}}" data-playlistid="{{playlistId}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}"
+                        data-albumid="{{albumId}}" data-albumname="{{albumName}}">
+                            <div class="favicon glyphicon glyphicon-remove"></div>
+                        </a>
+                        {{else}}
+                        <a href="javascript:void(0)" data-type="song" class="btn btn-default btn-fab btn-fab-mini add" data-favid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}"
+                        data-albumname="{{albumName}}">
+                            <div class="favicon glyphicon glyphicon-list"></div>
+                        </a>
+                        {{/if}}
+
                         <a href="javascript:void(0)" data-type="song" data-favid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}" data-albumname="{{albumName}}" class="btn btn-default btn-fab btn-fab-mini fav">
                             {{#if fav}}
                             <div class="favicon glyphicon glyphicon-star"></div>
@@ -296,7 +323,7 @@
     <!-- LAYOUT ARTIST: -->
     <div class="row songs">
         <div class="container-fluid well main-artist-column">
-                <img class="col-xs-12 col-sm-6 col-md-4 main-artist-image" src="{{imgRoute}}"></img>
+            <img class="col-xs-12 col-sm-6 col-md-4 main-artist-image" src="{{imgRoute}}"></img>
             <div class="col-xs-12 col-sm-6 col-md-8">
                 <h2 class="artist-title">{{artistName}}</h2>
             </div>
@@ -310,7 +337,7 @@
     <!-- LAYOUT ALBUM: -->
     <div class="row songs">
         <div class="container-fluid well main-album-column">
-                <img class="col-xs-12 col-sm-6 col-md-4 main-album-image" src="{{imgRoute}}"></img>
+            <img class="col-xs-12 col-sm-6 col-md-4 main-album-image" src="{{imgRoute}}"></img>
             <div class="col-xs-12 col-sm-6 col-md-8">
                 <h2 class="album-title">{{albumName}}</h2>
                 <h3 data-groupid="{{groupId}}" class="album-artist-name link-artist">{{artistName}}</h3>
@@ -320,47 +347,115 @@
     <!-- END - LAYOUT ALBUM -->
 </script>
 
+<!-- TEMPLATE MAIN PLAYLIST -->
+<script id="playlist-main-template" type="text/x-handlebars-template">
+    <div class="row songs">
+        <div class="container-fluid well main-playlist-column">
+            <img class="hidden-xs col-sm-3 col-md-3 main-playlist-image" src="assets/playlist.png"></img>
+            <div class="col-xs-10 col-sm-7 col-md-7">
+                <h2 class="playlist-title">{{playlistName}}</h2>
+            </div>
+            <div class="col-xs-2">
+                <a class="btn btn-default btn-fab play-playlist" id="play_playlist_button" data-playlist="{{playlistId}}">
+                    <div class="favicon glyphicon glyphicon-play"></div>
+                </a>
+            </div>
+        </div>
+
+
+
+    </div>
+    <!-- END - LAYOUT ALBUM -->
+</script>
+
 <!-- TEMPLATE PLAYER -->
 <script id="player-template" type="text/x-handlebars-template">
-  <!-- LAYOUT PLAYER: -->
-  <div id="slider" class="slider shor slider-custom slider-material-orange noUi-target noUi-ltr noUi-horizontal noUi-connect"></div>
-  <div class="row music-controller">
-    <div class="col-xs-12 col-md-4 col-img">
-      <div class="img-group-wrapper">
-        <img class="img-player" src="{{imgRoute}}"></img>
-        <div class="info-player">
-          <p class="songname"><b>{{songName}}</b></p>
-          <div class="song-artist-name" data-groupId={{groupId}}>
-            <div class="icon glyphicon glyphicon-user"></div>{{artistName}}</div>
-          <div class="song-album-name" data-albumId={{albumId}}>
-            <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}</div>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="col-xs-6 col-md-5">
-      <div class="player-controller center-block">
-        <a href="#" class="music-button buttton-bwd">
-          <span class="iconsearch glyphicon glyphicon-fast-backward" border="0"></span>
-        </a>
-        <a href="#" class="music-button button-play">
-          <span class="iconsearch glyphicon glyphicon-play" border="0"></span>
-        </a>
-        <a href="#" class="music-button buttton-fwd">
-          <span class="iconsearch glyphicon glyphicon-fast-forward" border="0"></span>
-        </a>
-      </div>
-    </div>
-    <div class="col-xs-6 col-md-3 row volume-controller">
-      <a href="#" class="volume-button music-button">
-        <span class="iconsearch glyphicon glyphicon-volume-up" border="0"></span>
-      </a>
-      <div id="slidervolume" class="slider shor slider-volume slider-material-orange noUi-target noUi-ltr noUi-horizontal noUi-connect"></div>
-    </div>
+    <!-- LAYOUT PLAYER: -->
+    <div id="slider" class="slider shor slider-custom slider-material-orange noUi-target noUi-ltr noUi-horizontal noUi-connect"></div>
+    <div class="row music-controller">
+        <div class="col-xs-12 col-md-4 col-img">
+            <div class="img-group-wrapper">
+                <img class="img-player link-album" src="{{imgRoute}}" data-albumid="{{albumId}}"></img>
+                <div class="info-player">
+                    <p class="songname"><b>{{songName}}</b></p>
 
-  </div>
-  <!-- END - LAYOUT PLAYER -->
+                    <div class="song-artist-name link-artist" data-groupid={{groupId}}>
+                        <div class="icon glyphicon glyphicon-user"></div>{{artistName}}
+                    </div>
+                    <div class="song-album-name link-album" data-albumid={{albumId}}>
+                        <div class="icon glyphicon glyphicon-cd"></div>{{albumName}}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-5">
+            <div class="player-controller center-block">
+                <a id="back_button" class="music-button buttton-bwd">
+                    <span class="iconsearch glyphicon glyphicon-fast-backward" border="0"></span>
+                </a>
+                <a id="playpause_button" class="music-button button-play">
+                    <span class="iconsearch glyphicon glyphicon-pause" border="0"></span>
+                </a>
+                <a id="forward_button" class="music-button buttton-fwd">
+                    <span class="iconsearch glyphicon glyphicon-fast-forward" border="0"></span>
+                </a>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3 row volume-controller">
+            <a href="#" class="volume-button music-button">
+                <span class="iconsearch glyphicon glyphicon-volume-up" border="0"></span>
+            </a>
+            <div id="slidervolume" class="slider shor slider-volume slider-material-orange noUi-target noUi-ltr noUi-horizontal noUi-connect"></div>
+        </div>
+
+    </div>
+    <!-- END - LAYOUT PLAYER -->
 </script>
+
+<!-- TEMPLATE PLAYLISTS -->
+<script id="playlist-item-template" type="text/x-handlebars-template">
+    <ul id="playlist_list">
+        {{#each playlist}}
+        <li class="input-group" data-id="{{id}}">
+            <span class="playlist-item">{{name}}</span>
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-delete-playlist">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </span>
+        </li>
+        {{/each}}
+    </ul>
+    {{#if showcreate}}
+    <div class="playlist-item">
+        <form action="/" method="get" id="create_playlist_form">
+            <div class="input-group">
+                <input type="text" class="form-control addplaylistarea" placeholder="New playlist..." id="new_playlist_name" autocomplete="off">
+                <span class="input-group-btn">
+                    <button class="btn btn-default btn-add-playlist" type="submit">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </span>
+            </div>
+            <!-- /input-group -->
+        </form>
+    </div>
+    {{/if}}
+</script>
+<!-- END TEMPLATE PLAYLISTS -->
+
+<!-- TEMPLATE PLAYLISTS MODAL -->
+<script id="playlist-modal-template" type="text/x-handlebars-template">
+    <ul class="list-group playlist-list">
+        {{#each playlist}}
+        <li class="list-group-item" data-playlistid="{{id}}" data-songid="{{../song.id}}" data-image="{{../song.imgRoute}}" data-name="{{../song.songName}}" data-groupid="{{../song.groupId}}" data-groupname="{{../song.artistName}}" data-albumid="{{../song.albumId}}"
+        data-albumname="{{../song.albumName}}">{{name}}</li>
+        {{/each}}
+    </ul>
+</script>
+<!-- END TEMPLATE PLAYLISTS MODAL -->
+
 <script src="js/main.js"></script>
 
 </html>
