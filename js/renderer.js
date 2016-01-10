@@ -100,18 +100,22 @@ function Renderer() {
 
   }
 
-  var renderMainPlaylist = function(playlistName, songs) {
+  var renderMainPlaylist = function(playlistName, playlistId, songs, appReference) {
 
     var headObject = {
-      playlistName: playlistName
+      playlistName: playlistName,
+      playlistId: playlistId
     }
-
-    console.log("PLAYLISTS");
 
     var compiledHead = playlistMainTemplate(headObject);
     $(".base").append(compiledHead);
     renderSongs(songs);
 
+    $("#play_playlist_button").click(function(event){
+      var id = this.dataset.playlist;
+
+      appReference.playPlaylist(id);
+    });
   }
 
   var realRenderMainAlbum = function(album) {
@@ -460,7 +464,7 @@ function Renderer() {
     this.renderAll([], [], songs);
   }
 
-  this.renderPlaylistContent = function(content, playlistName){
+  this.renderPlaylistContent = function(content, playlistName, playlistId){
       console.log("renderplaylistcontent");
       // Hide the current content with a fancy animation
       this.hide(function() {
@@ -468,7 +472,7 @@ function Renderer() {
         // Once the animation has finished, clear the content
         this.clearAll();
 
-        renderMainPlaylist(playlistName, content);
+        renderMainPlaylist(playlistName, playlistId, content, this.appReference);
 
         // Make the fancy animation to reveal
         this.reveal();

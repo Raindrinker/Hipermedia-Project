@@ -537,14 +537,30 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
         }
       });
 
-      console.log("onplaylistselected");
-
-      this.youtubeApi.prepareVideos(formatted, function(prepared) {
-        this.dbm.markFavSongs(prepared, function(marked){
-
-          this.renderer.renderPlaylistContent(marked, playlistName);
-          this.musicManager.playSongs(marked);
+        this.dbm.markFavSongs(formatted, function(marked){
+          this.renderer.renderPlaylistContent(marked, playlistName, playlistId);
         }.bind(this));
+    }.bind(this));
+  }
+
+  this.playPlaylist = function(playlistId){
+    this.dbm.getAllSongsFromPlaylist(playlistId, function(songs){
+      var formatted = songs.map(function(song) {
+        return {
+          favid: song.songid,
+          id: song.songid,
+          imgRoute: song.image,
+          songName: song.songname,
+          groupId: song.groupid,
+          artistName: song.groupname,
+          albumId: song.albumid,
+          albumName: song.albumname,
+          playlistId: playlistId,
+          delete: true
+        }
+      });
+      this.youtubeApi.prepareVideos(formatted, function(prepared){
+        this.musicManager.playSongs(prepared);
       }.bind(this));
     }.bind(this));
   }
