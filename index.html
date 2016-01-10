@@ -280,11 +280,13 @@
                     <div class="list-group-item song" data-songid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}" data-albumname="{{albumName}}">
 
                         {{#if delete}}
-                        <a href="javascript:void(0)" data-type="song" class="btn btn-default btn-fab btn-fab-mini delete" data-favid="{{id}}" data-playlistid="{{playlistId}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}" data-albumname="{{albumName}}">
+                        <a href="javascript:void(0)" data-type="song" class="btn btn-default btn-fab btn-fab-mini delete" data-favid="{{id}}" data-playlistid="{{playlistId}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}"
+                        data-albumid="{{albumId}}" data-albumname="{{albumName}}">
                             <div class="favicon glyphicon glyphicon-remove"></div>
                         </a>
                         {{else}}
-                        <a href="javascript:void(0)" data-type="song" class="btn btn-default btn-fab btn-fab-mini add" data-favid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}" data-albumname="{{albumName}}">
+                        <a href="javascript:void(0)" data-type="song" class="btn btn-default btn-fab btn-fab-mini add" data-favid="{{id}}" data-image="{{imgRoute}}" data-name="{{songName}}" data-groupid="{{groupId}}" data-groupname="{{artistName}}" data-albumid="{{albumId}}"
+                        data-albumname="{{albumName}}">
                             <div class="favicon glyphicon glyphicon-list"></div>
                         </a>
                         {{/if}}
@@ -345,6 +347,27 @@
     <!-- END - LAYOUT ALBUM -->
 </script>
 
+<!-- TEMPLATE MAIN PLAYLIST -->
+<script id="playlist-main-template" type="text/x-handlebars-template">
+    <div class="row songs">
+        <div class="container-fluid well main-playlist-column">
+            <img class="hidden-xs col-sm-3 col-md-3 main-playlist-image" src="assets/playlist.png"></img>
+            <div class="col-xs-10 col-sm-7 col-md-7">
+                <h2 class="playlist-title">{{playlistName}}</h2>
+            </div>
+            <div class="col-xs-2">
+                <a class="btn btn-default btn-fab play-playlist" data-playlist="{{playlistId}}">
+                    <div class="favicon glyphicon glyphicon-play"></div>
+                </a>
+            </div>
+        </div>
+
+
+
+    </div>
+    <!-- END - LAYOUT ALBUM -->
+</script>
+
 <!-- TEMPLATE PLAYER -->
 <script id="player-template" type="text/x-handlebars-template">
     <!-- LAYOUT PLAYER: -->
@@ -393,16 +416,16 @@
 <!-- TEMPLATE PLAYLISTS -->
 <script id="playlist-item-template" type="text/x-handlebars-template">
     <ul id="playlist_list">
-      {{#each playlist}}
-      <li class="input-group" data-id="{{id}}">
-        <span class="playlist-item">{{name}}</span>
-        <span class="input-group-btn">
-            <button class="btn btn-default btn-delete-playlist">
-                <span class="glyphicon glyphicon-remove"></span>
-            </button>
-        </span>
-      </li>
-      {{/each}}
+        {{#each playlist}}
+        <li class="input-group" data-id="{{id}}">
+            <span class="playlist-item">{{name}}</span>
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-delete-playlist">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </span>
+        </li>
+        {{/each}}
     </ul>
     {{#if showcreate}}
     <div class="playlist-item">
@@ -424,11 +447,12 @@
 
 <!-- TEMPLATE PLAYLISTS MODAL -->
 <script id="playlist-modal-template" type="text/x-handlebars-template">
-  <ul class="list-group playlist-list">
-      {{#each playlist}}
-      <li class="list-group-item" data-playlistid="{{id}}" data-songid="{{../song.id}}" data-image="{{../song.imgRoute}}" data-name="{{../song.songName}}" data-groupid="{{../song.groupId}}" data-groupname="{{../song.artistName}}" data-albumid="{{../song.albumId}}" data-albumname="{{../song.albumName}}">{{name}}</li>
-      {{/each}}
-  </ul>
+    <ul class="list-group playlist-list">
+        {{#each playlist}}
+        <li class="list-group-item" data-playlistid="{{id}}" data-songid="{{../song.id}}" data-image="{{../song.imgRoute}}" data-name="{{../song.songName}}" data-groupid="{{../song.groupId}}" data-groupname="{{../song.artistName}}" data-albumid="{{../song.albumId}}"
+        data-albumname="{{../song.albumName}}">{{name}}</li>
+        {{/each}}
+    </ul>
 </script>
 <!-- END TEMPLATE PLAYLISTS MODAL -->
 

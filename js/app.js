@@ -521,7 +521,7 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
   }
 
   this.onPlaylistSelected = function(playlistId) {
-    this.dbm.getAllSongsFromPlaylist(playlistId, function(songs) {
+    this.dbm.getAllSongsFromPlaylist(playlistId, function(songs, playlistName) {
       var formatted = songs.map(function(song) {
         return {
           favid: song.songid,
@@ -537,10 +537,12 @@ function BetaPlayerApp(spotifyClient, renderer, dbm, echonestclient, youtubeApi,
         }
       });
 
+      console.log("onplaylistselected");
+
       this.youtubeApi.prepareVideos(formatted, function(prepared) {
         this.dbm.markFavSongs(prepared, function(marked){
 
-          this.renderer.renderPlaylistContent(marked);
+          this.renderer.renderPlaylistContent(marked, playlistName);
           this.musicManager.playSongs(marked);
         }.bind(this));
       }.bind(this));

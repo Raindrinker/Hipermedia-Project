@@ -13,6 +13,7 @@ function Renderer() {
   var playerMainScript = $("#player-template").html();
   var playlistItemScript = $("#playlist-item-template").html();
   var playlistModalScript = $("#playlist-modal-template").html();
+  var playlistMainScript = $("#playlist-main-template").html();
 
   // Precompile Handlebars templates
   var artistsTemplate = Handlebars.compile(artistsScript);
@@ -23,6 +24,7 @@ function Renderer() {
   var playerTemplate = Handlebars.compile(playerMainScript);
   var playlistItemTemplate = Handlebars.compile(playlistItemScript);
   var playlistModalTemplate = Handlebars.compile(playlistModalScript);
+  var playlistMainTemplate = Handlebars.compile(playlistMainScript);
 
   var isSlidePressed = false;
 
@@ -95,6 +97,20 @@ function Renderer() {
     $(".base").append(compiledHead);
     renderAlbums(artist.album);
     renderSongs(artist.song);
+
+  }
+
+  var renderMainPlaylist = function(playlistName, songs) {
+
+    var headObject = {
+      playlistName: playlistName
+    }
+
+    console.log("PLAYLISTS");
+
+    var compiledHead = playlistMainTemplate(headObject);
+    $(".base").append(compiledHead);
+    renderSongs(songs);
 
   }
 
@@ -444,8 +460,25 @@ function Renderer() {
     this.renderAll([], [], songs);
   }
 
-  this.renderPlaylistContent = function(content){
-    this.renderAll([], [], content);
+  this.renderPlaylistContent = function(content, playlistName){
+      console.log("renderplaylistcontent");
+      // Hide the current content with a fancy animation
+      this.hide(function() {
+
+        // Once the animation has finished, clear the content
+        this.clearAll();
+
+        renderMainPlaylist(playlistName, content);
+
+        // Make the fancy animation to reveal
+        this.reveal();
+
+        // Enable the favorite buttons
+        this.enableFavoritable();
+        this.enableAddableToPlaylist();
+        this.enableLinkable();
+        this.enablePlayable();
+      }.bind(this));
   }
 
   this.renderPlaylists = function(playlists) {
